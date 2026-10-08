@@ -122,7 +122,7 @@
     .card { overflow: hidden; margin-bottom: 14px; }
     .screen {
       padding: 26px 32px;
-      min-height: 480px;
+      min-height: 490px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -171,27 +171,38 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     
+    .read-text {
+      font-size: 1.06rem;
+      color: #fde047;
+      margin-top: 7px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      line-height: 1.45;
+      background: rgba(250, 204, 21, 0.08);
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(250, 204, 21, 0.2);
+    }
     .ipa-text {
-      font-size: 1.02rem;
+      font-size: 0.96rem;
       color: #38bdf8;
       font-family: 'Consolas', 'Courier New', monospace;
       margin-top: 6px;
       font-weight: 600;
       letter-spacing: 0.5px;
-      transition: all 0.2s ease;
     }
     .vi-text {
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: var(--muted);
       margin-top: 6px;
       font-weight: 500;
       line-height: 1.4;
-      transition: all 0.2s ease;
     }
     .hidden { display: none !important; }
     
     .answer {
-      margin: 22px auto 0;
+      margin: 20px auto 0;
       max-width: 900px;
       text-align: left;
       padding: 16px 20px;
@@ -366,12 +377,14 @@
       <div class="main">
         <div class="label">🔴 QUESTION · CÂU HỎI</div>
         <div class="question" id="question"></div>
+        <div><span class="read-text" id="qRead"></span></div>
         <div class="ipa-text" id="qIpa"></div>
         <div class="vi-text" id="qVi"></div>
 
         <div class="answer locked" id="answer">
           <div class="answer-label">🟢 MODEL ANSWER · CÂU TRẢ LỜI MẪU</div>
           <div class="answer-text" id="answerText"></div>
+          <div><span class="read-text" id="aRead"></span></div>
           <div class="ipa-text" id="aIpa"></div>
           <div class="vi-text" id="aVi"></div>
           <div class="hint">💡 Hãy tự trả lời bằng giọng nói trước. Sau đó bấm xem đáp án để đối chiếu.</div>
@@ -397,8 +410,9 @@
       <button class="btn" id="next">Sau ⏭</button>
       <button class="btn yellow" id="slow">🐢 Đọc từng từ</button>
       <button class="btn green" id="show">👁 Xem đáp án</button>
-      <button class="btn active-toggle" id="ipaBtn">🔤 IPA</button>
-      <button class="btn active-toggle" id="transBtn">🌐 Dịch TV</button>
+      <button class="btn active-toggle" id="readBtn" title="Bật/Tắt cách đọc theo âm Tiếng Việt">🗣 Đọc TV</button>
+      <button class="btn active-toggle" id="ipaBtn" title="Bật/Tắt phiên âm quốc tế IPA">🔤 IPA</button>
+      <button class="btn active-toggle" id="transBtn" title="Bật/Tắt dịch nghĩa Tiếng Việt">🌐 Dịch TV</button>
       <select class="btn" id="speed" aria-label="Tốc độ đọc">
         <option value="0.20">0.20x · Chậm tối đa (Tách từng âm)</option>
         <option value="0.30">0.30x · Siêu siêu chậm (Luyện khẩu hình)</option>
@@ -426,365 +440,445 @@
 </div>
 
 <script>
-// TOÀN BỘ DỮ LIỆU 40 CÂU HỎI KÈM PHIÊN ÂM IPA & BẢN DỊCH TIẾNG VIỆT
+// TOÀN BỘ DỮ LIỆU 40 CÂU HỎI KÈM CÁCH ĐỌC TIẾNG VIỆT, PHIÊN ÂM IPA & BẢN DỊCH TIẾNG VIỆT
 const DATA = [
   {
     id: 1,
     q: "Do you have a job or are you a student?",
+    qRead: "🗣 Đọc: Đu diu he-vờ ờ dóp o a diu ờ sờ-tiu-đần-t?",
     qIpa: "/duː juː hæv ə dʒɒb ɔːr ɑːr juː ə ˈstjuːdnt/",
     qVi: "Bạn đã đi làm hay là học sinh/sinh viên?",
     a: "I'm a student.",
+    aRead: "🗣 Đọc: Aim ờ sờ-tiu-đần-t.",
     aIpa: "/aɪm ə ˈstjuːdnt/",
     aVi: "Tôi là sinh viên."
   },
   {
     id: 2,
     q: "How do you usually get to your university?",
+    qRead: "🗣 Đọc: Hao đu diu diu-giu-ơ-li ghét tu gio diu-ni-vơ-xơ-ti?",
     qIpa: "/haʊ duː juː ˈjuːʒuəli ɡet tuː jɔːr ˌjuːnɪˈvɜːrsəti/",
     qVi: "Bạn thường đến trường đại học bằng phương tiện gì?",
     a: "I usually get to my university by bus.",
+    aRead: "🗣 Đọc: Ai diu-giu-ơ-li ghét tu mai diu-ni-vơ-xơ-ti bai bớt-s.",
     aIpa: "/aɪ ˈjuːʒuəli ɡet tuː maɪ ˌjuːnɪˈvɜːrsəti baɪ bʌs/",
     aVi: "Tôi thường đến trường bằng xe buýt. (by + phương tiện)"
   },
   {
     id: 3,
     q: "When did you start to learn English?",
+    qRead: "🗣 Đọc: Guen đít-d diu sờ-ta-t tu lơn Inh-gờ-lít-sh?",
     qIpa: "/wen dɪd juː stɑːrt tuː lɜːrn ˈɪŋɡlɪʃ/",
     qVi: "Bạn bắt đầu học tiếng Anh từ khi nào?",
     a: "I started learning English five years ago.",
+    aRead: "🗣 Đọc: Ai sờ-ta-tịt lơn-ninh Inh-gờ-lít-sh fai-vờ dia-zờ ờ-gâu.",
     aIpa: "/aɪ ˈstɑːrtɪd ˈlɜːrnɪŋ ˈɪŋɡlɪʃ faɪv jɪərz əˈɡoʊ/",
     aVi: "Tôi bắt đầu học tiếng Anh từ 5 năm trước. (started: quá khứ)"
   },
   {
     id: 4,
     q: "Do you like it? Why? Why not?",
+    qRead: "🗣 Đọc: Đu diu lai-kịt? Oai? Oai nót?",
     qIpa: "/duː juː laɪk ɪt? waɪ? waɪ nɒt/",
     qVi: "Bạn có thích nó không? Tại sao?",
     a: "Yes, I do. Because it is very interesting and useful.",
+    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-zịt ít-z ve-ri in-trơ-sờ-tinh en-d diu-s-phun.",
     aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈveri ˈɪntrəstɪŋ ænd ˈjuːsfəl/",
     aVi: "Có chứ. Vì tiếng Anh rất thú vị và bổ ích."
   },
   {
     id: 5,
     q: "Tell me something about your plans in the future?",
+    qRead: "🗣 Đọc: Teo mi săm-thinh ờ-bao-t gio plen-z in đơ phiu-chờ?",
     qIpa: "/tel miː ˈsʌmθɪŋ əˈbaʊt jɔːr plænz ɪn ðə ˈfjuːtʃər/",
     qVi: "Hãy chia sẻ về các kế hoạch tương lai của bạn?",
     a: "In the future, I will find a good job, buy a car, and get married.",
+    aRead: "🗣 Đọc: In đơ phiu-chờ, ai guil fain-d ờ gút dóp, bai ờ ca, en-d ghét me-rịt-d.",
     aIpa: "/ɪn ðə ˈfjuːtʃər, aɪ wɪl faɪnd ə ɡʊd dʒɒb, baɪ ə kɑːr, ænd ɡet ˈmærid/",
     aVi: "Trong tương lai, tôi sẽ tìm việc tốt, mua xe và lập gia đình."
   },
   {
     id: 6,
     q: "What are your hobbies?",
+    qRead: "🗣 Đọc: Goát a gio hóp-bi-z?",
     qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/",
     qVi: "Sở thích của bạn là gì?",
     a: "I like reading books and playing video games.",
+    aRead: "🗣 Đọc: Ai lai-k ri-đinh búc-s en-d pờ-lay-inh vi-đi-ô gêm-z.",
     aIpa: "/aɪ laɪk ˈriːdɪŋ bʊks ænd ˈpleɪɪŋ ˈvɪdioʊ ɡeɪmz/",
     aVi: "Tôi thích đọc sách và chơi trò chơi điện tử."
   },
   {
     id: 7,
     q: "Do you like video games? Why? Why not?",
+    qRead: "🗣 Đọc: Đu diu lai-k vi-đi-ô gêm-z? Oai? Oai nót?",
     qIpa: "/duː juː laɪk ˈvɪdioʊ ɡeɪmz? waɪ? waɪ nɒt/",
     qVi: "Bạn có thích trò chơi điện tử không? Tại sao?",
     a: "Yes, I do. Because they are interesting and help me relax.",
+    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z đê a in-trơ-sờ-tinh en-d heo-p mi ri-léc-s.",
     aIpa: "/jes, aɪ duː. bɪˈkəz ðeɪ ɑːr ˈɪntrəstɪŋ ænd help miː rɪˈlæks/",
     aVi: "Có, tôi thích. Vì game rất thú vị và giúp tôi thư giãn."
   },
   {
     id: 8,
     q: "Do you think video games are bad for children? Why?",
+    qRead: "🗣 Đọc: Đu diu thinh-k vi-đi-ô gêm-z a bét-d fo chil-đrần? Oai?",
     qIpa: "/duː juː θɪŋk ˈvɪdioʊ ɡeɪmz ɑːr bæd fɔːr ˈtʃɪldrən? waɪ/",
     qVi: "Bạn có nghĩ video game có hại cho trẻ em không? Tại sao?",
     a: "Yes, I do. Because children can easily become addicted to games.",
+    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z chil-đrần ken i-zi-li bi-căm ờ-đích-tịt tu gêm-z.",
     aIpa: "/jes, aɪ duː. bɪˈkəz ˈtʃɪldrən kæn ˈiːzəli bɪˈkʌm əˈdɪktɪd tuː ɡeɪmz/",
     aVi: "Có. Vì trẻ em rất dễ bị nghiện game."
   },
   {
     id: 9,
     q: "Where did you go on your last holiday?",
+    qRead: "🗣 Đọc: Gue-r đít-d diu gâu on gio lát-s-t ho-li-đê?",
     qIpa: "/weər dɪd juː ɡoʊ ɒn jɔːr læst ˈhɒlədeɪ/",
     qVi: "Kỳ nghỉ trước bạn đã đi đâu?",
     a: "On my last holiday, I went to Sam Son beach with my family.",
+    aRead: "🗣 Đọc: On mai lát-s-t ho-li-đê, ai guen-t tu Sầm Sơn bít-sh guýth mai phe-mơ-li.",
     aIpa: "/ɒn maɪ læst ˈhɒlədeɪ, aɪ went tuː Sam Son biːtʃ wɪð maɪ ˈfæməli/",
     aVi: "Vào kỳ nghỉ trước, tôi đã đi biển Sầm Sơn cùng gia đình."
   },
   {
     id: 10,
     q: "Did you enjoy it? Why?",
+    qRead: "🗣 Đọc: Đít-d diu in-dôi-ịt? Oai?",
     qIpa: "/dɪd juː ɪnˈdʒɔɪ ɪt? waɪ/",
     qVi: "Bạn có thích chuyến đi đó không? Tại sao?",
     a: "Yes, I did. Because I had a wonderful time there.",
+    aRead: "🗣 Đọc: Dét, ai đít-d. Bì-cơ-z ai hét-d ờ goăn-đơ-phun taim đe.",
     aIpa: "/jes, aɪ dɪd. bɪˈkəz aɪ hæd ə ˈwʌndərfəl taɪm ðeər/",
     aVi: "Có, tôi rất thích. Vì tôi đã có khoảng thời gian tuyệt vời ở đó."
   },
   {
     id: 11,
     q: "Do you have a large family or a small family?",
+    qRead: "🗣 Đọc: Đu diu he-vờ ờ la-dzh phe-mơ-li o ờ sờ-mo phe-mơ-li?",
     qIpa: "/duː juː hæv ə lɑːrdʒ ˈfæməli ɔːr ə smɔːl ˈfæməli/",
     qVi: "Gia đình bạn là gia đình lớn hay gia đình nhỏ?",
     a: "I have a small family. There are four people: my dad, my mom, my brother, and me.",
+    aRead: "🗣 Đọc: Ai he-vờ ờ sờ-mo phe-mơ-li. Đe a pho pi-pồ: mai đét-d, mai mom, mai bờ-ra-đờ, en-d mi.",
     aIpa: "/aɪ hæv ə smɔːl ˈfæməli. ðeər ɑːr fɔːr ˈpiːpl: maɪ dæd, maɪ mɒm, maɪ ˈbrʌðər, ænd miː/",
     aVi: "Gia đình tôi nhỏ thôi. Có 4 người: bố, mẹ, anh trai và tôi."
   },
   {
     id: 12,
     q: "How much time do you spend with your family?",
+    qRead: "🗣 Đọc: Hao mát-sh taim đu diu sờ-pen-d guýth gio phe-mơ-li?",
     qIpa: "/haʊ mʌtʃ taɪm duː juː spend wɪð jɔːr ˈfæməli/",
     qVi: "Bạn dành bao nhiêu thời gian cho gia đình?",
     a: "I spend every weekend with my family.",
+    aRead: "🗣 Đọc: Ai sờ-pen-d e-vờ-ri guýc-ken-d guýth mai phe-mơ-li.",
     aIpa: "/aɪ spend ˈevri ˈwiːkend wɪð maɪ ˈfæməli/",
     aVi: "Tôi dành trọn vẹn mỗi dịp cuối tuần bên gia đình."
   },
   {
     id: 13,
     q: "How many hours do you study each day?",
+    qRead: "🗣 Đọc: Hao me-ni ao-z đu diu sờ-ta-đi ích đê?",
     qIpa: "/haʊ ˈmeni ˈaʊərz duː juː ˈstʌdi iːtʃ deɪ/",
     qVi: "Mỗi ngày bạn học bao nhiêu tiếng?",
     a: "I spend five hours studying each day.",
+    aRead: "🗣 Đọc: Ai sờ-pen-d fai-vờ ao-z sờ-ta-đi-inh ích đê.",
     aIpa: "/aɪ spend faɪv ˈaʊərz ˈstʌdiɪŋ iːtʃ deɪ/",
     aVi: "Tôi dành 5 tiếng mỗi ngày để học tập."
   },
   {
     id: 14,
     q: "Do you enjoy your study? Why?",
+    qRead: "🗣 Đọc: Đu diu in-dôi gio sờ-ta-đi? Oai?",
     qIpa: "/duː juː ɪnˈdʒɔɪ jɔːr ˈstʌdi? waɪ/",
     qVi: "Bạn có thích việc học của mình không? Tại sao?",
     a: "Yes, I do. Because it is interesting and very useful.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈɪntrəstɪŋ ænd ˈveri ˈjuːsfəl/",
+    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-zịt ít-z in-trơ-sờ-tinh en-d ve-ri diu-s-phun.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈveri ˈɪntrəstɪŋ ænd ˈjuːsfəl/",
     aVi: "Có chứ, vì việc học rất thú vị và rất bổ ích."
   },
   {
     id: 15,
     q: "What do you usually do in your free time?",
+    qRead: "🗣 Đọc: Goát đu diu diu-giu-ơ-li đu in gio fri taim?",
     qIpa: "/wɒt duː juː ˈjuːʒuəli duː ɪn jɔːr friː taɪm/",
     qVi: "Bạn thường làm gì vào thời gian rảnh?",
     a: "In my free time, I usually listen to music and read books.",
+    aRead: "🗣 Đọc: In mai fri taim, ai diu-giu-ơ-li lís-sừn tu miu-zịch en-d rít-d búc-s.",
     aIpa: "/ɪn maɪ friː taɪm, aɪ ˈjuːʒuəli ˈlɪsn tuː ˈmjuːzɪk ænd riːd bʊks/",
     aVi: "Vào thời gian rảnh, tôi thường nghe nhạc và đọc sách."
   },
   {
     id: 16,
     q: "Do you prefer to stay alone or with your friends? Why?",
+    qRead: "🗣 Đọc: Đu diu pờ-ri-phơ tu sờ-tây ờ-lôn o guýth gio phren-z? Oai?",
     qIpa: "/duː juː prɪˈfɜːr tuː steɪ əˈloʊn ɔːr wɪð jɔːr frendz? waɪ/",
     qVi: "Bạn thích ở một mình hay ở cùng bạn bè hơn? Tại sao?",
     a: "I prefer to stay with my friends because we can help each other easily.",
+    aRead: "🗣 Đọc: Ai pờ-ri-phơ tu sờ-tây guýth mai phren-z bì-cơ-z gui ken heo-p ích a-đờ i-zi-li.",
     aIpa: "/aɪ prɪˈfɜːr tuː steɪ wɪð maɪ frendz bɪˈkəz wiː kæn help iːtʃ ˈʌðər ˈiːzəli/",
     aVi: "Tôi thích ở cùng bạn bè hơn vì chúng tôi có thể giúp đỡ nhau dễ dàng."
   },
   {
     id: 17,
     q: "Do you like going out? Why?",
+    qRead: "🗣 Đọc: Đu diu lai-k gâu-inh ao-t? Oai?",
     qIpa: "/duː juː laɪk ˈɡoʊɪŋ aʊt? waɪ/",
     qVi: "Bạn có thích đi ra ngoài chơi không? Tại sao?",
     a: "Yes, I do. Because going out makes me feel good.",
+    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z gâu-inh ao-t mê-k-s mi phiu gút.",
     aIpa: "/jes, aɪ duː. bɪˈkəz ˈɡoʊɪŋ aʊt meɪks miː fiːl ɡʊd/",
     aVi: "Có, tôi thích. Vì ra ngoài khiến tôi cảm thấy thoải mái và vui vẻ."
   },
   {
     id: 18,
     q: "What do you usually do when you go out?",
+    qRead: "🗣 Đọc: Goát đu diu diu-giu-ơ-li đu guen diu gâu ao-t?",
     qIpa: "/wɒt duː juː ˈjuːʒuəli duː wen juː ɡoʊ aʊt/",
     qVi: "Bạn thường làm gì khi đi ra ngoài?",
     a: "I usually go to the cinema with my friends.",
+    aRead: "🗣 Đọc: Ai diu-giu-ơ-li gâu tu đơ si-nê-ma guýth mai phren-z.",
     aIpa: "/aɪ ˈjuːʒuəli ɡoʊ tuː ðə ˈsɪnəmə wɪð maɪ frendz/",
     aVi: "Tôi thường đi xem phim rạp cùng bạn bè."
   },
   {
     id: 19,
     q: "Tell me about your favourite sport?",
+    qRead: "🗣 Đọc: Teo mi ờ-bao-t gio phây-vơ-rịt sờ-po-t?",
     qIpa: "/tel miː əˈbaʊt jɔːr ˈfeɪvərɪt spɔːrt/",
     qVi: "Hãy kể về môn thể thao yêu thích của bạn?",
     a: "My favourite sport is swimming. I swim twice a week and it makes me feel good.",
+    aRead: "🗣 Đọc: Mai phây-vơ-rịt sờ-po-t ít-z suýt-minh. Ai suým thoai-s ờ guýc en-d ịt mê-k-s mi phiu gút.",
     aIpa: "/maɪ ˈfeɪvərɪt spɔːrt ɪz ˈswɪmɪŋ. aɪ swɪm twaɪs ə wiːk ænd ɪt meɪks miː fiːl ɡʊd/",
     aVi: "Môn thể thao tôi yêu thích là bơi lội. Tôi bơi 2 lần một tuần và nó giúp tôi thấy khỏe khoắn."
   },
   {
     id: 20,
     q: "What kind of food do you like best?",
+    qRead: "🗣 Đọc: Goát kain-d ờ-vờ phút-d đu diu lai-k bét-s-t?",
     qIpa: "/wɒt kaɪnd əv fuːd duː juː laɪk best/",
     qVi: "Bạn thích loại đồ ăn nào nhất?",
     a: "I like beef, rice, and vegetables because they are good for my health.",
+    aRead: "🗣 Đọc: Ai lai-k bíp-ph, rai-s, en-d vét-s-tơ-bồ-z bì-cơ-z đê a gút fo mai hew-th.",
     aIpa: "/aɪ laɪk biːf, raɪs, ænd ˈvedʒtəblz bɪˈkəz ðeɪ ɑːr ɡʊd fɔːr maɪ helθ/",
     aVi: "Tôi thích thịt bò, cơm và rau vì chúng rất tốt cho sức khỏe."
   },
   {
     id: 21,
     q: "Do you like cooking? Why?",
+    qRead: "🗣 Đọc: Đu diu lai-k cúc-kinh? Oai?",
     qIpa: "/duː juː laɪk ˈkʊkɪŋ? waɪ/",
     qVi: "Bạn có thích nấu ăn không? Tại sao?",
     a: "Yes, I do. Because cooking makes me feel good and relaxed.",
+    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z cúc-kinh mê-k-s mi phiu gút en-d ri-léc-s-t.",
     aIpa: "/jes, aɪ duː. bɪˈkəz ˈkʊkɪŋ meɪks miː fiːl ɡʊd ænd rɪˈlækst/",
     aVi: "Có chứ. Vì nấu ăn giúp tôi thấy vui vẻ và thư thái."
   },
   {
     id: 22,
     q: "How often do you eat out?",
+    qRead: "🗣 Đọc: Hao óp-phừn đu diu ít ao-t?",
     qIpa: "/haʊ ˈɒfn duː juː iːt aʊt/",
     qVi: "Bạn có thường xuyên đi ăn ở ngoài không?",
     a: "I sometimes eat out with my friends on weekends.",
+    aRead: "🗣 Đọc: Ai săm-taim-z ít ao-t guýth mai phren-z on guýc-ken-z.",
     aIpa: "/aɪ ˈsʌmtaɪmz iːt aʊt wɪð maɪ frendz ɒn ˈwiːkendz/",
     aVi: "Thỉnh thoảng tôi đi ăn ngoài với bạn bè vào dịp cuối tuần."
   },
   {
     id: 23,
     q: "What kind of sport do you like playing? Why?",
+    qRead: "🗣 Đọc: Goát kain-d ờ-vờ sờ-po-t đu diu lai-k pờ-lay-inh? Oai?",
     qIpa: "/wɒt kaɪnd əv spɔːrt duː juː laɪk ˈpleɪɪŋ? waɪ/",
     qVi: "Bạn thích chơi môn thể thao nào? Tại sao?",
     a: "I like swimming because it helps me stay healthy.",
+    aRead: "🗣 Đọc: Ai lai-k suýt-minh bì-cơ-zịt heo-p-s mi sờ-tây heo-thi.",
     aIpa: "/aɪ laɪk ˈswɪmɪŋ bɪˈkəz ɪt helps miː steɪ ˈhelθi/",
     aVi: "Tôi thích bơi lội vì môn này giúp tôi luôn khỏe mạnh."
   },
   {
     id: 24,
     q: "Tell me what do you enjoy doing in your free time?",
+    qRead: "🗣 Đọc: Teo mi goát đu diu in-dôi đu-inh in gio fri taim?",
     qIpa: "/tel miː wɒt duː juː ɪnˈdʒɔɪ ˈduːɪŋ ɪn jɔːr friː taɪm/",
     qVi: "Hãy cho tôi biết bạn thích làm gì trong thời gian rảnh?",
     a: "In my free time, I enjoy listening to music and watching movies.",
+    aRead: "🗣 Đọc: In mai fri taim, ai in-dôi lís-sừn-ninh tu miu-zịch en-d goát-sh-inh mu-vi-z.",
     aIpa: "/ɪn maɪ friː taɪm, aɪ ɪnˈdʒɔɪ ˈlɪsnɪŋ tuː ˈmjuːzɪk ænd ˈwɒtʃɪŋ ˈmuːviz/",
     aVi: "Vào thời gian rảnh, tôi thích nghe nhạc và xem phim."
   },
   {
     id: 25,
     q: "What do you study at the university?",
+    qRead: "🗣 Đọc: Goát đu diu sờ-ta-đi ét đơ diu-ni-vơ-xơ-ti?",
     qIpa: "/wɒt duː juː ˈstʌdi æt ðə ˌjuːnɪˈvɜːrsəti/",
     qVi: "Bạn học ngành gì ở trường đại học?",
     a: "I study Information Technology at my university.",
+    aRead: "🗣 Đọc: Ai sờ-ta-đi In-pho-mê-shừn Téc-nơ-lo-di ét mai diu-ni-vơ-xơ-ti.",
     aIpa: "/aɪ ˈstʌdi ˌɪnfərˈmeɪʃn tekˈnɒlədʒi æt maɪ ˌjuːnɪˈvɜːrsəti/",
     aVi: "Tôi học ngành Công nghệ Thông tin tại trường đại học."
   },
   {
     id: 26,
     q: "Are you happy with your student life?",
+    qRead: "🗣 Đọc: A diu he-pi guýth gio sờ-tiu-đần-t lai-ph?",
     qIpa: "/ɑːr juː ˈhæpi wɪð jɔːr ˈstjuːdnt laɪf/",
     qVi: "Bạn có hài lòng với đời sống sinh viên không?",
     a: "Yes, I am. Because I love my teachers and my friends.",
+    aRead: "🗣 Đọc: Dét, ai em. Bì-cơ-z ai lơ-vờ mai tít-chờ-z en-d mai phren-z.",
     aIpa: "/jes, aɪ æm. bɪˈkəz aɪ lʌv maɪ ˈtiːtʃərz ænd maɪ frendz/",
     aVi: "Có, tôi rất vui. Vì tôi quý mến thầy cô và bạn bè của mình."
   },
   {
     id: 27,
     q: "What did you have for dinner yesterday?",
+    qRead: "🗣 Đọc: Goát đít-d diu he-vờ fo đin-nơ dét-s-tơ-đê?",
     qIpa: "/wɒt dɪd juː hæv fɔːr ˈdɪnər ˈjestərdeɪ/",
     qVi: "Tối hôm qua bạn đã ăn món gì?",
     a: "I had rice, fish, and vegetables for dinner yesterday.",
+    aRead: "🗣 Đọc: Ai hét-d rai-s, phít-sh, en-d vét-s-tơ-bồ-z fo đin-nơ dét-s-tơ-đê.",
     aIpa: "/aɪ hæd raɪs, fɪʃ, ænd ˈvedʒtəblz fɔːr ˈdɪnər ˈjestərdeɪ/",
     aVi: "Tối hôm qua tôi đã ăn cơm, cá và rau."
   },
   {
     id: 28,
     q: "Tell me about the kind of food you like?",
+    qRead: "🗣 Đọc: Teo mi ờ-bao-t đơ kain-d ờ-vờ phút-d diu lai-k?",
     qIpa: "/tel miː əˈbaʊt ðə kaɪnd əv fuːd juː laɪk/",
     qVi: "Hãy chia sẻ về các món ăn bạn thích?",
     a: "I like traditional Vietnamese food like beef, soup, and fresh vegetables.",
+    aRead: "🗣 Đọc: Ai lai-k trơ-đí-shơ-nồ Vi-ét-na-mít-z phút-d lai-k bíp-ph, súp, en-d phré-sh vét-s-tơ-bồ-z.",
     aIpa: "/aɪ laɪk trəˈdɪʃənl ˌvjetnəˈmiːz fuːd laɪk biːf, suːp, ænd freʃ ˈvedʒtəblz/",
     aVi: "Tôi thích món ăn truyền thống Việt Nam như thịt bò, canh và rau tươi."
   },
   {
     id: 29,
     q: "Do you often watch TV?",
+    qRead: "🗣 Đọc: Đu diu óp-phừn goát-sh Ti-Vi?",
     qIpa: "/duː juː ˈɒfn wɒtʃ ˌtiːˈviː/",
     qVi: "Bạn có thường xem TV không?",
     a: "Yes, I do. I often watch TV in the evening to relax.",
+    aRead: "🗣 Đọc: Dét, ai đu. Ai óp-phừn goát-sh Ti-Vi in đi í-vơ-ninh tu ri-léc-s.",
     aIpa: "/jes, aɪ duː. aɪ ˈɒfn wɒtʃ ˌtiːˈviː ɪn ðə ˈiːvnɪŋ tuː rɪˈlæks/",
     aVi: "Có chứ, tôi thường xem TV vào buổi tối để thư giãn."
   },
   {
     id: 30,
     q: "What TV programs do you like?",
+    qRead: "🗣 Đọc: Goát Ti-Vi pờ-râu-gờ-rem-z đu diu lai-k?",
     qIpa: "/wɒt ˌtiːˈviː ˈproʊɡræmz duː juː laɪk/",
     qVi: "Bạn thích những chương trình truyền hình nào?",
     a: "I like The Voice because I really enjoy singing.",
+    aRead: "🗣 Đọc: Ai lai-k Đơ Voi-s bì-cơ-z ai rí-li in-dôi sin-inh.",
     aIpa: "/aɪ laɪk ðə vɔɪs bɪˈkəz aɪ ˈrɪəli ɪnˈdʒɔɪ ˈsɪŋɪŋ/",
     aVi: "Tôi thích chương trình The Voice vì tôi rất thích ca hát."
   },
   {
     id: 31,
     q: "Where do you live?",
+    qRead: "🗣 Đọc: Gue-r đu diu li-vờ?",
     qIpa: "/weər duː juː lɪv/",
     qVi: "Bạn đang sống ở đâu?",
     a: "I live in Hanoi.",
+    aRead: "🗣 Đọc: Ai li-vờ in Hà Nội.",
     aIpa: "/aɪ lɪv ɪn Hà Nội/",
     aVi: "Tôi sống ở Hà Nội."
   },
   {
     id: 32,
     q: "Do you like living there? Why?",
+    qRead: "🗣 Đọc: Đu diu lai-k lí-vinh đe? Oai?",
     qIpa: "/duː juː laɪk ˈlɪvɪŋ ðeər? waɪ/",
     qVi: "Bạn có thích sống ở đó không? Tại sao?",
     a: "Yes, I do. Because Hanoi is a big, beautiful, and exciting city.",
+    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z Hà Nội ít-z ờ bích, biu-ti-phun, en-d ếch-sai-tinh si-ti.",
     aIpa: "/jes, aɪ duː. bɪˈkəz Hà Nội ɪz ə bɪɡ, ˈbjuːtɪfl, ænd ɪkˈsaɪtɪŋ ˈsɪti/",
     aVi: "Có chứ, vì Hà Nội là một thành phố lớn, tươi đẹp và sôi động."
   },
   {
     id: 33,
     q: "Can you play any musical instrument such as guitar, piano or violin?",
+    qRead: "🗣 Đọc: Ken diu pờ-lay e-ni miu-zi-cồ in-sờ-tru-mừn-t sát-sh ét ghi-ta, pi-a-nô o vai-ơ-lin?",
     qIpa: "/kæn juː pleɪ ˈeni ˈmjuːzɪkl ˈɪnstrəmənt sʌtʃ æz ɡɪˈtɑːr, piˈænoʊ ɔːr ˌvaɪəˈlɪn/",
     qVi: "Bạn có thể chơi nhạc cụ nào như guitar, piano hay violin không?",
     a: "Yes, I can. I can play the guitar.",
+    aRead: "🗣 Đọc: Dét, ai ken. Ai ken pờ-lay đơ ghi-ta.",
     aIpa: "/jes, aɪ kæn. aɪ kæn pleɪ ðə ɡɪˈtɑːr/",
     aVi: "Có, tôi biết chơi đàn guitar. (nhạc cụ đi với 'the': play the guitar)"
   },
   {
     id: 34,
     q: "What other country would you like to visit? Why?",
+    qRead: "🗣 Đọc: Goát a-đờ căn-tri gút-d diu lai-k tu ví-zịt? Oai?",
     qIpa: "/wɒt ˈʌðər ˈkʌntri wʊd juː laɪk tuː ˈvɪzɪt? waɪ/",
     qVi: "Bạn muốn đến thăm quốc gia nào khác? Tại sao?",
     a: "I would like to visit China because I want to see the Great Wall and it is very beautiful.",
+    aRead: "🗣 Đọc: Ai gút-d lai-k tu ví-zịt Chai-na bì-cơ-z ai goán-t tu si đơ gờ-rết go o en-d ịt ít-z ve-ri biu-ti-phun.",
     aIpa: "/aɪ wʊd laɪk tuː ˈvɪzɪt ˈtʃaɪnə bɪˈkəz aɪ wɒnt tuː siː ðə ɡreɪt wɔːl ænd ɪt ɪz ˈveri ˈbjuːtɪfl/",
     aVi: "Tôi muốn đi Trung Quốc vì tôi muốn chiêm ngưỡng Vạn Lý Trường Thành và nơi đó rất đẹp."
   },
   {
     id: 35,
     q: "What are the popular sports in Vietnam?",
+    qRead: "🗣 Đọc: Goát a đơ póp-piu-lơ sờ-po-t-s in Vi-ét-nam?",
     qIpa: "/wɒt ɑːr ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm/",
     qVi: "Các môn thể thao phổ biến ở Việt Nam là gì?",
     a: "I think the popular sports in Vietnam are football and volleyball.",
+    aRead: "🗣 Đọc: Ai thinh-k đơ póp-piu-lơ sờ-po-t-s in Vi-ét-nam a phút-bol en-d vó-li-bol.",
     aIpa: "/aɪ θɪŋk ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm ɑːr ˈfʊtbɔːl ænd ˈvɒlibɔːl/",
     aVi: "Tôi nghĩ môn thể thao phổ biến ở Việt Nam là bóng đá và bóng chuyền."
   },
   {
     id: 36,
     q: "How often do you play sports? What sports?",
+    qRead: "🗣 Đọc: Hao óp-phừn đu diu pờ-lay sờ-po-t-s? Goát sờ-po-t-s?",
     qIpa: "/haʊ ˈɒfn duː juː pleɪ spɔːrts? wɒt spɔːrts/",
     qVi: "Bạn có thường chơi thể thao không? Chơi môn gì?",
     a: "I usually play sports on weekends because it makes me feel good. I play football.",
+    aRead: "🗣 Đọc: Ai diu-giu-ơ-li pờ-lay sờ-po-t-s on guýc-ken-z bì-cơ-zịt mê-k-s mi phiu gút. Ai pờ-lay phút-bol.",
     aIpa: "/aɪ ˈjuːʒuəli pleɪ spɔːrts ɒn ˈwiːkendz bɪˈkəz ɪt meɪks miː fiːl ɡʊd. aɪ pleɪ ˈfʊtbɔːl/",
     aVi: "Tôi thường chơi thể thao vào cuối tuần vì nó giúp tôi khỏe mạnh. Tôi chơi bóng đá."
   },
   {
     id: 37,
     q: "What are your hobbies?",
+    qRead: "🗣 Đọc: Goát a gio hóp-bi-z?",
     qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/",
     qVi: "Sở thích của bạn là gì?",
     a: "My hobbies are reading books, playing games, and listening to music.",
+    aRead: "🗣 Đọc: Mai hóp-bi-z a rí-đinh búc-s, pờ-lay-inh gêm-z, en-d lís-sừn-ninh tu miu-zịch.",
     aIpa: "/maɪ ˈhɒbiz ɑːr ˈriːdɪŋ bʊks, ˈpleɪɪŋ ɡeɪmz, ænd ˈlɪsnɪŋ tuː ˈmjuːzɪk/",
     aVi: "Sở thích của tôi là đọc sách, chơi game và nghe nhạc."
   },
   {
     id: 38,
     q: "Do you like reading? Why?",
+    qRead: "🗣 Đọc: Đu diu lai-k rí-đinh? Oai?",
     qIpa: "/duː juː laɪk ˈriːdɪŋ? waɪ/",
     qVi: "Bạn có thích đọc sách không? Tại sao?",
     a: "Yes, I do. Because reading books makes me feel relaxed and good.",
+    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z rí-đinh búc-s mê-k-s mi phiu ri-léc-s-t en-d gút.",
     aIpa: "/jes, aɪ duː. bɪˈkəz ˈriːdɪŋ bʊks meɪks miː fiːl rɪˈlækst ænd ɡʊd/",
     aVi: "Có chứ, vì đọc sách giúp tôi thấy thư giãn và thoải mái."
   },
   {
     id: 39,
     q: "What kind of book do you like best?",
+    qRead: "🗣 Đọc: Goát kain-d ờ-vờ búc đu diu lai-k bét-s-t?",
     qIpa: "/wɒt kaɪnd əv bʊk duː juː laɪk best/",
     qVi: "Bạn thích loại sách nào nhất?",
     a: "I like short stories best.",
+    aRead: "🗣 Đọc: Ai lai-k sho-t sờ-to-ri-z bét-s-t.",
     aIpa: "/aɪ laɪk ʃɔːrt ˈstɔːriz best/",
     aVi: "Tôi thích truyện ngắn nhất."
   },
   {
     id: 40,
     q: "What do you think the importance of English in your life?",
+    qRead: "🗣 Đọc: Goát đu diu thinh-k đi im-po-từn-s ờ-vờ Inh-gờ-lít-sh in gio lai-ph?",
     qIpa: "/wɒt duː juː θɪŋk ðə ɪmˈpɔːrtns əv ˈɪŋɡlɪʃ ɪn jɔːr laɪf/",
     qVi: "Bạn nghĩ tầm quan trọng của tiếng Anh trong cuộc sống của mình là gì?",
     a: "I think English is very important because if I am good at English, I can find a good job easily.",
+    aRead: "🗣 Đọc: Ai thinh-k Inh-gờ-lít-sh ít-z ve-ri im-po-từn-t bì-cơ-zíp phai em gút ét Inh-gờ-lít-sh, ai ken fain-d ờ gút dóp i-zi-li.",
     aIpa: "/aɪ θɪŋk ˈɪŋɡlɪʃ ɪz ˈveri ɪmˈpɔːrtnt bɪˈkəz ɪf aɪ æm ɡʊd æt ˈɪŋɡlɪʃ, aɪ kæn faɪnd ə ɡʊd dʒɒb ˈiːzəli/",
     aVi: "Tôi nghĩ tiếng Anh rất quan trọng vì nếu tôi giỏi tiếng Anh, tôi có thể tìm việc tốt dễ dàng."
   }
@@ -798,14 +892,14 @@ const DAY_CONFIG = {
 };
 
 let day = 1, items = [], index = 0, speaking = false, run = 0;
-let showIpa = true, showTrans = true;
+let showRead = true, showIpa = true, showTrans = true;
 
 const $ = id => document.getElementById(id);
-const question = $("question"), qIpa = $("qIpa"), qVi = $("qVi");
-const answer = $("answer"), answerText = $("answerText"), aIpa = $("aIpa"), aVi = $("aVi");
+const question = $("question"), qRead = $("qRead"), qIpa = $("qIpa"), qVi = $("qVi");
+const answer = $("answer"), answerText = $("answerText"), aRead = $("aRead"), aIpa = $("aIpa"), aVi = $("aVi");
 const counter = $("counter"), status = $("status"), bar = $("bar");
 const quiz = $("quiz"), selfAnswer = $("selfAnswer"), result = $("result");
-const showBtn = $("show"), ipaBtn = $("ipaBtn"), transBtn = $("transBtn");
+const showBtn = $("show"), readBtn = $("readBtn"), ipaBtn = $("ipaBtn"), transBtn = $("transBtn");
 
 function shuffle(arr) {
   const a = [...arr];
@@ -853,13 +947,17 @@ function render() {
   
   // Wrap words for karaoke highlight if needed
   question.innerHTML = item.q.split(/\s+/).map((w, i) => `<span class="word" id="qw-${i}">${w}</span>`).join(" ");
+  qRead.textContent = item.qRead;
   qIpa.textContent = item.qIpa;
   qVi.textContent = item.qVi;
   
   answerText.innerHTML = item.a.split(/\s+/).map((w, i) => `<span class="word" id="aw-${i}">${w}</span>`).join(" ");
+  aRead.textContent = item.aRead;
   aIpa.textContent = item.aIpa;
   aVi.textContent = item.aVi;
   
+  qRead.parentElement.classList.toggle("hidden", !showRead);
+  aRead.parentElement.classList.toggle("hidden", !showRead);
   qIpa.classList.toggle("hidden", !showIpa);
   aIpa.classList.toggle("hidden", !showIpa);
   qVi.classList.toggle("hidden", !showTrans);
@@ -983,13 +1081,20 @@ $("slow").onclick = async () => {
     if (r !== run || !speaking) return;
     const wEl = document.getElementById(`qw-${i}`);
     if (wEl) wEl.classList.add("active");
-    await speak(words[i], Math.min(0.45, Number($("speed").value)));
+    await speak(words[i], Math.min(0.40, Number($("speed").value)));
     await new Promise(res => setTimeout(res, 350));
     if (wEl) wEl.classList.remove("active");
   }
   
   setStatus("Sẵn sàng học", "ok");
   speaking = false;
+};
+
+readBtn.onclick = () => {
+  showRead = !showRead;
+  readBtn.classList.toggle("active-toggle", showRead);
+  qRead.parentElement.classList.toggle("hidden", !showRead);
+  aRead.parentElement.classList.toggle("hidden", !showRead);
 };
 
 ipaBtn.onclick = () => {
