@@ -412,7 +412,12 @@
       <button class="btn green" id="show">👁 Xem đáp án</button>
       <button class="btn active-toggle" id="readBtn" title="Bật/Tắt cách đọc theo âm Tiếng Việt">🗣 Đọc TV</button>
       <button class="btn active-toggle" id="ipaBtn" title="Bật/Tắt phiên âm quốc tế IPA">🔤 IPA</button>
-      <button class="btn active-toggle" id="transBtn" title="Bật/Tắt dịch nghĩa Tiếng Việt">🌐 Dịch TV</button>
+      <select class="btn" id="voiceSelect" aria-label="Giọng đọc">
+        <option value="vi-female" selected>👩 Giọng Nữ Việt Nam (Hoài My / Google)</option>
+        <option value="en-female-us">👩 Giọng Nữ Mỹ (Jenny / Samantha)</option>
+        <option value="en-female-uk">👩 Giọng Nữ Anh (Sonia / UK)</option>
+        <option value="en-male">👨 Giọng Nam Bản Xứ</option>
+      </select>
       <select class="btn" id="speed" aria-label="Tốc độ đọc">
         <option value="0.20">0.20x · Chậm tối đa (Tách từng âm)</option>
         <option value="0.30">0.30x · Siêu siêu chậm (Luyện khẩu hình)</option>
@@ -921,6 +926,40 @@ function stopSpeech() {
   if ("speechSynthesis" in window) speechSynthesis.cancel();
 }
 
+function getVoiceChoice() {
+  const choice = $("voiceSelect") ? $("voiceSelect").value : "vi-female";
+  const voices = speechSynthesis.getVoices();
+  if (!voices || !voices.length) return null;
+  
+  if (choice === "vi-female") {
+    return (
+      voices.find(v => v.lang.startsWith("vi") && /(HoaiMy|Google|Female|Nu|Mai|Linh|Nữ)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("vi")) ||
+      voices.find(v => v.lang.startsWith("en") && /(Jenny|Samantha|Zira|Female|Aria)/i.test(v.name)) ||
+      voices[0]
+    );
+  } else if (choice === "en-female-us") {
+    return (
+      voices.find(v => v.lang.startsWith("en") && /(Jenny|Samantha|Zira|Google US|Aria|Ava)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en-US")) ||
+      voices[0]
+    );
+  } else if (choice === "en-female-uk") {
+    return (
+      voices.find(v => (v.lang.startsWith("en-GB") || v.lang.startsWith("en")) && /(Sonia|Libby|Hazel|Susan|UK Female)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en-GB")) ||
+      voices[0]
+    );
+  } else if (choice === "en-male") {
+    return (
+      voices.find(v => v.lang.startsWith("en") && /(David|Guy|Mark|George|Male)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en")) ||
+      voices[0]
+    );
+  }
+  return voices[0];
+}
+
 function speak(text, rate) {
   return new Promise(resolve => {
     if (!("speechSynthesis" in window)) {
@@ -929,11 +968,12 @@ function speak(text, rate) {
       return;
     }
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = "en-US";
     u.rate = rate;
-    const voices = speechSynthesis.getVoices();
-    const v = voices.find(x => x.lang.startsWith("en") && /(Google|Natural|Jenny|Samantha|David|Zira|Mark)/i.test(x.name));
-    if (v) u.voice = v;
+    const v = getVoiceChoice();
+    if (v) {
+      u.voice = v;
+      u.lang = v.lang || "vi-VN";
+    }
     u.onstart = () => setStatus("🔊 Đang đọc...", "speak");
     u.onend = () => { setStatus("Sẵn sàng học", "ok"); resolve(); };
     u.onerror = () => { setStatus("Sẵn sàng học", "ok"); resolve(); };
