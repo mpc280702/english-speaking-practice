@@ -415,9 +415,10 @@
       <button class="btn active-toggle" id="ipaBtn" title="Bật/Tắt phiên âm quốc tế IPA">🔤 IPA</button>
       <button class="btn active-toggle" id="transBtn" title="Bật/Tắt dịch nghĩa Tiếng Việt">🌐 Dịch TV</button>
       <select class="btn" id="voiceSelect" aria-label="Giọng đọc">
-        <option value="vi-female" selected>👩 Giọng Nữ Việt Nam (Hoài My / Google)</option>
-        <option value="en-female-us">👩 Giọng Nữ Mỹ (Jenny / Samantha)</option>
-        <option value="en-female-uk">👩 Giọng Nữ Anh (Sonia / UK)</option>
+        <option value="en-female-natural" selected>👩 Giọng Nữ Mỹ Tự Nhiên (Jenny · Dễ nghe nhất)</option>
+        <option value="en-female-clarity">👩 Giọng Nữ Chuẩn Rõ Chữ (Aria / Samantha)</option>
+        <option value="en-female-uk">👩 Giọng Nữ Anh Chuẩn (Sonia / UK Female)</option>
+        <option value="vi-female">👩 Giọng Nữ Việt Nam (Hoài My / Google)</option>
         <option value="en-male">👨 Giọng Nam Bản Xứ</option>
       </select>
       <select class="btn" id="speed" aria-label="Tốc độ đọc">
@@ -929,20 +930,22 @@ function stopSpeech() {
 }
 
 function getVoiceChoice() {
-  const choice = $("voiceSelect") ? $("voiceSelect").value : "vi-female";
+  const choice = $("voiceSelect") ? $("voiceSelect").value : "en-female-natural";
   const voices = speechSynthesis.getVoices();
   if (!voices || !voices.length) return null;
   
-  if (choice === "vi-female") {
+  if (choice === "en-female-natural") {
     return (
-      voices.find(v => v.lang.startsWith("vi") && /(HoaiMy|Google|Female|Nu|Mai|Linh|Nữ)/i.test(v.name)) ||
-      voices.find(v => v.lang.startsWith("vi")) ||
-      voices.find(v => v.lang.startsWith("en") && /(Jenny|Samantha|Zira|Female|Aria)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en") && /(Jenny|Natural|Online.*Jenny|Neural.*Jenny)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en") && /(Google US|Samantha|Ava|Aria|Zira)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en") && /female/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en")) ||
       voices[0]
     );
-  } else if (choice === "en-female-us") {
+  } else if (choice === "en-female-clarity") {
     return (
-      voices.find(v => v.lang.startsWith("en") && /(Jenny|Samantha|Zira|Google US|Aria|Ava)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en") && /(Aria|Samantha|Victoria|Karen|Zira)/i.test(v.name)) ||
       voices.find(v => v.lang.startsWith("en-US")) ||
       voices[0]
     );
@@ -952,9 +955,15 @@ function getVoiceChoice() {
       voices.find(v => v.lang.startsWith("en-GB")) ||
       voices[0]
     );
+  } else if (choice === "vi-female") {
+    return (
+      voices.find(v => v.lang.startsWith("vi") && /(HoaiMy|Google|Female|Nu|Mai|Linh|Nữ)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("vi")) ||
+      voices[0]
+    );
   } else if (choice === "en-male") {
     return (
-      voices.find(v => v.lang.startsWith("en") && /(David|Guy|Mark|George|Male)/i.test(v.name)) ||
+      voices.find(v => v.lang.startsWith("en") && /(Guy|David|Mark|George|Male)/i.test(v.name)) ||
       voices.find(v => v.lang.startsWith("en")) ||
       voices[0]
     );
