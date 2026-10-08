@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English Speaking — 4 Day Fast Track (40 Topics)</title>
+  <title>Luyện Nói Tiếng Anh HUMG — Đầy Đủ Phần 1, Phần 2 & Phần 3</title>
   <style>
     :root {
       --bg: #080c14;
@@ -28,17 +28,17 @@
       color: var(--text);
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       min-height: 100vh;
-      padding: 18px;
+      padding: 16px;
     }
     button, select, input { font: inherit; }
-    .wrap { width: min(1080px, 100%); margin: auto; }
+    .wrap { width: min(1120px, 100%); margin: auto; }
     
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 15px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
     }
     .brand {
@@ -52,6 +52,39 @@
       gap: 8px;
     }
     
+    /* Nav Tabs giữa các Phần */
+    .part-nav {
+      display: flex;
+      gap: 8px;
+      background: rgba(17, 24, 39, 0.95);
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .part-btn {
+      flex: 1;
+      min-width: 180px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .part-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+    .part-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    }
+
     .day-box, .card {
       background: rgba(17, 24, 39, 0.92);
       border: 1px solid var(--line);
@@ -90,7 +123,7 @@
       background: rgba(255, 255, 255, 0.03);
       color: #cbd5e1;
       border-radius: 12px;
-      padding: 11px 10px;
+      padding: 10px 10px;
       text-align: left;
       cursor: pointer;
       font-weight: 900;
@@ -105,6 +138,26 @@
       box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
     }
     .day.active small { color: #e0e7ff; }
+
+    /* Topic selector dropdown for Part 3 */
+    .topic-selector-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .topic-select {
+      flex: 1;
+      min-width: 260px;
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      outline: none;
+    }
     
     .progress {
       height: 6px;
@@ -122,8 +175,8 @@
     
     .card { overflow: hidden; margin-bottom: 14px; }
     .screen {
-      padding: 26px 32px;
-      min-height: 490px;
+      padding: 24px 30px;
+      min-height: 480px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -156,16 +209,27 @@
     .status.speak { color: #38bdf8; }
     
     .main { text-align: center; margin: 10px 0; }
+    .topic-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
     .label {
       font-size: 0.76rem;
       letter-spacing: 2px;
       font-weight: 900;
       color: #fb7185;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-transform: uppercase;
     }
     .question {
-      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-size: clamp(1.35rem, 2.7vw, 2rem);
       font-weight: 900;
       line-height: 1.38;
       color: #ffffff;
@@ -173,7 +237,7 @@
     }
     
     .read-text {
-      font-size: 1.06rem;
+      font-size: 1.05rem;
       color: #fde047;
       margin-top: 7px;
       font-weight: 800;
@@ -203,7 +267,7 @@
     .hidden { display: none !important; }
     
     .answer {
-      margin: 20px auto 0;
+      margin: 18px auto 0;
       max-width: 900px;
       text-align: left;
       padding: 16px 20px;
@@ -339,31 +403,47 @@
       .btn { padding: 9px 11px; font-size: 0.82rem; }
       .quiz-row { flex-direction: column; align-items: stretch; }
       .quiz input { width: 100%; }
+      .part-btn { min-width: 100%; }
     }
   </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="brand">🎓 English Speaking — 4 Day Fast Track</div>
+    <div class="brand">🎓 English Speaking Practice — HUMG Full Guide</div>
     <button class="btn ghost" id="resetBtn">↺ Đặt lại tiến độ</button>
   </header>
 
-  <!-- Section Lộ trình học 4 ngày -->
-  <section class="day-box">
+  <!-- Menu chọn Phần (Part Navigator) -->
+  <nav class="part-nav">
+    <button class="part-btn active" id="partBtn1" onclick="switchPart(1)">📚 PHẦN 1: 40 Câu Vấn Đáp</button>
+    <button class="part-btn" id="partBtn2" onclick="switchPart(2)">🏫 PHẦN 2: Các Khoa HUMG</button>
+    <button class="part-btn" id="partBtn3" onclick="switchPart(3)">🖼️ PHẦN 3: 18 Bộ Tranh Vấn Đáp (90 Câu)</button>
+  </nav>
+
+  <!-- Section Lộ trình học 4 ngày (Dành riêng cho Phần 1) -->
+  <section class="day-box" id="dayBoxSection">
     <div class="day-head">
       <div>
-        <div class="day-title">LỘ TRÌNH HỌC CẤP TỐC 4 NGÀY (40 TOPICS)</div>
+        <div class="day-title" id="boxTitle">LỘ TRÌNH HỌC CẤP TỐC 4 NGÀY (40 TOPICS)</div>
         <div class="day-sub" id="daySub">Ngày 1: nghe, hiểu và bắt đầu làm quen 10 câu đầu.</div>
       </div>
       <div class="badge" id="dayBadge">DAY 1 · LÀM QUEN</div>
     </div>
-    <div class="days">
+    <div class="days" id="dayButtonsContainer">
       <button class="day active" data-day="1">DAY 1<small>10 câu · Làm quen</small></button>
       <button class="day" data-day="2">DAY 2<small>10 câu · Phản xạ</small></button>
       <button class="day" data-day="3">DAY 3<small>10 câu · Nói tự nhiên</small></button>
       <button class="day" data-day="4">DAY 4<small>40 câu · Thi thử</small></button>
     </div>
+
+    <!-- Bộ lọc theo bộ tranh cho Phần 3 -->
+    <div class="topic-selector-row" id="topicSelectorRow" style="display: none;">
+      <span style="font-weight: 800; font-size: 0.9rem; color: #a5b4fc;">Chọn bộ tranh luyện nói:</span>
+      <select class="topic-select" id="pictureTopicSelect" onchange="changePictureTopic(this.value)">
+      </select>
+    </div>
+
     <div class="progress"><div class="bar" id="bar"></div></div>
   </section>
 
@@ -376,7 +456,8 @@
       </div>
       
       <div class="main">
-        <div class="label">🔴 QUESTION · CÂU HỎI</div>
+        <div id="topicTagBox" style="display: none;"><span class="topic-tag" id="topicTagText">Lenny Grade (Theatre School)</span></div>
+        <div class="label" id="qLabel">🔴 QUESTION · CÂU HỎI</div>
         <div class="question" id="question"></div>
         <div><span class="read-text" id="qRead"></span></div>
         <div class="ipa-text" id="qIpa"></div>
@@ -437,20 +518,22 @@
 
   <!-- Ghi chú Day 4 -->
   <section class="quiz" id="testNote">
-    <div class="quiz-title">🟥 DAY 4 — THI THỬ 40 CÂU (XÁO TRỘN NGẪU NHIÊN)</div>
-    <div class="result">Ở Day 4, câu hỏi được xáo trộn ngẫu nhiên. Hãy trả lời bằng miệng trước 5-7 giây, sau đó mở đáp án để tự chấm điểm phản xạ của bạn.</div>
+    <div class="quiz-title">🟥 THI THỬ VẤN ĐÁP (XÁO TRỘN NGẪU NHIÊN)</div>
+    <div class="result">Ở chế độ thi thử, câu hỏi được xáo trộn ngẫu nhiên. Hãy trả lời bằng miệng trước 5-7 giây, sau đó mở đáp án để tự chấm điểm phản xạ của bạn.</div>
   </section>
 
-  <!-- Danh sách 40 câu -->
+  <!-- Danh sách câu hỏi trong phần -->
   <section class="card list">
-    <div class="quiz-title">📚 Danh sách câu hỏi trong ngày</div>
+    <div class="quiz-title" id="listTitle">📚 Danh sách câu hỏi</div>
     <div id="list"></div>
   </section>
 </div>
 
 <script>
-// TOÀN BỘ DỮ LIỆU 40 CÂU HỎI KÈM CÁCH ĐỌC TIẾNG VIỆT, PHIÊN ÂM IPA & BẢN DỊCH TIẾNG VIỆT
-const DATA = [
+// ==========================================
+// DỮ LIỆU PHẦN 1: 40 CÂU HỎI THÔNG DỤNG
+// ==========================================
+const PART1_DATA = [
   {
     id: 1,
     q: "Do you have a job or are you a student?",
@@ -482,7 +565,7 @@ const DATA = [
     a: "I started learning English five years ago.",
     aRead: "🗣 Đọc: Ai sờ-ta-tịt lơn-ninh Inh-gờ-lít-sh fai-vờ dia-zờ ờ-gâu.",
     aIpa: "/aɪ ˈstɑːrtɪd ˈlɜːrnɪŋ ˈɪŋɡlɪʃ faɪv jɪərz əˈɡoʊ/",
-    aVi: "Tôi bắt đầu học tiếng Anh từ 5 năm trước. (started: quá khứ)"
+    aVi: "Tôi bắt đầu học tiếng Anh từ 5 năm trước."
   },
   {
     id: 4,
@@ -658,7 +741,7 @@ const DATA = [
     a: "My favourite sport is swimming. I swim twice a week and it makes me feel good.",
     aRead: "🗣 Đọc: Mai phây-vơ-rịt sờ-po-t ít-z suýt-minh. Ai suým thoai-s ờ guýc en-d ịt mê-k-s mi phiu gút.",
     aIpa: "/maɪ ˈfeɪvərɪt spɔːrt ɪz ˈswɪmɪŋ. aɪ swɪm twaɪs ə wiːk ænd ɪt meɪks miː fiːl ɡʊd/",
-    aVi: "Môn thể thao tôi yêu thích là bơi lội. Tôi bơi 2 lần một tuần và nó giúp tôi thấy khỏe khoắn."
+    aVi: "Môn thể thao tôi yêu thích là bơi lội. Tôi bơi 2 lần một tuần."
   },
   {
     id: 20,
@@ -812,7 +895,7 @@ const DATA = [
     a: "Yes, I can. I can play the guitar.",
     aRead: "🗣 Đọc: Dét, ai ken. Ai ken pờ-lay đơ ghi-ta.",
     aIpa: "/jes, aɪ kæn. aɪ kæn pleɪ ðə ɡɪˈtɑːr/",
-    aVi: "Có, tôi biết chơi đàn guitar. (nhạc cụ đi với 'the': play the guitar)"
+    aVi: "Có, tôi biết chơi đàn guitar. (play the guitar)"
   },
   {
     id: 34,
@@ -823,7 +906,7 @@ const DATA = [
     a: "I would like to visit China because I want to see the Great Wall and it is very beautiful.",
     aRead: "🗣 Đọc: Ai gút-d lai-k tu ví-zịt Chai-na bì-cơ-z ai goán-t tu si đơ gờ-rết go o en-d ịt ít-z ve-ri biu-ti-phun.",
     aIpa: "/aɪ wʊd laɪk tuː ˈvɪzɪt ˈtʃaɪnə bɪˈkəz aɪ wɒnt tuː siː ðə ɡreɪt wɔːl ænd ɪt ɪz ˈveri ˈbjuːtɪfl/",
-    aVi: "Tôi muốn đi Trung Quốc vì tôi muốn chiêm ngưỡng Vạn Lý Trường Thành và nơi đó rất đẹp."
+    aVi: "Tôi muốn đi Trung Quốc vì tôi muốn chiêm ngưỡng Vạn Lý Trường Thành."
   },
   {
     id: 35,
@@ -889,10 +972,289 @@ const DATA = [
     a: "I think English is very important because if I am good at English, I can find a good job easily.",
     aRead: "🗣 Đọc: Ai thinh-k Inh-gờ-lít-sh ít-z ve-ri im-po-từn-t bì-cơ-zíp phai em gút ét Inh-gờ-lít-sh, ai ken fain-d ờ gút dóp i-zi-li.",
     aIpa: "/aɪ θɪŋk ˈɪŋɡlɪʃ ɪz ˈveri ɪmˈpɔːrtnt bɪˈkəz ɪf aɪ æm ɡʊd æt ˈɪŋɡlɪʃ, aɪ kæn faɪnd ə ɡʊd dʒɒb ˈiːzəli/",
-    aVi: "Tôi nghĩ tiếng Anh rất quan trọng vì nếu tôi giỏi tiếng Anh, tôi có thể tìm việc tốt dễ dàng."
+    aVi: "Tôi nghĩ tiếng Anh rất quan trọng vì nếu giỏi tiếng Anh, tôi có thể tìm việc tốt dễ dàng."
   }
 ];
 
+// ==========================================
+// DỮ LIỆU PHẦN 2: CÁC KHOA TẠI HUMG (10 KHOA)
+// ==========================================
+const PART2_DATA = [
+  {
+    id: 1,
+    topic: "Khoa Công nghệ thông tin",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Information Technology.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ In-pho-mê-shừn Téc-nơ-lo-di.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌɪnfərˈmeɪʃn tekˈnɒlədʒi/",
+    aVi: "Tôi đang học tại Khoa Công nghệ thông tin (IT)."
+  },
+  {
+    id: 2,
+    topic: "Khoa Mỏ",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Mining.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Mai-ninh.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈmaɪnɪŋ/",
+    aVi: "Tôi đang học tại Khoa Mỏ."
+  },
+  {
+    id: 3,
+    topic: "Khoa Dầu khí",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Oil and Gas.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Oi-ồ en-d Gét-s.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ɔɪl ænd ɡæs/",
+    aVi: "Tôi đang học tại Khoa Dầu khí."
+  },
+  {
+    id: 4,
+    topic: "Khoa Trắc địa - Bản đồ và QLĐĐ",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Geomatics and Land Administration.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Di-ô-me-tích-s en-d Len-d Ét-min-nít-s-trây-shừn.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv dʒiːoʊˈmætɪks ænd lænd ədˌmɪnɪˈstreɪʃn/",
+    aVi: "Tôi đang học tại Khoa Trắc địa - Bản đồ và Quản lý đất đai."
+  },
+  {
+    id: 5,
+    topic: "Khoa Xây dựng",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Civil Engineering.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Si-vồ En-di-nhi-ơ-rinh.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈsɪvl ˌendʒɪˈnɪərɪŋ/",
+    aVi: "Tôi đang học tại Khoa Xây dựng."
+  },
+  {
+    id: 6,
+    topic: "Khoa Cơ - Điện",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Mechanical and Electrical Engineering.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Mê-ce-ni-cồ en-d I-léc-tri-cồ En-di-nhi-ơ-rinh.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv məˈkænɪkl ænd ɪˈlektrɪkl ˌendʒɪˈnɪərɪŋ/",
+    aVi: "Tôi đang học tại Khoa Cơ - Điện."
+  },
+  {
+    id: 7,
+    topic: "Khoa Môi trường",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Environment.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ En-vai-rừn-mừn-t.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ɪnˈvaɪrənmənt/",
+    aVi: "Tôi đang học tại Khoa Môi trường."
+  },
+  {
+    id: 8,
+    topic: "Khoa Kinh tế & Quản trị kinh doanh",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Economics and Business Administration.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ E-cơ-no-mích-s en-d Bít-z-nịt-s Ét-min-nít-s-trây-shừn.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌekəˈnɒmɪks ænd ˈbɪznəs ədˌmɪnɪˈstreɪʃn/",
+    aVi: "Tôi đang học tại Khoa Kinh tế và Quản trị kinh doanh."
+  },
+  {
+    id: 9,
+    topic: "Khoa Khoa học và Kỹ thuật Địa chất",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Geosciences and Geoengineering.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Di-ô-sai-ừn-s-z en-d Di-ô-en-di-nhi-ơ-rinh.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌdʒiːoʊˈsaɪənsɪz ænd ˌdʒiːoʊˌendʒɪˈnɪərɪŋ/",
+    aVi: "Tôi đang học tại Khoa Khoa học và Kỹ thuật Địa chất."
+  },
+  {
+    id: 10,
+    topic: "Khoa Khoa học Cơ bản",
+    q: "What faculty are you in?",
+    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
+    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
+    qVi: "Bạn học ở khoa nào?",
+    a: "I'm studying at the Faculty of Basic Sciences.",
+    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Bê-sích Sai-ừn-s-z.",
+    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈbeɪsɪk ˈsaɪənsɪz/",
+    aVi: "Tôi đang học tại Khoa Khoa học Cơ bản."
+  }
+];
+
+// ==========================================
+// DỮ LIỆU PHẦN 3: 18 BỘ TRANH VẤN ĐÁP (90 CÂU HỎI ĐÁP)
+// ==========================================
+const PART3_TOPICS = [
+  "1. Lenny Grade (Theatre School)",
+  "2. Horse-Riding Lessons (Bell Riding School)",
+  "3. Alien Adventure",
+  "4. International Library",
+  "5. Fantasma",
+  "6. Westwood Shopping Centre",
+  "7. School Trip to Brighton",
+  "8. Red Sands Island",
+  "9. Sandon Air Museum",
+  "10. Burford Arts Cinema (The Return of the Martians)",
+  "11. Silver Lake",
+  "12. Skateboarding Competition",
+  "13. Holiday Centre - Westcliffe on Sea",
+  "14. World Books",
+  "15. Mary Brown - Dentist",
+  "16. Holiday Sports Club",
+  "17. Alison's Animal Hospital",
+  "18. Maths lessons (Richard Wilson)"
+];
+
+const PART3_DATA = [
+  // 1. Lenny Grade (Theatre School)
+  { topicId: 1, topic: "1. Lenny Grade (Theatre School)", id: 1, q: "What is the name of the school?", qRead: "🗣 Đọc: Goát ít-z đơ nêm ờ-vờ đơ sờ-cun?", qIpa: "/wɒt ɪz ðə neɪm əv ðə skuːl/", qVi: "Tên của trường là gì?", a: "It’s Lenny Grade.", aRead: "🗣 Đọc: Ít-s Len-ni Gờ-rết-d.", aIpa: "/ɪts ˈleni ɡreɪd/", aVi: "Đó là trường Lenny Grade." },
+  { topicId: 1, topic: "1. Lenny Grade (Theatre School)", id: 2, q: "What can you learn in the classes?", qRead: "🗣 Đọc: Goát ken diu lơn in đơ cla-sít-z?", qIpa: "/wɒt kæn juː lɜːrn ɪn ðə ˈklɑːsɪz/", qVi: "Bạn có thể học gì trong các lớp học?", a: "I can learn to act, sing and dance.", aRead: "🗣 Đọc: Ai ken lơn tu éc-t, sin en-d đen-s.", aIpa: "/aɪ kæn lɜːrn tuː ækt, sɪŋ ænd dɑːns/", aVi: "Tôi có thể học diễn xuất, hát và nhảy múa." },
+  { topicId: 1, topic: "1. Lenny Grade (Theatre School)", id: 3, q: "What’s the website address?", qRead: "🗣 Đọc: Goát-s đơ goép-sai-t ét-đờ-rét-s?", qIpa: "/wɒts ðə ˈwebsaɪt əˈdres/", qVi: "Địa chỉ trang web là gì?", a: "It’s www.theatre.com.", aRead: "🗣 Đọc: Ít-s đắp-liu đắp-liu đắp-liu chấm thi-ơ-tờ chấm com.", aIpa: "/ɪts ˌdʌbljuː ˌdʌbljuː ˈdʌbljuː dɒt ˈθɪətər dɒt kɒm/", aVi: "Đó là www.theatre.com." },
+  { topicId: 1, topic: "1. Lenny Grade (Theatre School)", id: 4, q: "When do the classes start?", qRead: "🗣 Đọc: Guen đu đơ cla-sít-z sờ-ta-t?", qIpa: "/wen duː ðə ˈklɑːsɪz stɑːrt/", qVi: "Khi nào các lớp học bắt đầu?", a: "The classes start at 3 p.m.", aRead: "🗣 Đọc: Đơ cla-sít-z sờ-ta-t ét thri pi-em.", aIpa: "/ðə ˈklɑːsɪz stɑːrt æt θriː ˌpiːˈem/", aVi: "Các lớp học bắt đầu lúc 3 giờ chiều." },
+  { topicId: 1, topic: "1. Lenny Grade (Theatre School)", id: 5, q: "How much do the classes cost per month?", qRead: "🗣 Đọc: Hao mát-sh đu đơ cla-sít-z cót-s-t pơ măn-th?", qIpa: "/haʊ mʌtʃ duː ðə ˈklɑːsɪz kɒst pɜːr mʌnθ/", qVi: "Học phí mỗi tháng là bao nhiêu?", a: "They cost 35 pounds a month.", aRead: "🗣 Đọc: Đê cót-s-t thớ-ti fai-vờ pao-n-z ờ măn-th.", aIpa: "/ðeɪ kɒst ˌθɜːtiˈfaɪv paʊndz ə mʌnθ/", aVi: "Học phí là 35 bảng một tháng." },
+
+  // 2. Horse-Riding Lessons (Bell Riding School)
+  { topicId: 2, topic: "2. Horse-Riding Lessons (Bell Riding School)", id: 6, q: "Where is the Bell Riding School?", qRead: "🗣 Đọc: Gue-r ít-z đơ Beo Rai-đinh Sờ-cun?", qIpa: "/weər ɪz ðə bel ˈraɪdɪŋ skuːl/", qVi: "Trường cưỡi ngựa Bell ở đâu?", a: "It’s on West Road.", aRead: "🗣 Đọc: Ít-s on Oét-s-t Râu-d.", aIpa: "/ɪts ɒn west roʊd/", aVi: "Nó ở trên đường West Road." },
+  { topicId: 2, topic: "2. Horse-Riding Lessons (Bell Riding School)", id: 7, q: "Are the classes expensive?", qRead: "🗣 Đọc: A đơ cla-sít-z ếch-s-pen-si-vờ?", qIpa: "/ɑːr ðə ˈklɑːsɪz ɪkˈspensɪv/", qVi: "Các lớp học có đắt không?", a: "Yes, they are 15 pounds per hour.", aRead: "🗣 Đọc: Dét, đê a phíp-s-tin pao-n-z pơ ao-ơ.", aIpa: "/jes, ðeɪ ɑːr ˌfɪfˈtiːn paʊndz pɜːr ˈaʊər/", aVi: "Có, học phí là 15 bảng một giờ." },
+  { topicId: 2, topic: "2. Horse-Riding Lessons (Bell Riding School)", id: 8, q: "Do you have to wear special clothes?", qRead: "🗣 Đọc: Đu diu he-vờ tu gue-r sờ-pe-shồ cờ-lô-th-z?", qIpa: "/duː juː hæv tuː weər ˈspeʃl kloʊðz/", qVi: "Bạn có phải mặc trang phục đặc biệt không?", a: "Yes, I have to wear a riding hat.", aRead: "🗣 Đọc: Dét, ai he-vờ tu gue-r ờ rai-đinh hét.", aIpa: "/jes, aɪ hæv tuː weər ə ˈraɪdɪŋ hæt/", aVi: "Có, tôi phải đội mũ bảo hiểm cưỡi ngựa." },
+  { topicId: 2, topic: "2. Horse-Riding Lessons (Bell Riding School)", id: 9, q: "Are there lessons on Friday?", qRead: "🗣 Đọc: A đe léc-sừn-z on Phrai-đê?", qIpa: "/ɑːr ðeər ˈlesnz ɒn ˈfraɪdeɪ/", qVi: "Có bài học vào thứ Sáu không?", a: "Yes, there are classes every day.", aRead: "🗣 Đọc: Dét, đe a cla-sít-z e-vờ-ri đê.", aIpa: "/jes, ðeər ɑːr ˈklɑːsɪz ˈevri deɪ/", aVi: "Có, có lớp học tất cả các ngày trong tuần." },
+  { topicId: 2, topic: "2. Horse-Riding Lessons (Bell Riding School)", id: 10, q: "Are the horses nice?", qRead: "🗣 Đọc: A đơ ho-sít-z nai-s?", qIpa: "/ɑːr ðə ˈhɔːsɪz naɪs/", qVi: "Những chú ngựa có ngoan không?", a: "Yes, they are friendly and quiet.", aRead: "🗣 Đọc: Dét, đê a phren-d-li en-d quoai-ơ-t.", aIpa: "/jes, ðeɪ ɑːr ˈfrendli ænd ˈkwaɪət/", aVi: "Có, chúng rất thân thiện và ngoan ngoãn." },
+
+  // 3. Alien Adventure
+  { topicId: 3, topic: "3. Alien Adventure", id: 11, q: "When did the park first open?", qRead: "🗣 Đọc: Guen đít-d đơ pa-k phơ-s-t ô-pừn?", qIpa: "/wen dɪd ðə pɑːrk fɜːrst ˈoʊpən/", qVi: "Công viên mở cửa lần đầu khi nào?", a: "The park first opened in 1950.", aRead: "🗣 Đọc: Đơ pa-k phơ-s-t ô-pừn-d in nai-n-tin phíp-ti.", aIpa: "/ðə pɑːrk fɜːrst ˈoʊpənd ɪn ˌnaɪnˈtiːn ˈfɪfti/", aVi: "Công viên mở cửa lần đầu vào năm 1950." },
+  { topicId: 3, topic: "3. Alien Adventure", id: 12, q: "Which dates does the park open?", qRead: "🗣 Đọc: Guýt-sh đết-s đắt-z đơ pa-k ô-pừn?", qIpa: "/wɪtʃ deɪts dʌz ðə pɑːrk ˈoʊpən/", qVi: "Công viên mở cửa từ ngày nào?", a: "The park opens from 1st March.", aRead: "🗣 Đọc: Đơ pa-k ô-pừn-z phờ-rom phơ-s-t Ma-t-sh.", aIpa: "/ðə pɑːrk ˈoʊpənz frəm ðə fɜːrst əv mɑːrtʃ/", aVi: "Công viên mở cửa từ ngày 1 tháng 3." },
+  { topicId: 3, topic: "3. Alien Adventure", id: 13, q: "What is the opening hours?", qRead: "🗣 Đọc: Goát ít-z đi ô-pừn-ninh ao-z?", qIpa: "/wɒt ɪz ðə ˈoʊpnɪŋ ˈaʊərz/", qVi: "Giờ mở cửa là như thế nào?", a: "The opening hours is from 10.00 am to 10.00 pm.", aRead: "🗣 Đọc: Đi ô-pừn-ninh ao-z ít-z phờ-rom ten ê-em tu ten pi-em.", aIpa: "/ðə ˈoʊpnɪŋ ˈaʊərz ɪz frəm ten eɪ em tuː ten piː em/", aVi: "Giờ mở cửa là từ 10h sáng đến 10h tối." },
+  { topicId: 3, topic: "3. Alien Adventure", id: 14, q: "How many hotel rooms are there in the park?", qRead: "🗣 Đọc: Hao me-ni hô-teo rum-z a đe in đơ pa-k?", qIpa: "/haʊ ˈmeni hoʊˈtel ruːmz ɑːr ðeər ɪn ðə pɑːrk/", qVi: "Có bao nhiêu phòng khách sạn trong công viên?", a: "There are 990 hotel rooms in the park.", aRead: "🗣 Đọc: Đe a nai-n hơn-dờ-rịt nai-n-ti hô-teo rum-z in đơ pa-k.", aIpa: "/ðeər ɑːr naɪn ˈhʌndrəd ˈnaɪnti hoʊˈtel ruːmz ɪn ðə pɑːrk/", aVi: "Có 990 phòng khách sạn trong công viên." },
+  { topicId: 3, topic: "3. Alien Adventure", id: 15, q: "How much does a family ticket cost?", qRead: "🗣 Đọc: Hao mát-sh đắt-z ờ phe-mơ-li tích-cịt cót-s-t?", qIpa: "/haʊ mʌtʃ dʌz ə ˈfæməli ˈtɪkɪt kɒst/", qVi: "Vé gia đình giá bao nhiêu?", a: "A family ticket costs 150 euros.", aRead: "🗣 Đọc: Ờ phe-mơ-li tích-cịt cót-s-t goăn hơn-dờ-rịt phíp-ti iu-rô-z.", aIpa: "/ə ˈfæməli ˈtɪkɪt kɒsts wʌn ˈhʌndrəd ˈfɪfti ˈjʊəroʊz/", aVi: "Một vé gia đình có giá 150 euro." },
+
+  // 4. International Library
+  { topicId: 4, topic: "4. International Library", id: 16, q: "Where is the library?", qRead: "🗣 Đọc: Gue-r ít-z đơ lai-bờ-re-ri?", qIpa: "/weər ɪz ðə ˈlaɪbrəri/", qVi: "Thư viện ở đâu?", a: "It’s at New England House, Museum Street.", aRead: "🗣 Đọc: Ít-s ét Niu Inh-gờ-lần-d Hao-s, Miu-zi-ừm Sờ-trít.", aIpa: "/ɪts æt njuː ˈɪŋɡlənd haʊs, mjuːˈziːəm striːt/", aVi: "Nó ở tòa nhà New England, phố Museum Street." },
+  { topicId: 4, topic: "4. International Library", id: 17, q: "What time does the library close?", qRead: "🗣 Đọc: Goát taim đắt-z đơ lai-bờ-re-ri cờ-lâu-z?", qIpa: "/wɒt taɪm dʌz ðə ˈlaɪbrəri kloʊz/", qVi: "Thư viện đóng cửa lúc mấy giờ?", a: "It closes at 6 p.m.", aRead: "🗣 Đọc: Ít cờ-lâu-zit-z ét sích-s pi-em.", aIpa: "/ɪt ˈkloʊzɪz æt sɪks ˌpiːˈem/", aVi: "Thư viện đóng cửa lúc 6 giờ tối." },
+  { topicId: 4, topic: "4. International Library", id: 18, q: "Does it open on Sunday?", qRead: "🗣 Đọc: Đắt-zịt ô-pừn on Săn-đê?", qIpa: "/dʌz ɪt ˈoʊpən ɒn ˈsʌndeɪ/", qVi: "Thư viện có mở cửa vào Chủ nhật không?", a: "No, it opens from Monday to Saturday.", aRead: "🗣 Đọc: Nâu, ịt ô-pừn-z phờ-rom Măn-đê tu Sé-tơ-đê.", aIpa: "/noʊ, ɪt ˈoʊpənz frəm ˈmʌndeɪ tuː ˈsætərdeɪ/", aVi: "Không, thư viện mở từ thứ Hai đến thứ Bảy." },
+  { topicId: 4, topic: "4. International Library", id: 19, q: "How much does the entrance cost?", qRead: "🗣 Đọc: Hao mát-sh đắt-z đi én-trừn-s cót-s-t?", qIpa: "/haʊ mʌtʃ dʌz ðə ˈentrəns kɒst/", qVi: "Vé vào cửa giá bao nhiêu?", a: "It’s free.", aRead: "🗣 Đọc: Ít-s fri.", aIpa: "/ɪts friː/", aVi: "Miễn phí vào cửa." },
+  { topicId: 4, topic: "4. International Library", id: 20, q: "How many foreign magazines are there?", qRead: "🗣 Đọc: Hao me-ni pho-rin me-gơ-zin-z a đe?", qIpa: "/haʊ ˈmeni ˈfɒrən ˌmæɡəˈziːnz ɑːr ðeər/", qVi: "Có bao nhiêu tạp chí nước ngoài ở đó?", a: "There are over 100 foreign newspapers and magazines.", aRead: "🗣 Đọc: Đe a ô-vơ goăn hơn-dờ-rịt pho-rin niu-s-pê-pơ-z en-d me-gơ-zin-z.", aIpa: "/ðeər ɑːr ˈoʊvər wʌn ˈhʌndrəd ˈfɒrən ˈnjuːzpeɪpərz ænd ˌmæɡəˈziːnz/", aVi: "Có hơn 100 loại báo và tạp chí nước ngoài." },
+
+  // 5. Fantasma
+  { topicId: 5, topic: "5. Fantasma", id: 21, q: "How many rides are there?", qRead: "🗣 Đọc: Hao me-ni rai-d-z a đe?", qIpa: "/haʊ ˈmeni raɪdz ɑːr ðeər/", qVi: "Có bao nhiêu trò chơi mạo hiểm / đường trượt ở đó?", a: "There are 15 different rides.", aRead: "🗣 Đọc: Đe a phíp-s-tin đíp-phơ-rừn-t rai-d-z.", aIpa: "/ðeər ɑːr ˌfɪfˈtiːn ˈdɪfrənt raɪdz/", aVi: "Có 15 trò chơi cảm giác mạnh khác nhau." },
+  { topicId: 5, topic: "5. Fantasma", id: 22, q: "Which dates does the park open?", qRead: "🗣 Đọc: Guýt-sh đết-s đắt-z đơ pa-k ô-pừn?", qIpa: "/wɪtʃ deɪts dʌz ðə pɑːrk ˈoʊpən/", qVi: "Công viên mở cửa vào ngày nào?", a: "The park opens on 5th April.", aRead: "🗣 Đọc: Đơ pa-k ô-pừn-z on phíp-th Ê-pờ-rồ.", aIpa: "/ðə pɑːrk ˈoʊpənz ɒn ðə fɪfθ əv ˈeɪprəl/", aVi: "Công viên mở cửa vào ngày 5 tháng 4." },
+  { topicId: 5, topic: "5. Fantasma", id: 23, q: "How many visitors a year?", qRead: "🗣 Đọc: Hao me-ni ví-zi-tơ-z ờ dia?", qIpa: "/haʊ ˈmeni ˈvɪzɪtərz ə jɪər/", qVi: "Có bao nhiêu du khách mỗi năm?", a: "There are 2.7 million visitors a year.", aRead: "🗣 Đọc: Đe a tu poi-n-t se-vừn miu-li-ừn ví-zi-tơ-z ờ dia.", aIpa: "/ðeər ɑːr tuː pɔɪnt ˈsevən ˈmɪljən ˈvɪzɪtərz ə jɪər/", aVi: "Có 2,7 triệu du khách mỗi năm." },
+  { topicId: 5, topic: "5. Fantasma", id: 24, q: "How many hotel rooms are there in the park?", qRead: "🗣 Đọc: Hao me-ni hô-teo rum-z a đe in đơ pa-k?", qIpa: "/haʊ ˈmeni hoʊˈtel ruːmz ɑːr ðeər ɪn ðə pɑːrk/", qVi: "Có bao nhiêu phòng khách sạn trong công viên?", a: "There are 175 hotel rooms in the park.", aRead: "🗣 Đọc: Đe a goăn hơn-dờ-rịt se-vừn-ti fai-vờ hô-teo rum-z in đơ pa-k.", aIpa: "/ðeər ɑːr wʌn ˈhʌndrəd ˌsevənˈtiː faɪv hoʊˈtel ruːmz ɪn ðə pɑːrk/", aVi: "Có 175 phòng khách sạn trong công viên." },
+  { topicId: 5, topic: "5. Fantasma", id: 25, q: "How much does a family ticket cost?", qRead: "🗣 Đọc: Hao mát-sh đắt-z ờ phe-mơ-li tích-cịt cót-s-t?", qIpa: "/haʊ mʌtʃ dʌz ə ˈfæməli ˈtɪkɪt kɒst/", qVi: "Vé gia đình giá bao nhiêu?", a: "A family ticket costs 98 euros.", aRead: "🗣 Đọc: Ờ phe-mơ-li tích-cịt cót-s-t nai-n-ti ét iu-rô-z.", aIpa: "/ə ˈfæməli ˈtɪkɪt kɒsts ˌnaɪnti ˈeɪt ˈjʊəroʊz/", aVi: "Một vé gia đình có giá 98 euro." },
+
+  // 6. Westwood Shopping Centre
+  { topicId: 6, topic: "6. Westwood Shopping Centre", id: 26, q: "What is the name of the new shopping centre?", qRead: "🗣 Đọc: Goát ít-z đơ nêm ờ-vờ đơ niu sho-pinh sen-tơ?", qIpa: "/wɒt ɪz ðə neɪm əv ðə njuː ˈʃɒpɪŋ ˈsentər/", qVi: "Tên của trung tâm mua sắm mới là gì?", a: "It’s Westwood Shopping Centre.", aRead: "🗣 Đọc: Ít-s Oét-s-t-gút Sho-pinh Sen-tơ.", aIpa: "/ɪts ˈwestwʊd ˈʃɒpɪŋ ˈsentər/", aVi: "Đó là Westwood Shopping Centre." },
+  { topicId: 6, topic: "6. Westwood Shopping Centre", id: 27, q: "Where is it?", qRead: "🗣 Đọc: Gue-r ít-zịt?", qIpa: "/weər ɪz ɪt/", qVi: "Nó nằm ở đâu?", a: "It’s 10 kilometres from the city centre.", aRead: "🗣 Đọc: Ít-s ten ki-lô-mét-tơ-z phờ-rom đơ si-ti sen-tơ.", aIpa: "/ɪts ten kɪˈlɒmɪtərz frəm ðə ˈsɪti ˈsentər/", aVi: "Cách trung tâm thành phố 10 km." },
+  { topicId: 6, topic: "6. Westwood Shopping Centre", id: 28, q: "How many shops are there?", qRead: "🗣 Đọc: Hao me-ni sho-p-s a đe?", qIpa: "/haʊ ˈmeni ʃɒps ɑːr ðeər/", qVi: "Có bao nhiêu cửa hàng ở đó?", a: "There are more than 100 shops.", aRead: "🗣 Đọc: Đe a mo đan goăn hơn-dờ-rịt sho-p-s.", aIpa: "/ðeər ɑːr mɔːr ðæn wʌn ˈhʌndrəd ʃɒps/", aVi: "Có hơn 100 cửa hàng." },
+  { topicId: 6, topic: "6. Westwood Shopping Centre", id: 29, q: "Is the car park free?", qRead: "🗣 Đọc: Ít-z đơ ca pa-k fri?", qIpa: "/ɪz ðə kɑːr pɑːrk friː/", qVi: "Bãi đỗ xe có miễn phí không?", a: "Yes, free car park for 800 cars.", aRead: "🗣 Đọc: Dét, fri ca pa-k fo ét hơn-dờ-rịt ca-z.", aIpa: "/jes, friː kɑːr pɑːrk fɔːr eɪt ˈhʌndrəd kɑːrz/", aVi: "Có, bãi đỗ xe miễn phí cho 800 xe ô tô." },
+  { topicId: 6, topic: "6. Westwood Shopping Centre", id: 30, q: "Does it open today?", qRead: "🗣 Đọc: Đắt-zịt ô-pừn tu-đê?", qIpa: "/dʌz ɪt ˈoʊpən təˈdeɪ/", qVi: "Hôm nay trung tâm có mở cửa không?", a: "No, it will open next month.", aRead: "🗣 Đọc: Nâu, ịt guil ô-pừn néc-s-t măn-th.", aIpa: "/noʊ, ɪt wɪl ˈoʊpən nekst mʌnθ/", aVi: "Không, nó sẽ mở cửa vào tháng tới." },
+
+  // 7. School Trip to Brighton
+  { topicId: 7, topic: "7. School Trip to Brighton", id: 31, q: "Where do the students go?", qRead: "🗣 Đọc: Gue-r đu đơ sờ-tiu-đần-t-s gâu?", qIpa: "/weər duː ðə ˈstjuːdnts ɡoʊ/", qVi: "Các học sinh đi đâu?", a: "The students go to Brighton.", aRead: "🗣 Đọc: Đơ sờ-tiu-đần-t-s gâu tu Bờ-rai-từn.", aIpa: "/ðə ˈstjuːdnts ɡoʊ tuː ˈbraɪtn/", aVi: "Các học sinh đi tới thành phố Brighton." },
+  { topicId: 7, topic: "7. School Trip to Brighton", id: 32, q: "When can the students book the trip?", qRead: "🗣 Đọc: Guen ken đơ sờ-tiu-đần-t-s búc đơ trip?", qIpa: "/wen kæn ðə ˈstjuːdnts bʊk ðə trɪp/", qVi: "Khi nào học sinh có thể đặt chỗ chuyến đi?", a: "The students can book the trip by Wednesday 4 April.", aRead: "🗣 Đọc: Đơ sờ-tiu-đần-t-s ken búc đơ trip bai Guen-z-đê pho Ê-pờ-rồ.", aIpa: "/ðə ˈstjuːdnts kæn bʊk ðə trɪp baɪ ˈwenzdeɪ ðə fɔːrθ əv ˈeɪprəl/", aVi: "Học sinh có thể đặt chuyến đi trước Thứ Tư ngày 4 tháng 4." },
+  { topicId: 7, topic: "7. School Trip to Brighton", id: 33, q: "How much does the trip cost?", qRead: "🗣 Đọc: Hao mát-sh đắt-z đơ trip cót-s-t?", qIpa: "/haʊ mʌtʃ dʌz ðə trɪp kɒst/", qVi: "Chuyến đi có giá bao nhiêu?", a: "The trip costs 12.50 pounds.", aRead: "🗣 Đọc: Đơ trip cót-s-t tuoel-vờ phíp-ti pao-n-z.", aIpa: "/ðə trɪp kɒsts twelv paʊndz ˈfɪfti/", aVi: "Chuyến đi có giá 12,50 bảng." },
+  { topicId: 7, topic: "7. School Trip to Brighton", id: 34, q: "How do the students get to the trip?", qRead: "🗣 Đọc: Hao đu đơ sờ-tiu-đần-t-s ghét tu đơ trip?", qIpa: "/haʊ duː ðə ˈstjuːdnts ɡet tuː ðə trɪp/", qVi: "Học sinh đi đến chuyến dã ngoại bằng phương tiện gì?", a: "The students get to the trip by coach.", aRead: "🗣 Đọc: Đơ sờ-tiu-đần-t-s ghét tu đơ trip bai câu-ch.", aIpa: "/ðə ˈstjuːdnts ɡet tuː ðə trɪp baɪ koʊtʃ/", aVi: "Học sinh đi bằng xe khách (xe bus du lịch)." },
+  { topicId: 7, topic: "7. School Trip to Brighton", id: 35, q: "What can they do there?", qRead: "🗣 Đọc: Goát ken đê đu đe?", qIpa: "/wɒt kæn ðeɪ duː ðeər/", qVi: "Họ có thể làm gì ở đó?", a: "They can go shopping or visit the beach.", aRead: "🗣 Đọc: Đê ken gâu sho-pinh o ví-zịt đơ bít-sh.", aIpa: "/ðeɪ kæn ɡoʊ ˈʃɒpɪŋ ɔːr ˈvɪzɪt ðə biːtʃ/", aVi: "Họ có thể đi mua sắm hoặc tắm biển." },
+
+  // 8. Red Sands Island
+  { topicId: 8, topic: "8. Red Sands Island", id: 36, q: "What is the name of the island?", qRead: "🗣 Đọc: Goát ít-z đơ nêm ờ-vờ đi ai-lần-d?", qIpa: "/wɒt ɪz ðə neɪm əv ði ˈaɪlənd/", qVi: "Tên của hòn đảo là gì?", a: "It is Red Sands.", aRead: "🗣 Đọc: Ít ít-z Rét-d Sen-d-z.", aIpa: "/ɪt ɪz red sændz/", aVi: "Đó là đảo Red Sands." },
+  { topicId: 8, topic: "8. Red Sands Island", id: 37, q: "What do you see on the island?", qRead: "🗣 Đọc: Goát đu diu si on đi ai-lần-d?", qIpa: "/wɒt duː juː siː ɒn ði ˈaɪlənd/", qVi: "Bạn nhìn thấy gì trên đảo?", a: "I see hundreds of different birds.", aRead: "🗣 Đọc: Ai si hơn-dờ-rịt-s ờ-vờ đíp-phơ-rừn-t bơ-d-z.", aIpa: "/aɪ siː ˈhʌndrədz əv ˈdɪfrənt bɜːrdz/", aVi: "Tôi nhìn thấy hàng trăm loài chim khác nhau." },
+  { topicId: 8, topic: "8. Red Sands Island", id: 38, q: "Where do you stay on the island?", qRead: "🗣 Đọc: Gue-r đu diu sờ-tây on đi ai-lần-d?", qIpa: "/weər duː juː steɪ ɒn ði ˈaɪlənd/", qVi: "Bạn ở đâu trên đảo?", a: "I stay at the campsite.", aRead: "🗣 Đọc: Ai sờ-tây ét đơ kem-p-sai-t.", aIpa: "/aɪ steɪ æt ðə ˈkæmpsaɪt/", aVi: "Tôi ở tại khu cắm trại." },
+  { topicId: 8, topic: "8. Red Sands Island", id: 39, q: "What's the weather like on the island?", qRead: "🗣 Đọc: Goát-s đơ goe-đờ lai-k on đi ai-lần-d?", qIpa: "/wɒts ðə ˈweðər laɪk ɒn ði ˈaɪlənd/", qVi: "Thời tiết trên đảo như thế nào?", a: "It’s sunny and the sky is blue.", aRead: "🗣 Đọc: Ít-s săn-ni en-d đơ sờ-cai ít-z bơ-lu.", aIpa: "/ɪts ˈsʌni ænd ðə skaɪ ɪz bluː/", aVi: "Trời đầy nắng và bầu trời trong xanh." },
+  { topicId: 8, topic: "8. Red Sands Island", id: 40, q: "How do you get there?", qRead: "🗣 Đọc: Hao đu diu ghét đe?", qIpa: "/haʊ duː juː ɡet ðeər/", qVi: "Bạn đến đó bằng cách nào?", a: "I get there by boat.", aRead: "🗣 Đọc: Ai ghét đe bai bâu-t.", aIpa: "/aɪ ɡet ðeər baɪ boʊt/", aVi: "Tôi đến đó bằng thuyền." },
+
+  // 9. Sandon Air Museum
+  { topicId: 9, topic: "9. Sandon Air Museum", id: 41, q: "What do you see in the museum?", qRead: "🗣 Đọc: Goát đu diu si in đơ miu-zi-ừm?", qIpa: "/wɒt duː juː siː ɪn ðə mjuːˈziːəm/", qVi: "Bạn thấy gì trong viện bảo tàng?", a: "I can see more than 70 aeroplanes.", aRead: "🗣 Đọc: Ai ken si mo đan se-vừn-ti e-rơ-pờ-lên-z.", aIpa: "/aɪ kæn siː mɔːr ðæn ˈsevnti ˈeərəpleɪnz/", aVi: "Tôi có thể thấy hơn 70 chiếc máy bay." },
+  { topicId: 9, topic: "9. Sandon Air Museum", id: 42, q: "Does the museum open on weekends?", qRead: "🗣 Đọc: Đắt-z đơ miu-zi-ừm ô-pừn on guýc-ken-d-z?", qIpa: "/dʌz ðə mjuːˈziːəm ˈoʊpən ɒn ˌwiːkˈendz/", qVi: "Bảo tàng có mở cửa vào cuối tuần không?", a: "Yes, it opens daily.", aRead: "🗣 Đọc: Dét, ịt ô-pừn-z đê-li.", aIpa: "/jes, ɪt ˈoʊpənz ˈdeɪli/", aVi: "Có, bảo tàng mở cửa hàng ngày." },
+  { topicId: 9, topic: "9. Sandon Air Museum", id: 43, q: "How much is the student ticket?", qRead: "🗣 Đọc: Hao mát-sh ít-z đơ sờ-tiu-đần-t tích-cịt?", qIpa: "/haʊ mʌtʃ ɪz ðə ˈstjuːdnt ˈtɪkɪt/", qVi: "Vé sinh viên bao nhiêu tiền?", a: "It’s 5 pounds.", aRead: "🗣 Đọc: Ít-s fai-vờ pao-n-z.", aIpa: "/ɪts faɪv paʊndz/", aVi: "Giá 5 bảng." },
+  { topicId: 9, topic: "9. Sandon Air Museum", id: 44, q: "Is the car park of the museum free?", qRead: "🗣 Đọc: Ít-z đơ ca pa-k ờ-vờ đơ miu-zi-ừm fri?", qIpa: "/ɪz ðə kɑːr pɑːrk əv ðə mjuːˈziːəm friː/", qVi: "Bãi đỗ xe của bảo tàng có miễn phí không?", a: "Yes, large free car park.", aRead: "🗣 Đọc: Dét, la-dzh fri ca pa-k.", aIpa: "/jes, lɑːrdʒ friː kɑːr pɑːrk/", aVi: "Có, có bãi đỗ xe rộng rãi miễn phí." },
+  { topicId: 9, topic: "9. Sandon Air Museum", id: 45, q: "Can you buy postcards there?", qRead: "🗣 Đọc: Ken diu bai pâu-s-t-ca-d-z đe?", qIpa: "/kæn juː baɪ ˈpoʊstkɑːrdz ðeər/", qVi: "Bạn có thể mua bưu thiếp ở đó không?", a: "Yes, there is a shop with books and postcards.", aRead: "🗣 Đọc: Dét, đe ít-z ờ sho-p guýth búc-s en-d pâu-s-t-ca-d-z.", aIpa: "/jes, ðeər ɪz ə ʃɒp wɪð bʊks ænd ˈpoʊstkɑːrdz/", aVi: "Có, có cửa hàng bán sách và bưu thiếp." },
+
+  // 10. Burford Arts Cinema
+  { topicId: 10, topic: "10. Burford Arts Cinema (The Return of the Martians)", id: 46, q: "What film do you see?", qRead: "🗣 Đọc: Goát phim đu diu si?", qIpa: "/wɒt fɪlm duː juː siː/", qVi: "Bạn xem bộ phim gì?", a: "The Return of the Martians.", aRead: "🗣 Đọc: Đơ Ri-tơn ờ-vờ đơ Ma-shừn-z.", aIpa: "/ðə rɪˈtɜːrn əv ðə ˈmɑːrʃnz/", aVi: "Phim Sự trở lại của người Sao Hỏa." },
+  { topicId: 10, topic: "10. Burford Arts Cinema (The Return of the Martians)", id: 47, q: "When does the cinema open?", qRead: "🗣 Đọc: Guen đắt-z đơ si-nê-ma ô-pừn?", qIpa: "/wen dʌz ðə ˈsɪnəmə ˈoʊpən/", qVi: "Rạp chiếu phim mở cửa khi nào?", a: "The cinema opens everyday at 2.00 pm.", aRead: "🗣 Đọc: Đơ si-nê-ma ô-pừn-z e-vờ-ri-đê ét tu pi-em.", aIpa: "/ðə ˈsɪnəmə ˈoʊpənz ˈevrideɪ æt tuː ˌpiːˈem/", aVi: "Rạp mở cửa hàng ngày lúc 2 giờ chiều." },
+  { topicId: 10, topic: "10. Burford Arts Cinema (The Return of the Martians)", id: 48, q: "Where can you eat?", qRead: "🗣 Đọc: Gue-r ken diu ít?", qIpa: "/weər kæn juː iːt/", qVi: "Bạn có thể ăn uống ở đâu?", a: "I can eat at Riverside Café.", aRead: "🗣 Đọc: Ai ken ít ét Ri-vơ-sai-d Ca-phê.", aIpa: "/aɪ kæn iːt æt ˈrɪvərsaɪd kæˈfeɪ/", aVi: "Tôi có thể ăn ở quán Riverside Café." },
+  { topicId: 10, topic: "10. Burford Arts Cinema (The Return of the Martians)", id: 49, q: "What is the cinema's address?", qRead: "🗣 Đọc: Goát ít-z đơ si-nê-ma-z ét-đờ-rét-s?", qIpa: "/wɒt ɪz ðə ˈsɪnəməz əˈdres/", qVi: "Địa chỉ của rạp chiếu phim là gì?", a: "The cinema’s address is 68 Helman Street, Burford.", aRead: "🗣 Đọc: Đơ si-nê-ma-z ét-đờ-rét-s ít-z sích-s-ti ét Heo-mừn Sờ-trít, Bơ-phợt.", aIpa: "/ðə ˈsɪnəməz əˈdres ɪz ˌsɪksti ˈeɪt ˈhelmən striːt, ˈbɜːrfərd/", aVi: "Địa chỉ rạp là số 68 đường Helman Street, Burford." },
+  { topicId: 10, topic: "10. Burford Arts Cinema (The Return of the Martians)", id: 50, q: "How much is a student ticket?", qRead: "🗣 Đọc: Hao mát-sh ít-z ờ sờ-tiu-đần-t tích-cịt?", qIpa: "/haʊ mʌtʃ ɪz ə ˈstjuːdnt ˈtɪkɪt/", qVi: "Vé sinh viên giá bao nhiêu?", a: "A student ticket is 5.00 pounds.", aRead: "🗣 Đọc: Ờ sờ-tiu-đần-t tích-cịt ít-z fai-vờ pao-n-z.", aIpa: "/ə ˈstjuːdnt ˈtɪkɪt ɪz faɪv paʊndz/", aVi: "Vé sinh viên giá 5 bảng." },
+
+  // 11. Silver Lake
+  { topicId: 11, topic: "11. Silver Lake", id: 51, q: "What is the name of the lake?", qRead: "🗣 Đọc: Goát ít-z đơ nêm ờ-vờ đơ lê-k?", qIpa: "/wɒt ɪz ðə neɪm əv ðə leɪk/", qVi: "Tên hồ là gì?", a: "It is Silver Lake.", aRead: "🗣 Đọc: Ít ít-z Siu-vơ Lê-k.", aIpa: "/ɪt ɪz ˈsɪlvər leɪk/", aVi: "Đó là hồ Silver Lake." },
+  { topicId: 11, topic: "11. Silver Lake", id: 52, q: "Where is the lake?", qRead: "🗣 Đọc: Gue-r ít-z đơ lê-k?", qIpa: "/weər ɪz ðə leɪk/", qVi: "Hồ ở đâu?", a: "It’s 20 kilometers from the city airport.", aRead: "🗣 Đọc: Ít-s tuen-ti ki-lô-mét-tơ-z phờ-rom đơ si-ti e-po-t.", aIpa: "/ɪts ˈtwenti kɪˈlɒmɪtərz frəm ðə ˈsɪti ˈeərpɔːrt/", aVi: "Cách sân bay thành phố 20 km." },
+  { topicId: 11, topic: "11. Silver Lake", id: 53, q: "How often does it rain there?", qRead: "🗣 Đọc: Hao óp-phừn đắt-zịt rên đe?", qIpa: "/haʊ ˈɒfn dʌz ɪt reɪn ðeər/", qVi: "Ở đó có hay mưa không?", a: "It seldom rains there.", aRead: "🗣 Đọc: Ít seo-đừm rên-z đe.", aIpa: "/ɪt ˈseldəm reɪnz ðeər/", aVi: "Ở đó rất hiếm khi mưa." },
+  { topicId: 11, topic: "11. Silver Lake", id: 54, q: "What do you do there?", qRead: "🗣 Đọc: Goát đu diu đu đe?", qIpa: "/wɒt duː juː duː ðeər/", qVi: "Bạn có thể làm gì ở đó?", a: "I can go walking, swimming and go on boat trips there.", aRead: "🗣 Đọc: Ai ken gâu goác-kinh, suýt-minh en-d gâu on bâu-t trip-s đe.", aIpa: "/aɪ kæn ɡoʊ ˈwɔːkɪŋ, ˈswɪmɪŋ ænd ɡoʊ ɒn boʊt trɪps ðeər/", aVi: "Tôi có thể đi dạo bộ, bơi lội và đi thuyền ngoạn cảnh." },
+  { topicId: 11, topic: "11. Silver Lake", id: 55, q: "Does the lake have modern hotels?", qRead: "🗣 Đọc: Đắt-z đơ lê-k he-vờ mo-đần hô-teo-z?", qIpa: "/dʌz ðə leɪk hæv ˈmɒdn hoʊˈtelz/", qVi: "Khu hồ có khách sạn hiện đại không?", a: "Yes, there are 5 large, new hotels.", aRead: "🗣 Đọc: Dét, đe a fai-vờ la-dzh, niu hô-teo-z.", aIpa: "/jes, ðeər ɑːr faɪv lɑːrdʒ, njuː hoʊˈtelz/", aVi: "Có, có 5 khách sạn mới và rộng lớn." },
+
+  // 12. Skateboarding Competition
+  { topicId: 12, topic: "12. Skateboarding Competition", id: 56, q: "Where is the competition?", qRead: "🗣 Đọc: Gue-r ít-z đơ com-pơ-tí-shừn?", qIpa: "/weər ɪz ðə ˌkɒmpəˈtɪʃn/", qVi: "Cuộc thi diễn ra ở đâu?", a: "The competition is at Green Park.", aRead: "🗣 Đọc: Đơ com-pơ-tí-shừn ít-z ét Gờ-rin Pa-k.", aIpa: "/ðə ˌkɒmpəˈtɪʃn ɪz æt ɡriːn pɑːrk/", aVi: "Cuộc thi ở công viên Green Park." },
+  { topicId: 12, topic: "12. Skateboarding Competition", id: 57, q: "Is the competition for children?", qRead: "🗣 Đọc: Ít-z đơ com-pơ-tí-shừn fo chil-đrần?", qIpa: "/ɪz ðə ˌkɒmpəˈtɪʃn fɔːr ˈtʃɪldrən/", qVi: "Cuộc thi dành cho trẻ em phải không?", a: "It’s for anyone from 11 to 15 years old.", aRead: "🗣 Đọc: Ít-s fo e-ni-goăn phờ-rom i-le-vừn tu phíp-s-tin dia-z ô-l-d.", aIpa: "/ɪts fɔːr ˈeniwʌn frəm ɪˈlevn tuː ˌfɪfˈtiːn jɪərz oʊld/", aVi: "Dành cho bất kỳ ai từ 11 đến 15 tuổi." },
+  { topicId: 12, topic: "12. Skateboarding Competition", id: 58, q: "What date is it?", qRead: "🗣 Đọc: Goát đết ít-zịt?", qIpa: "/wɒt deɪt ɪz ɪt/", qVi: "Cuộc thi vào ngày nào?", a: "It’s on 20 June.", aRead: "🗣 Đọc: Ít-s on tuen-ti-ith Dun.", aIpa: "/ɪts ɒn ðə ˈtwentiəθ əv dʒuːn/", aVi: "Vào ngày 20 tháng 6." },
+  { topicId: 12, topic: "12. Skateboarding Competition", id: 59, q: "Is there a website address?", qRead: "🗣 Đọc: Ít-z đe ờ goép-sai-t ét-đờ-rét-s?", qIpa: "/ɪz ðeər ə ˈwebsaɪt əˈdres/", qVi: "Có địa chỉ website không?", a: "Yes, there is. It’s www.citynews.com.", aRead: "🗣 Đọc: Dét, đe ít-z. Ít-s đắp-liu đắp-liu đắp-liu chấm si-ti-niu-z chấm com.", aIpa: "/jes, ðeər ɪz. ɪts ˌdʌbljuː ˌdʌbljuː ˈdʌbljuː dɒt ˈsɪtinjuːz dɒt kɒm/", aVi: "Có, đó là www.citynews.com." },
+  { topicId: 12, topic: "12. Skateboarding Competition", id: 60, q: "What can you win?", qRead: "🗣 Đọc: Goát ken diu guin?", qIpa: "/wɒt kæn juː wɪn/", qVi: "Bạn có thể thắng giải thưởng gì?", a: "I can win a new skateboard.", aRead: "🗣 Đọc: Ai ken guin ờ niu sờ-kết-bo-d.", aIpa: "/aɪ kæn wɪn ə njuː ˈskeɪtbɔːrd/", aVi: "Tôi có thể thắng một chiếc ván trượt mới." },
+
+  // 13. Holiday Centre - Westcliffe on Sea
+  { topicId: 13, topic: "13. Holiday Centre - Westcliffe on Sea", id: 61, q: "Where can you go for this holiday?", qRead: "🗣 Đọc: Gue-r ken diu gâu fo đít-s ho-li-đê?", qIpa: "/weər kæn juː ɡoʊ fɔːr ðɪs ˈhɒlədeɪ/", qVi: "Bạn có thể đi đâu cho kỳ nghỉ này?", a: "I can go to Westcliffe on Sea.", aRead: "🗣 Đọc: Ai ken gâu tu Oét-s-t-cờ-líp-ph on Si.", aIpa: "/aɪ kæn ɡoʊ tuː ˈwestklɪf ɒn siː/", aVi: "Tôi có thể đến Westcliffe on Sea." },
+  { topicId: 13, topic: "13. Holiday Centre - Westcliffe on Sea", id: 62, q: "What can you do there?", qRead: "🗣 Đọc: Goát ken diu đu đe?", qIpa: "/wɒt kæn juː duː ðeər/", qVi: "Bạn có thể làm gì ở đó?", a: "I can go swimming and play tennis.", aRead: "🗣 Đọc: Ai ken gâu suýt-minh en-d pờ-lay ten-nít-s.", aIpa: "/aɪ kæn ɡoʊ ˈswɪmɪŋ ænd pleɪ ˈtenɪs/", aVi: "Tôi có thể đi bơi và chơi tennis." },
+  { topicId: 13, topic: "13. Holiday Centre - Westcliffe on Sea", id: 63, q: "How much is the price for an adult?", qRead: "🗣 Đọc: Hao mát-sh ít-z đơ pờ-rai-s fo ừn a-đao-t?", qIpa: "/haʊ mʌtʃ ɪz ðə praɪs fɔːr ən ˈædʌlt/", qVi: "Giá vé cho người lớn là bao nhiêu?", a: "It’s 400 pounds.", aRead: "🗣 Đọc: Ít-s pho hơn-dờ-rịt pao-n-z.", aIpa: "/ɪts fɔːr ˈhʌndrəd paʊndz/", aVi: "Giá là 400 bảng." },
+  { topicId: 13, topic: "13. Holiday Centre - Westcliffe on Sea", id: 64, q: "Does it open all year?", qRead: "🗣 Đọc: Đắt-zịt ô-pừn o dia?", qIpa: "/dʌz ɪt ˈoʊpən ɔːl jɪər/", qVi: "Khu nghỉ dưỡng có mở quanh năm không?", a: "No, it opens from March to November.", aRead: "🗣 Đọc: Nâu, ịt ô-pừn-z phờ-rom Ma-t-sh tu Nô-vem-bơ.", aIpa: "/noʊ, ɪt ˈoʊpənz frəm mɑːrtʃ tuː noʊˈvembər/", aVi: "Không, nó chỉ mở từ tháng 3 đến tháng 11." },
+  { topicId: 13, topic: "13. Holiday Centre - Westcliffe on Sea", id: 65, q: "Does it have a place to eat?", qRead: "🗣 Đọc: Đắt-zịt he-vờ ờ pờ-lê-s tu ít?", qIpa: "/dʌz ɪt hæv ə pleɪs tuː iːt/", qVi: "Ở đó có chỗ ăn uống không?", a: "Yes, it has an excellent restaurant to eat.", aRead: "🗣 Đọc: Dét, ịt hét-z ừn éc-sơ-lừn-t rét-s-tơ-rông tu ít.", aIpa: "/jes, ɪt hæz ən ˈeksələnt ˈrestrɒnt tuː iːt/", aVi: "Có, có một nhà hàng tuyệt vời để ăn uống." },
+
+  // 14. World Books
+  { topicId: 14, topic: "14. World Books", id: 66, q: "What is the name of the bookshop?", qRead: "🗣 Đọc: Goát ít-z đơ nêm ờ-vờ đơ búc-sho-p?", qIpa: "/wɒt ɪz ðə neɪm əv ðə ˈbʊkʃɒp/", qVi: "Tên của hiệu sách là gì?", a: "Its name is World Books.", aRead: "🗣 Đọc: Ít-s nêm ít-z Guôn-d Búc-s.", aIpa: "/ɪts neɪm ɪz wɜːrld bʊks/", aVi: "Tên hiệu sách là World Books." },
+  { topicId: 14, topic: "14. World Books", id: 67, q: "Is the bookshop big or small?", qRead: "🗣 Đọc: Ít-z đơ búc-sho-p bích o sờ-mo?", qIpa: "/ɪz ðə ˈbʊkʃɒp bɪɡ ɔːr smɔːl/", qVi: "Hiệu sách lớn hay nhỏ?", a: "It’s very big, the largest bookshop in the country.", aRead: "🗣 Đọc: Ít-s ve-ri bích, đơ la-dzhít-s-t búc-sho-p in đơ căn-tri.", aIpa: "/ɪts ˈveri bɪɡ, ðə ˈlɑːrdʒɪst ˈbʊkʃɒp ɪn ðə ˈkʌntri/", aVi: "Nó rất lớn, là hiệu sách lớn nhất cả nước." },
+  { topicId: 14, topic: "14. World Books", id: 68, q: "Is the bookshop closed on Sunday?", qRead: "🗣 Đọc: Ít-z đơ búc-sho-p cờ-lâu-z-d on Săn-đê?", qIpa: "/ɪz ðə ˈbʊkʃɒp kloʊzd ɒn ˈsʌndeɪ/", qVi: "Hiệu sách có đóng cửa vào Chủ nhật không?", a: "No, it opens on Sunday from 12.30 pm to 8 pm.", aRead: "🗣 Đọc: Nâu, ịt ô-pừn-z on Săn-đê phờ-rom tuoel-vờ thớ-ti pi-em tu ét pi-em.", aIpa: "/noʊ, ɪt ˈoʊpənz ɒn ˈsʌndeɪ frəm twelv ˈθɜːti ˌpiːˈem tuː eɪt ˌpiːˈem/", aVi: "Không, nó mở cửa Chủ nhật từ 12h30 trưa đến 8h tối." },
+  { topicId: 14, topic: "14. World Books", id: 69, q: "Does the bookshop sell travel books?", qRead: "🗣 Đọc: Đắt-z đơ búc-sho-p seo tre-vồ búc-s?", qIpa: "/dʌz ðə ˈbʊkʃɒp sel ˈtrævl bʊks/", qVi: "Hiệu sách có bán sách du lịch không?", a: "Yes, you can get your travel books there.", aRead: "🗣 Đọc: Dét, diu ken ghét gio tre-vồ búc-s đe.", aIpa: "/jes, juː kæn ɡet jɔːr ˈtrævl bʊks ðeər/", aVi: "Có, bạn có thể mua sách du lịch ở đó." },
+  { topicId: 14, topic: "14. World Books", id: 70, q: "What is the bookshop's telephone number?", qRead: "🗣 Đọc: Goát ít-z đơ búc-sho-p-s te-li-phôn năm-bơ?", qIpa: "/wɒt ɪz ðə ˈbʊkʃɒps ˈtelɪfoʊn ˈnʌmbər/", qVi: "Số điện thoại của hiệu sách là gì?", a: "It’s 724 399.", aRead: "🗣 Đọc: Ít-s se-vừn tu pho, thri nai-n nai-n.", aIpa: "/ɪts ˈsevən tuː fɔːr, θriː naɪn naɪn/", aVi: "Đó là số 724 399." },
+
+  // 15. Mary Brown - Dentist
+  { topicId: 15, topic: "15. Mary Brown - Dentist", id: 71, q: "What is the name of the dentist?", qRead: "🗣 Đọc: Goát ít-z đơ nêm ờ-vờ đơ đen-tít-s-t?", qIpa: "/wɒt ɪz ðə neɪm əv ðə ˈdentɪst/", qVi: "Tên của nha sĩ là gì?", a: "The dentist’s name is Mary Brown.", aRead: "🗣 Đọc: Đơ đen-tít-s-t-s nêm ít-z Me-ri Bờ-rao-n.", aIpa: "/ðə ˈdentɪsts neɪm ɪz ˈmeəri braʊn/", aVi: "Tên nha sĩ là Mary Brown." },
+  { topicId: 15, topic: "15. Mary Brown - Dentist", id: 72, q: "What is the telephone number?", qRead: "🗣 Đọc: Goát ít-z đơ te-li-phôn năm-bơ?", qIpa: "/wɒt ɪz ðə ˈtelɪfoʊn ˈnʌmbər/", qVi: "Số điện thoại là bao nhiêu?", a: "It’s 980 4723.", aRead: "🗣 Đọc: Ít-s nai-n ét ô, pho se-vừn tu thri.", aIpa: "/ɪts naɪn eɪt oʊ, fɔːr ˈsevən tuː θriː/", aVi: "Đó là số 980 4723." },
+  { topicId: 15, topic: "15. Mary Brown - Dentist", id: 73, q: "Can I have an appointment with the dentist in the evening?", qRead: "🗣 Đọc: Ken ai he-vờ ừn ờ-poi-n-t-mừn-t guýth đơ đen-tít-s-t in đi í-vơ-ninh?", qIpa: "/kæn aɪ hæv ən əˈpɔɪntmənt wɪð ðə ˈdentɪst ɪn ði ˈiːvnɪŋ/", qVi: "Tôi có thể hẹn khám nha sĩ vào buổi tối được không?", a: "Yes, opening times from 12.30 to 8 pm.", aRead: "🗣 Đọc: Dét, ô-pừn-ninh taim-z phờ-rom tuoel-vờ thớ-ti tu ét pi-em.", aIpa: "/jes, ˈoʊpnɪŋ taɪmz frəm twelv ˈθɜːti tuː eɪt ˌpiːˈem/", aVi: "Được, phòng khám mở cửa từ 12h30 đến 8h tối." },
+  { topicId: 15, topic: "15. Mary Brown - Dentist", id: 74, q: "What is the dentist's address?", qRead: "🗣 Đọc: Goát ít-z đơ đen-tít-s-t-s ét-đờ-rét-s?", qIpa: "/wɒt ɪz ðə ˈdentɪsts əˈdres/", qVi: "Địa chỉ của phòng khám nha sĩ ở đâu?", a: "The dentist’s address is 17 Mount Street.", aRead: "🗣 Đọc: Đơ đen-tít-s-t-s ét-đờ-rét-s ít-z se-vừn-tin Mao-n-t Sờ-trít.", aIpa: "/ðə ˈdentɪsts əˈdres ɪz ˌsevənˈtiːn maʊnt striːt/", aVi: "Địa chỉ là số 17 đường Mount Street." },
+  { topicId: 15, topic: "15. Mary Brown - Dentist", id: 75, q: "Where is the car park?", qRead: "🗣 Đọc: Gue-r ít-z đơ ca pa-k?", qIpa: "/weər ɪz ðə kɑːr pɑːrk/", qVi: "Bãi đỗ xe ở đâu?", a: "You can park your car in Water Lane.", aRead: "🗣 Đọc: Diu ken pa-k gio ca in Oa-tơ Lên.", aIpa: "/juː kæn pɑːrk jɔːr kɑːr ɪn ˈwɔːtər leɪn/", aVi: "Bạn có thể đỗ xe tại đường Water Lane." },
+
+  // 16. Holiday Sports Club
+  { topicId: 16, topic: "16. Holiday Sports Club", id: 76, q: "What sports does the club have?", qRead: "🗣 Đọc: Goát sờ-po-t-s đắt-z đơ cờ-lắp he-vờ?", qIpa: "/wɒt spɔːrts dʌz ðə klʌb hæv/", qVi: "Câu lạc bộ có những môn thể thao nào?", a: "It has football, basketball, volleyball, tennis and baseball.", aRead: "🗣 Đọc: Ít hét-z phút-bol, bát-s-cịt-bol, vó-li-bol, ten-nít-s en-d bết-s-bol.", aIpa: "/ɪt hæz ˈfʊtbɔːl, ˈbɑːskɪtbɔːl, ˈvɒlibɔːl, ˈtenɪs ænd ˈbeɪsbɔːl/", aVi: "Có bóng đá, bóng rổ, bóng chuyền, tennis và bóng chày." },
+  { topicId: 16, topic: "16. Holiday Sports Club", id: 77, q: "What’s the club’s address?", qRead: "🗣 Đọc: Goát-s đơ cờ-lắp-s ét-đờ-rét-s?", qIpa: "/wɒts ðə klʌbz əˈdres/", qVi: "Địa chỉ câu lạc bộ là gì?", a: "It’s 27 London Road.", aRead: "🗣 Đọc: Ít-s tuen-ti se-vừn Lân-đừn Râu-d.", aIpa: "/ɪts ˌtwenti ˈsevən ˈlʌndən roʊd/", aVi: "Địa chỉ là số 27 đường London Road." },
+  { topicId: 16, topic: "16. Holiday Sports Club", id: 78, q: "Is the club for all ages?", qRead: "🗣 Đọc: Ít-z đơ cờ-lắp fo o ê-dit-z?", qIpa: "/ɪz ðə klʌb fɔːr ɔːl ˈeɪdʒɪz/", qVi: "Câu lạc bộ dành cho mọi lứa tuổi phải không?", a: "No, only for young people from 10 to 18 years old.", aRead: "🗣 Đọc: Nâu, ôn-li fo dăng pi-pồ phờ-rom ten tu ê-tin dia-z ô-l-d.", aIpa: "/noʊ, ˈoʊnli fɔːr jʌŋ ˈpiːpl frəm ten tuː ˌeɪˈtiːn jɪərz oʊld/", aVi: "Không, chỉ dành cho thanh thiếu niên từ 10 đến 18 tuổi." },
+  { topicId: 16, topic: "16. Holiday Sports Club", id: 79, q: "How much does a week cost?", qRead: "🗣 Đọc: Hao mát-sh đắt-z ờ guýc cót-s-t?", qIpa: "/haʊ mʌtʃ dʌz ə wiːk kɒst/", qVi: "Chi phí một tuần là bao nhiêu?", a: "It costs 25 pounds a week.", aRead: "🗣 Đọc: Ít cót-s-t tuen-ti fai-vờ pao-n-z ờ guýc.", aIpa: "/ɪt kɒsts ˌtwenti ˈfaɪv paʊndz ə wiːk/", aVi: "Chi phí là 25 bảng một tuần." },
+  { topicId: 16, topic: "16. Holiday Sports Club", id: 80, q: "When does the club open?", qRead: "🗣 Đọc: Guen đắt-z đơ cờ-lắp ô-pừn?", qIpa: "/wen dʌz ðə klʌb ˈoʊpən/", qVi: "Khi nào câu lạc bộ mở cửa?", a: "From July to August.", aRead: "🗣 Đọc: Phờ-rom Du-lai tu Ô-gớt-s-t.", aIpa: "/frəm dʒuˈlaɪ tuː ˈɔːɡəst/", aVi: "Mở từ tháng 7 đến tháng 8." },
+
+  // 17. Alison's Animal Hospital
+  { topicId: 17, topic: "17. Alison's Animal Hospital", id: 81, q: "What is the animal hospital’s name?", qRead: "🗣 Đọc: Goát ít-z đi e-ni-mồ hót-s-pi-tồ-z nêm?", qIpa: "/wɒt ɪz ði ˈænɪml ˈhɒspɪtlz neɪm/", qVi: "Tên của bệnh viện thú y là gì?", a: "It is Alison’s Animal Hospital.", aRead: "🗣 Đọc: Ít ít-z E-li-sừn-z E-ni-mồ Hót-s-pi-tồ.", aIpa: "/ɪt ɪz ˈælɪsnz ˈænɪml ˈhɒspɪtl/", aVi: "Đó là Bệnh viện thú y Alison's Animal Hospital." },
+  { topicId: 17, topic: "17. Alison's Animal Hospital", id: 82, q: "Does it open on Sunday?", qRead: "🗣 Đọc: Đắt-zịt ô-pừn on Săn-đê?", qIpa: "/dʌz ɪt ˈoʊpən ɒn ˈsʌndeɪ/", qVi: "Bệnh viện có mở cửa vào Chủ nhật không?", a: "Yes, it opens all week.", aRead: "🗣 Đọc: Dét, ịt ô-pừn-z o guýc.", aIpa: "/jes, ɪt ˈoʊpənz ɔːl wiːk/", aVi: "Có, mở cửa tất cả các ngày trong tuần." },
+  { topicId: 17, topic: "17. Alison's Animal Hospital", id: 83, q: "Is this hospital for birds?", qRead: "🗣 Đọc: Ít-z đít-s hót-s-pi-tồ fo bơ-d-z?", qIpa: "/ɪz ðɪs ˈhɒspɪtl fɔːr bɜːrdz/", qVi: "Bệnh viện này có chữa cho chim không?", a: "Yes, for all animals.", aRead: "🗣 Đọc: Dét, fo o e-ni-mồ-z.", aIpa: "/jes, fɔːr ɔːl ˈænɪmlz/", aVi: "Có, chữa cho tất cả các loài động vật." },
+  { topicId: 17, topic: "17. Alison's Animal Hospital", id: 84, q: "What’s the address of the hospital?", qRead: "🗣 Đọc: Goát-s đi ét-đờ-rét-s ờ-vờ đơ hót-s-pi-tồ?", qIpa: "/wɒts ði əˈdres əv ðə ˈhɒspɪtl/", qVi: "Địa chỉ của bệnh viện là gì?", a: "It’s 44 North Road.", aRead: "🗣 Đọc: Ít-s pho-ti pho No-th Râu-d.", aIpa: "/ɪts ˌfɔːti ˈfɔːr nɔːrθ roʊd/", aVi: "Địa chỉ là số 44 đường North Road." },
+  { topicId: 17, topic: "17. Alison's Animal Hospital", id: 85, q: "Where is the car park?", qRead: "🗣 Đọc: Gue-r ít-z đơ ca pa-k?", qIpa: "/weər ɪz ðə kɑːr pɑːrk/", qVi: "Bãi đỗ xe ở đâu?", a: "It is behind the hospital.", aRead: "🗣 Đọc: Ít ít-z bi-hain-d đơ hót-s-pi-tồ.", aIpa: "/ɪt ɪz bɪˈhaɪnd ðə ˈhɒspɪtl/", aVi: "Bãi đỗ xe nằm ở phía sau bệnh viện." },
+
+  // 18. Maths lessons (Richard Wilson)
+  { topicId: 18, topic: "18. Maths lessons (Richard Wilson)", id: 86, q: "When are the maths lessons?", qRead: "🗣 Đọc: Guen a đơ mét-th léc-sừn-z?", qIpa: "/wen ɑːr ðə mæθs ˈlesnz/", qVi: "Khi nào có các lớp học Toán?", a: "It opens on weekdays after 6 pm.", aRead: "🗣 Đọc: Ít ô-pừn-z on guýc-đê-z áp-ph-tơ sích-s pi-em.", aIpa: "/ɪt ˈoʊpənz ɒn ˈwiːkdeɪz ˈɑːftər sɪks ˌpiːˈem/", aVi: "Lớp học mở vào các ngày trong tuần sau 6 giờ tối." },
+  { topicId: 18, topic: "18. Maths lessons (Richard Wilson)", id: 87, q: "What is the teacher's name?", qRead: "🗣 Đọc: Goát ít-z đơ tít-chờ-z nêm?", qIpa: "/wɒt ɪz ðə ˈtiːtʃərz neɪm/", qVi: "Tên của thầy giáo là gì?", a: "His name is Richard Wilson.", aRead: "🗣 Đọc: Hít-z nêm ít-z Rí-chợt Guýu-sừn.", aIpa: "/hɪz neɪm ɪz ˈrɪtʃərd ˈwɪlsn/", aVi: "Tên của thầy là Richard Wilson." },
+  { topicId: 18, topic: "18. Maths lessons (Richard Wilson)", id: 88, q: "What is the telephone number?", qRead: "🗣 Đọc: Goát ít-z đơ te-li-phôn năm-bơ?", qIpa: "/wɒt ɪz ðə ˈtelɪfoʊn ˈnʌmbər/", qVi: "Số điện thoại liên hệ là bao nhiêu?", a: "It is 576980.", aRead: "🗣 Đọc: Ít ít-z fai-vờ se-vừn sích-s, nai-n ét ô.", aIpa: "/ɪt ɪz faɪv ˈsevən sɪks, naɪn eɪt oʊ/", aVi: "Số điện thoại là 576980." },
+  { topicId: 18, topic: "18. Maths lessons (Richard Wilson)", id: 89, q: "How much does it cost?", qRead: "🗣 Đọc: Hao mát-sh đắt-zịt cót-s-t?", qIpa: "/haʊ mʌtʃ dʌz ɪt kɒst/", qVi: "Học phí là bao nhiêu?", a: "It is 18 pounds for one hour.", aRead: "🗣 Đọc: Ít ít-z ê-tin pao-n-z fo goăn ao-ơ.", aIpa: "/ɪt ɪz ˌeɪˈtiːn paʊndz fɔːr wʌn ˈaʊər/", aVi: "Học phí là 18 bảng cho một giờ." },
+  { topicId: 18, topic: "18. Maths lessons (Richard Wilson)", id: 90, q: "Where are the lessons held?", qRead: "🗣 Đọc: Gue-r a đơ léc-sừn-z heo-d?", qIpa: "/weər ɑːr ðə ˈlesnz held/", qVi: "Lớp học được tổ chức ở đâu?", a: "It is at your home.", aRead: "🗣 Đọc: Ít ít-z ét gio hôm.", aIpa: "/ɪt ɪz æt jɔːr hoʊm/", aVi: "Dạy kèm ngay tại nhà của bạn." }
+];
+
+// Cấu hình Ngày học cho Phần 1
 const DAY_CONFIG = {
   1: { name: "DAY 1 · LÀM QUEN", sub: "Ngày 1: nghe, hiểu và bắt đầu làm quen 10 câu đầu.", range: [0, 9] },
   2: { name: "DAY 2 · PHẢN XẠ", sub: "Ngày 2: nghe câu hỏi và tự trả lời trước khi xem đáp án.", range: [10, 19] },
@@ -900,8 +1262,17 @@ const DAY_CONFIG = {
   4: { name: "DAY 4 · THI THỬ", sub: "Ngày 4: kiểm tra ngẫu nhiên toàn bộ 40 câu hỏi không theo thứ tự.", range: [0, 39] }
 };
 
-let day = 1, items = [], index = 0, speaking = false, run = 0;
-let showRead = true, showIpa = true, showTrans = true;
+let currentPart = 1;
+let day = 1;
+let currentPictureTopic = 0; // 0 = all topics, 1..18 = specific topic
+let items = [];
+let index = 0;
+let speaking = false;
+let run = 0;
+
+let showRead = true;
+let showIpa = true;
+let showTrans = true;
 
 const $ = id => document.getElementById(id);
 const question = $("question"), qRead = $("qRead"), qIpa = $("qIpa"), qVi = $("qVi");
@@ -909,6 +1280,7 @@ const answer = $("answer"), answerText = $("answerText"), aRead = $("aRead"), aI
 const counter = $("counter"), status = $("status"), bar = $("bar");
 const quiz = $("quiz"), selfAnswer = $("selfAnswer"), result = $("result");
 const showBtn = $("show"), readBtn = $("readBtn"), ipaBtn = $("ipaBtn"), transBtn = $("transBtn");
+const topicTagBox = $("topicTagBox"), topicTagText = $("topicTagText");
 
 function shuffle(arr) {
   const a = [...arr];
@@ -920,8 +1292,10 @@ function shuffle(arr) {
 }
 
 function setStatus(t, cls = "") {
-  status.textContent = t;
-  status.className = "status " + cls;
+  if (status) {
+    status.textContent = t;
+    status.className = "status " + cls;
+  }
 }
 
 function stopSpeech() {
@@ -984,7 +1358,7 @@ function speak(text, rate) {
     const v = getVoiceChoice();
     if (v) {
       u.voice = v;
-      u.lang = v.lang || "vi-VN";
+      u.lang = v.lang || "en-US";
     }
     u.onstart = () => setStatus("🔊 Đang đọc...", "speak");
     u.onend = () => { setStatus("Sẵn sàng học", "ok"); resolve(); };
@@ -994,26 +1368,32 @@ function speak(text, rate) {
 }
 
 function render() {
-  if (!items.length) return;
+  if (!items || !items.length) return;
   const item = items[index];
   
-  // Wrap words for karaoke highlight if needed
+  if (item.topic) {
+    topicTagBox.style.display = "block";
+    topicTagText.textContent = item.topic;
+  } else {
+    topicTagBox.style.display = "none";
+  }
+
   question.innerHTML = item.q.split(/\s+/).map((w, i) => `<span class="word" id="qw-${i}">${w}</span>`).join(" ");
-  qRead.textContent = item.qRead;
-  qIpa.textContent = item.qIpa;
-  qVi.textContent = item.qVi;
+  qRead.textContent = item.qRead || "";
+  qIpa.textContent = item.qIpa || "";
+  qVi.textContent = item.qVi || "";
   
   answerText.innerHTML = item.a.split(/\s+/).map((w, i) => `<span class="word" id="aw-${i}">${w}</span>`).join(" ");
-  aRead.textContent = item.aRead;
-  aIpa.textContent = item.aIpa;
-  aVi.textContent = item.aVi;
+  aRead.textContent = item.aRead || "";
+  aIpa.textContent = item.aIpa || "";
+  aVi.textContent = item.aVi || "";
   
-  qRead.parentElement.classList.toggle("hidden", !showRead);
-  aRead.parentElement.classList.toggle("hidden", !showRead);
-  qIpa.classList.toggle("hidden", !showIpa);
-  aIpa.classList.toggle("hidden", !showIpa);
-  qVi.classList.toggle("hidden", !showTrans);
-  aVi.classList.toggle("hidden", !showTrans);
+  qRead.parentElement.classList.toggle("hidden", !showRead || !item.qRead);
+  aRead.parentElement.classList.toggle("hidden", !showRead || !item.aRead);
+  qIpa.classList.toggle("hidden", !showIpa || !item.qIpa);
+  aIpa.classList.toggle("hidden", !showIpa || !item.aIpa);
+  qVi.classList.toggle("hidden", !showTrans || !item.qVi);
+  aVi.classList.toggle("hidden", !showTrans || !item.aVi);
   
   answer.classList.add("locked");
   quiz.classList.remove("show");
@@ -1024,14 +1404,13 @@ function render() {
   counter.textContent = `Câu ${index + 1} / ${items.length} (ID #${item.id})`;
   bar.style.width = `${((index + 1) / items.length) * 100}%`;
   
-  // Update list active state
   document.querySelectorAll(".item").forEach(el => {
     el.classList.toggle("active", Number(el.dataset.id) === item.id);
   });
 }
 
 function save() {
-  localStorage.setItem("english4day-progress", JSON.stringify({ day, index }));
+  localStorage.setItem("humg-speaking-progress", JSON.stringify({ currentPart, day, currentPictureTopic, index }));
 }
 
 function renderDayList() {
@@ -1039,11 +1418,81 @@ function renderDayList() {
     <div class="item ${idx === index ? 'active' : ''}" data-id="${item.id}" data-idx="${idx}">
       <div class="num">#${item.id}</div>
       <div style="flex:1">
+        ${item.topic ? `<div style="font-size:0.75rem; color:#38bdf8; font-weight:800; margin-bottom:2px;">${item.topic}</div>` : ''}
         <div class="qsmall">${item.q}</div>
         <div class="as">→ ${item.a}</div>
       </div>
     </div>
   `).join("");
+}
+
+function populatePictureTopicSelect() {
+  const sel = $("pictureTopicSelect");
+  sel.innerHTML = '<option value="0">⭐ Toàn bộ 18 Bộ Tranh (Đầy đủ 90 câu)</option>' +
+    PART3_TOPICS.map((t, i) => `<option value="${i+1}">${t}</option>`).join("");
+  sel.value = currentPictureTopic;
+}
+
+function changePictureTopic(topicVal) {
+  stopSpeech();
+  currentPictureTopic = Number(topicVal);
+  if (currentPictureTopic === 0) {
+    items = PART3_DATA;
+  } else {
+    items = PART3_DATA.filter(x => x.topicId === currentPictureTopic);
+  }
+  index = 0;
+  renderDayList();
+  render();
+  save();
+}
+
+function switchPart(partNum) {
+  stopSpeech();
+  currentPart = partNum;
+  
+  document.querySelectorAll(".part-btn").forEach((b, i) => {
+    b.classList.toggle("active", i + 1 === currentPart);
+  });
+  
+  const dayBoxSection = $("dayBoxSection");
+  const dayBtns = $("dayButtonsContainer");
+  const topicSel = $("topicSelectorRow");
+  const boxTitle = $("boxTitle");
+  const daySub = $("daySub");
+  const dayBadge = $("dayBadge");
+  const testNote = $("testNote");
+  
+  testNote.classList.remove("show");
+  
+  if (currentPart === 1) {
+    dayBoxSection.style.display = "block";
+    dayBtns.style.display = "grid";
+    topicSel.style.display = "none";
+    boxTitle.textContent = "LỘ TRÌNH HỌC CẤP TỐC 4 NGÀY (40 TOPICS)";
+    loadDay(day, 0);
+  } else if (currentPart === 2) {
+    dayBoxSection.style.display = "block";
+    dayBtns.style.display = "none";
+    topicSel.style.display = "none";
+    boxTitle.textContent = "PHẦN 2: CÁC KHOA TẠI ĐẠI HỌC MỎ - ĐỊA CHẤT (HUMG)";
+    daySub.textContent = "Mẫu câu: What faculty are you in? => I’m studying at faculty of...";
+    dayBadge.textContent = "HUMG FACULTIES";
+    items = PART2_DATA;
+    index = 0;
+    renderDayList();
+    render();
+    save();
+  } else if (currentPart === 3) {
+    dayBoxSection.style.display = "block";
+    dayBtns.style.display = "none";
+    topicSel.style.display = "flex";
+    boxTitle.textContent = "PHẦN 3: 18 BỘ TRANH CHỦ YẾU VÀ CÂU HỎI VẤN ĐÁP (90 CÂU)";
+    daySub.textContent = "Luyện phản xạ hỏi đáp theo thông tin biển hiệu, vé tham quan, trường học, bảo tàng.";
+    dayBadge.textContent = "18 PICTURE CUES";
+    populatePictureTopicSelect();
+    changePictureTopic(currentPictureTopic);
+  }
 }
 
 function loadDay(d, savedIndex = 0) {
@@ -1053,7 +1502,7 @@ function loadDay(d, savedIndex = 0) {
   const cfg = DAY_CONFIG[day];
   $("dayBadge").textContent = cfg.name;
   $("daySub").textContent = cfg.sub;
-  items = day === 4 ? shuffle(DATA) : DATA.slice(cfg.range[0], cfg.range[1] + 1);
+  items = day === 4 ? shuffle(PART1_DATA) : PART1_DATA.slice(cfg.range[0], cfg.range[1] + 1);
   index = (savedIndex >= 0 && savedIndex < items.length) ? savedIndex : 0;
   renderDayList();
   render();
@@ -1186,8 +1635,8 @@ $("checkBtn").onclick = () => {
 
 $("resetBtn").onclick = () => {
   if (confirm("Bạn có chắc muốn đặt lại toàn bộ tiến độ học tập?")) {
-    localStorage.removeItem("english4day-progress");
-    loadDay(1, 0);
+    localStorage.removeItem("humg-speaking-progress");
+    switchPart(1);
   }
 };
 
@@ -1216,23 +1665,11 @@ document.addEventListener("keydown", e => {
   if (e.key === "a" || e.key === "A") { e.preventDefault(); showBtn.click(); }
 });
 
-// Restore saved progress
-try {
-  const saved = JSON.parse(localStorage.getItem("english4day-progress"));
-  if (saved && saved.day) {
-    loadDay(saved.day, saved.index || 0);
-  } else {
-    loadDay(1, 0);
-  }
-} catch (e) {
-  loadDay(1, 0);
-}
-
 if ($("testVoiceBtn")) {
   $("testVoiceBtn").onclick = async () => {
     stopSpeech();
     setStatus("🔊 Đang thử giọng nói...", "speak");
-    await speak("Hello! Do you like learning English? Let's practice speaking together!", Number($("speed").value));
+    await speak("Hello! Welcome to HUMG English speaking practice.", Number($("speed").value));
   };
 }
 
@@ -1243,6 +1680,24 @@ if ($("voiceSelect")) {
   };
   const savedVoice = localStorage.getItem("english-voice-choice");
   if (savedVoice) $("voiceSelect").value = savedVoice;
+}
+
+// Khôi phục tiến độ đã lưu
+try {
+  const saved = JSON.parse(localStorage.getItem("humg-speaking-progress"));
+  if (saved && saved.currentPart) {
+    currentPictureTopic = saved.currentPictureTopic || 0;
+    day = saved.day || 1;
+    switchPart(saved.currentPart);
+    if (saved.index) {
+      index = saved.index;
+      render();
+    }
+  } else {
+    switchPart(1);
+  }
+} catch (e) {
+  switchPart(1);
 }
 
 if ("speechSynthesis" in window) {
