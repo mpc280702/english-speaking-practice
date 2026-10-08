@@ -415,12 +415,13 @@
       <button class="btn active-toggle" id="ipaBtn" title="Bật/Tắt phiên âm quốc tế IPA">🔤 IPA</button>
       <button class="btn active-toggle" id="transBtn" title="Bật/Tắt dịch nghĩa Tiếng Việt">🌐 Dịch TV</button>
       <select class="btn" id="voiceSelect" aria-label="Giọng đọc">
-        <option value="en-female-natural" selected>👩 Giọng Nữ Mỹ Tự Nhiên (Jenny · Dễ nghe nhất)</option>
-        <option value="en-female-clarity">👩 Giọng Nữ Chuẩn Rõ Chữ (Aria / Samantha)</option>
-        <option value="en-female-uk">👩 Giọng Nữ Anh Chuẩn (Sonia / UK Female)</option>
-        <option value="vi-female">👩 Giọng Nữ Việt Nam (Hoài My / Google)</option>
-        <option value="en-male">👨 Giọng Nam Bản Xứ</option>
+        <option value="en-female-natural" selected>👩 Cô Giáo Mỹ (Jenny Natural · Chuẩn & Dễ Nghe)</option>
+        <option value="en-female-clarity">👩 Nữ Mỹ Rõ Chữ (Aria / Samantha)</option>
+        <option value="en-female-uk">👩 Nữ Anh Bản Xứ (Sonia / UK Female)</option>
+        <option value="vi-female">👩 Nữ Việt Nam (Hoài My / Google)</option>
+        <option value="en-male">👨 Nam Bản Xứ (Guy / David)</option>
       </select>
+      <button class="btn ghost" id="testVoiceBtn" title="Bấm để nghe thử giọng đọc này">🔊 Thử giọng</button>
       <select class="btn" id="speed" aria-label="Tốc độ đọc">
         <option value="0.20">0.20x · Chậm tối đa (Tách từng âm)</option>
         <option value="0.30">0.30x · Siêu siêu chậm (Luyện khẩu hình)</option>
@@ -1225,6 +1226,23 @@ try {
   }
 } catch (e) {
   loadDay(1, 0);
+}
+
+if ($("testVoiceBtn")) {
+  $("testVoiceBtn").onclick = async () => {
+    stopSpeech();
+    setStatus("🔊 Đang thử giọng nói...", "speak");
+    await speak("Hello! Do you like learning English? Let's practice speaking together!", Number($("speed").value));
+  };
+}
+
+if ($("voiceSelect")) {
+  $("voiceSelect").onchange = () => {
+    localStorage.setItem("english-voice-choice", $("voiceSelect").value);
+    if ($("testVoiceBtn")) $("testVoiceBtn").click();
+  };
+  const savedVoice = localStorage.getItem("english-voice-choice");
+  if (savedVoice) $("voiceSelect").value = savedVoice;
 }
 
 if ("speechSynthesis" in window) {
