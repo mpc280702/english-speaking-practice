@@ -4,45 +4,47 @@
   <meta charset="UTF-8">
   <meta name="google" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luyện Nói Tiếng Anh HUMG — Đầy Đủ Phần 1, Phần 2 & Phần 3</title>
+  <title>English Speaking Practice — HUMG Fast Track (Phần 1, 2 & 3)</title>
   <style>
     :root {
-      --bg: #080c14;
-      --card: #111827;
-      --card2: #0f172a;
-      --primary: #6366f1;
-      --primary-hover: #4f46e5;
-      --primary2: #818cf8;
-      --accent: #10b981;
-      --yellow: #facc15;
-      --text: #f8fafc;
-      --muted: #94a3b8;
+      --bg: #06101e;
+      --card: #0c1a2c;
+      --card2: #11253d;
       --line: rgba(255, 255, 255, 0.10);
-      --danger: #fb7185;
+      --text: #f5f8ff;
+      --muted: #9db0c8;
+      --blue: #5b7dff;
+      --blue-hover: #4568f5;
+      --green: #1fc58a;
+      --green-dark: #0b6044;
+      --yellow: #ffd452;
+      --yellow-dark: #604b0a;
+      --red: #ff768c;
+      --danger-dark: #522036;
       --highlight: #facc15;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: radial-gradient(circle at top, #172033 0%, #080c14 48%);
+      background: radial-gradient(circle at 10% 0, #183861 0%, #06101e 48%);
       color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Segoe UI', Arial, system-ui, -apple-system, sans-serif;
+      padding: 14px;
       min-height: 100vh;
-      padding: 16px;
     }
     button, select, input { font: inherit; }
-    .wrap { width: min(1120px, 100%); margin: auto; }
+    .wrap { max-width: 1120px; margin: auto; }
     
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      margin-bottom: 12px;
+      gap: 10px;
       flex-wrap: wrap;
+      margin-bottom: 12px;
     }
     .brand {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 900;
       background: linear-gradient(135deg, #a5b4fc, #38bdf8);
       -webkit-background-clip: text;
@@ -51,131 +53,126 @@
       align-items: center;
       gap: 8px;
     }
+    .tag {
+      background: #17324e;
+      color: #aecdff;
+      padding: 4px 10px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
     
-    /* Nav Tabs giữa các Phần */
-    .part-nav {
-      display: flex;
-      gap: 8px;
-      background: rgba(17, 24, 39, 0.95);
+    /* Nav bar giữa 3 phần */
+    .nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      background: rgba(12, 26, 44, 0.94);
       padding: 6px;
       border: 1px solid var(--line);
       border-radius: 14px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
+      margin-bottom: 12px;
     }
-    .part-btn {
-      flex: 1;
-      min-width: 180px;
-      background: transparent;
+    .nav button {
       border: 1px solid transparent;
+      background: transparent;
       color: var(--muted);
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-radius: 10px;
       cursor: pointer;
-      font-weight: 800;
-      font-size: 0.92rem;
+      font-weight: 900;
+      font-size: 0.9rem;
       transition: all 0.2s ease;
       text-align: center;
     }
-    .part-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
-    .part-btn.active {
-      background: var(--primary);
+    .nav button:hover { background: rgba(255,255,255,0.05); color: #fff; }
+    .nav button.active {
+      background: var(--blue);
       color: #fff;
-      border-color: transparent;
-      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 16px rgba(91, 125, 255, 0.45);
     }
-
-    .day-box, .card {
-      background: rgba(17, 24, 39, 0.92);
+    
+    .daybox, .card, .list {
+      background: rgba(12, 26, 44, 0.94);
       border: 1px solid var(--line);
       border-radius: 18px;
-      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
+      margin-bottom: 12px;
     }
-    .day-box { padding: 16px; margin-bottom: 14px; }
-    .day-head {
+    .daybox { padding: 15px; }
+    .dayhead {
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      align-items: flex-start;
+      align-items: center;
       flex-wrap: wrap;
     }
-    .day-title { font-weight: 900; color: #c7d2fe; font-size: 1.05rem; }
-    .day-sub { font-size: 0.86rem; color: var(--muted); margin-top: 4px; }
-    .badge {
-      padding: 7px 13px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.12);
-      color: #6ee7b7;
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      font-size: 0.78rem;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-    }
+    .title { font-weight: 900; font-size: 1.05rem; color: #c7d2fe; }
+    .sub { color: var(--muted); font-size: 0.85rem; margin-top: 3px; }
     
     .days {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-top: 14px;
+      gap: 7px;
+      margin-top: 12px;
     }
     .day {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
-      color: #cbd5e1;
-      border-radius: 12px;
-      padding: 10px 10px;
       text-align: left;
+      background: #12263e;
+      color: #d5deec;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 9px 10px;
       cursor: pointer;
       font-weight: 900;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
-    .day:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(99, 102, 241, 0.4); }
-    .day small { display: block; color: #64748b; margin-top: 3px; font-weight: 700; font-size: 0.75rem; }
+    .day:hover { background: rgba(255, 255, 255, 0.08); }
+    .day small { display: block; color: #8196b1; font-size: 0.72rem; margin-top: 2px; }
     .day.active {
-      background: var(--primary);
+      background: var(--blue);
       color: #fff;
       border-color: transparent;
-      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 14px rgba(91, 125, 255, 0.4);
     }
-    .day.active small { color: #e0e7ff; }
-
-    /* Topic selector dropdown for Part 3 */
-    .topic-selector-row {
+    .day.active small { color: #eaf0ff; }
+    
+    .modebar {
       display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-top: 12px;
+      gap: 7px;
       flex-wrap: wrap;
+      margin-top: 11px;
+      align-items: center;
     }
-    .topic-select {
-      flex: 1;
-      min-width: 260px;
-      background: #1e293b;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 9px 12px;
-      border-radius: 10px;
-      font-weight: 700;
-      outline: none;
+    .pill {
+      background: #10243a;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 900;
     }
+    .pill.green { color: #9af0cb; border-color: rgba(31, 197, 138, 0.35); }
+    .pill.yellow { color: #ffe49a; border-color: rgba(255, 212, 82, 0.35); }
     
     .progress {
-      height: 6px;
-      background: #1e293b;
-      border-radius: 999px;
+      height: 7px;
+      background: #1a2c43;
+      border-radius: 99px;
       overflow: hidden;
-      margin-top: 14px;
+      margin-top: 12px;
     }
     .bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      background: linear-gradient(90deg, var(--blue), var(--green));
       transition: width 0.3s ease;
     }
     
-    .card { overflow: hidden; margin-bottom: 14px; }
+    /* Main Screen Card */
     .screen {
-      padding: 24px 30px;
+      padding: 22px;
       min-height: 480px;
       display: flex;
       flex-direction: column;
@@ -184,65 +181,58 @@
     .top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      align-items: center;
     }
     .counter {
-      background: rgba(99, 102, 241, 0.18);
-      border: 1px solid rgba(99, 102, 241, 0.35);
-      padding: 6px 14px;
-      border-radius: 999px;
       font-weight: 900;
-      color: #c7d2fe;
+      background: #142a45;
+      border: 1px solid var(--line);
+      padding: 6px 12px;
+      border-radius: 99px;
       font-size: 0.88rem;
+      color: #c7d2fe;
     }
-    .status {
-      font-weight: 800;
-      font-size: 0.92rem;
-      color: #fbbf24;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .status.ok { color: #6ee7b7; }
-    .status.speak { color: #38bdf8; }
+    .status { font-weight: 900; color: var(--yellow); font-size: 0.9rem; }
     
-    .main { text-align: center; margin: 10px 0; }
-    .topic-tag {
+    .center {
+      text-align: center;
+      max-width: 960px;
+      margin: 15px auto 0;
+      width: 100%;
+    }
+    .topic {
       display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 900;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 3px 10px;
+      background: #102f48;
+      color: #75d5ff;
+      border: 1px solid #225b7e;
+      padding: 4px 10px;
       border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 900;
       margin-bottom: 8px;
     }
     .label {
-      font-size: 0.76rem;
-      letter-spacing: 2px;
+      font-size: 0.72rem;
+      color: #ff91a2;
+      letter-spacing: 1.7px;
       font-weight: 900;
-      color: #fb7185;
-      margin-bottom: 6px;
       text-transform: uppercase;
     }
-    .question {
-      font-size: clamp(1.35rem, 2.7vw, 2rem);
-      font-weight: 900;
+    .q {
+      font-size: clamp(1.3rem, 2.7vw, 2.05rem);
       line-height: 1.38;
-      color: #ffffff;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      font-weight: 900;
+      margin: 8px 0;
+      color: #fff;
     }
     
     .read-text {
       font-size: 1.05rem;
       color: #fde047;
-      margin-top: 7px;
+      margin-top: 6px;
       font-weight: 800;
-      letter-spacing: 0.3px;
-      line-height: 1.45;
       background: rgba(250, 204, 21, 0.08);
       display: inline-block;
       padding: 3px 12px;
@@ -250,31 +240,32 @@
       border: 1px solid rgba(250, 204, 21, 0.2);
     }
     .ipa-text {
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       color: #38bdf8;
       font-family: 'Consolas', 'Courier New', monospace;
-      margin-top: 6px;
+      margin-top: 5px;
       font-weight: 600;
-      letter-spacing: 0.5px;
     }
-    .vi-text {
-      font-size: 0.98rem;
-      color: var(--muted);
-      margin-top: 6px;
-      font-weight: 500;
-      line-height: 1.4;
+    .vi { color: var(--muted); line-height: 1.45; font-size: 0.95rem; margin-top: 5px; }
+    
+    .timer {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--yellow);
+      min-height: 48px;
+      margin-top: 8px;
+      text-shadow: 0 0 20px rgba(255, 212, 82, 0.6);
     }
-    .hidden { display: none !important; }
     
     .answer {
-      margin: 18px auto 0;
-      max-width: 900px;
+      margin: 14px auto 0;
+      max-width: 920px;
       text-align: left;
-      padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.045);
+      background: #091729;
       border: 1px solid var(--line);
-      border-left: 5px solid var(--accent);
+      border-left: 5px solid var(--green);
       border-radius: 14px;
+      padding: 16px 18px;
       transition: all 0.25s ease;
     }
     .answer.locked {
@@ -283,25 +274,30 @@
       user-select: none;
       pointer-events: none;
     }
-    .answer-label {
-      font-size: 0.75rem;
-      letter-spacing: 1.5px;
+    .a {
+      font-size: 1.22rem;
+      line-height: 1.48;
+      font-weight: 850;
+      color: #bdf5da;
+    }
+    .hint { color: #94abc4; font-size: 0.82rem; margin-top: 8px; font-style: italic; }
+    
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+      align-items: center;
+    }
+    .kw-label { font-size: 0.72rem; color: #8196b1; font-weight: 900; }
+    .kw {
+      background: #30280a;
+      color: #ffe892;
+      border: 1px solid #594b12;
+      padding: 4px 9px;
+      border-radius: 99px;
+      font-size: 0.78rem;
       font-weight: 900;
-      color: #6ee7b7;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-    }
-    .answer-text {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #a7f3d0;
-      line-height: 1.45;
-    }
-    .hint {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-style: italic;
     }
     
     .word {
@@ -319,182 +315,228 @@
     }
     
     .controls {
-      padding: 14px 18px;
-      background: rgba(15, 23, 42, 0.96);
-      border-top: 1px solid var(--line);
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
       justify-content: center;
       align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+      padding: 12px;
+      border-top: 1px solid var(--line);
+      background: #0a1727;
     }
     .btn {
       border: 1px solid var(--line);
-      background: #1e293b;
+      background: #1a2d45;
       color: #fff;
-      padding: 9px 14px;
       border-radius: 10px;
+      padding: 9px 13px;
       cursor: pointer;
-      font-weight: 800;
-      font-size: 0.88rem;
+      font-weight: 900;
+      font-size: 0.86rem;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.15s ease;
     }
     .btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
     .btn:active { transform: translateY(0); }
-    .primary { background: var(--primary); border-color: transparent; }
-    .green { background: #065f46; color: #d1fae5; border-color: #047857; }
-    .yellow { background: #78350f; color: #fde68a; border-color: #92400e; }
+    .primary { background: var(--blue); border-color: transparent; }
+    .good { background: var(--green-dark); color: #c4f7e0; border-color: #1d9d72; }
+    .warn { background: var(--yellow-dark); color: #ffe699; border-color: #8c6d10; }
+    .danger { background: var(--danger-dark); color: #ffc2cd; border-color: #94324f; }
     .ghost { background: transparent; }
-    .btn.active-toggle { background: rgba(99, 102, 241, 0.35); border-color: var(--primary); color: #c7d2fe; }
+    .active-toggle { background: rgba(91, 125, 255, 0.35); border-color: var(--blue); color: #c7d2fe; }
     
-    .quiz {
-      margin-top: 14px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.03);
-      display: none;
-    }
-    .quiz.show { display: block; }
-    .quiz-title { font-weight: 900; margin-bottom: 8px; font-size: 0.95rem; }
-    .quiz-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    .quiz input {
-      flex: 1;
-      min-width: 220px;
-      background: #0b1220;
+    .select {
+      background: #10243a;
       color: #fff;
       border: 1px solid var(--line);
-      padding: 10px 14px;
+      padding: 9px 12px;
       border-radius: 10px;
+      font-weight: 800;
       outline: none;
     }
-    .quiz input:focus { border-color: var(--primary); }
-    .result { margin-top: 10px; line-height: 1.55; font-weight: 700; font-size: 0.92rem; }
-    .good { color: #6ee7b7; }
-    .warn { color: #fbbf24; }
     
-    .list { padding: 18px; margin-top: 14px; }
-    .item {
+    /* List View Section */
+    .list { padding: 15px; }
+    .listhead {
       display: flex;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 8px;
       align-items: center;
-      padding: 12px 14px;
+      flex-wrap: wrap;
+    }
+    .listtitle { font-weight: 900; font-size: 1.05rem; }
+    .muted { color: var(--muted); font-size: 0.82rem; }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      margin: 10px 0;
+    }
+    .stat {
+      background: #0c1d31;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 11px;
+      text-align: center;
+    }
+    .stat b { font-size: 1.15rem; color: #fff; display: block; margin-top: 2px; }
+    
+    .rows {
+      max-height: 520px;
+      overflow: auto;
+      margin-top: 10px;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      margin: 6px 0;
       cursor: pointer;
       background: rgba(255, 255, 255, 0.02);
+      align-items: center;
       transition: all 0.2s;
     }
-    .item:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(99, 102, 241, 0.35); }
-    .item.active { border-color: var(--primary); background: rgba(99, 102, 241, 0.12); }
-    .num { color: #818cf8; font-weight: 900; min-width: 40px; font-size: 0.95rem; }
-    .qsmall { font-weight: 750; flex: 1; font-size: 0.95rem; }
-    .as { color: #a7f3d0; font-size: 0.88rem; margin-top: 3px; }
+    .row:hover { background: rgba(255, 255, 255, 0.06); }
+    .row.active {
+      border-color: var(--blue);
+      background: rgba(91, 125, 255, 0.12);
+    }
+    .row.learned {
+      border-color: #1d9d72;
+      background: rgba(31, 197, 138, 0.08);
+    }
+    .num { min-width: 38px; color: #9bb0ff; font-weight: 900; }
+    .rq { font-weight: 800; font-size: 0.93rem; }
+    .ra { font-size: 0.85rem; color: #a7eacd; margin-top: 2px; }
+    .mark {
+      margin-left: auto;
+      color: #637891;
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 0 4px;
+    }
+    .learned .mark { color: #55e8ad; }
+    
+    .hidden { display: none !important; }
     
     @media(max-width:700px){
-      body { padding: 10px; }
-      .days { grid-template-columns: repeat(2, 1fr); }
-      .screen { padding: 18px 14px; min-height: 440px; }
-      .controls { padding: 12px 8px; }
-      .btn { padding: 9px 11px; font-size: 0.82rem; }
-      .quiz-row { flex-direction: column; align-items: stretch; }
-      .quiz input { width: 100%; }
-      .part-btn { min-width: 100%; }
+      body { padding: 8px; }
+      .nav { grid-template-columns: 1fr; }
+      .days { grid-template-columns: 1fr 1fr; }
+      .screen { padding: 16px 12px; min-height: 440px; }
+      .controls { padding: 10px 6px; }
+      .btn { padding: 8px 10px; font-size: 0.8rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stats .stat:last-child { grid-column: 1 / -1; }
     }
   </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="brand">🎓 English Speaking Practice — HUMG Full Guide</div>
-    <button class="btn ghost" id="resetBtn">↺ Đặt lại tiến độ</button>
+    <div class="brand">🎓 English Speaking <span class="tag">HUMG FAST TRACK</span></div>
+    <button class="btn danger" id="reset">↺ Đặt lại tiến độ</button>
   </header>
 
   <!-- Menu chọn Phần (Part Navigator) -->
-  <nav class="part-nav">
-    <button class="part-btn active" id="partBtn1" onclick="switchPart(1)">📚 PHẦN 1: 40 Câu Vấn Đáp</button>
-    <button class="part-btn" id="partBtn2" onclick="switchPart(2)">🏫 PHẦN 2: Các Khoa HUMG</button>
-    <button class="part-btn" id="partBtn3" onclick="switchPart(3)">🖼️ PHẦN 3: 18 Bộ Tranh Vấn Đáp (90 Câu)</button>
+  <nav class="nav">
+    <button class="active" id="partBtn1" onclick="switchPart(1)">📚 PHẦN 1 · 40 CÂU THÔNG DỤNG</button>
+    <button id="partBtn2" onclick="switchPart(2)">🏫 PHẦN 2 · KHOA HUMG</button>
+    <button id="partBtn3" onclick="switchPart(3)">🖼️ PHẦN 3 · 18 BỘ TRANH VẤN ĐÁP</button>
   </nav>
 
-  <!-- Section Lộ trình học 4 ngày (Dành riêng cho Phần 1) -->
-  <section class="day-box" id="dayBoxSection">
-    <div class="day-head">
+  <!-- Day box cho Phần 1 -->
+  <section class="daybox" id="p1box">
+    <div class="dayhead">
       <div>
-        <div class="day-title" id="boxTitle">LỘ TRÌNH HỌC CẤP TỐC 4 NGÀY (40 TOPICS)</div>
-        <div class="day-sub" id="daySub">Ngày 1: nghe, hiểu và bắt đầu làm quen 10 câu đầu.</div>
+        <div class="title" id="dtitle">DAY 1 · LÀM QUEN 10 CÂU</div>
+        <div class="sub" id="dsub">Ngày 1: nghe, hiểu và bắt đầu xây phản xạ 10 câu đầu.</div>
       </div>
-      <div class="badge" id="dayBadge">DAY 1 · LÀM QUEN</div>
+      <div class="pill green" id="overall">Đã thuộc 0/40</div>
     </div>
-    <div class="days" id="dayButtonsContainer">
-      <button class="day active" data-day="1">DAY 1<small>10 câu · Làm quen</small></button>
-      <button class="day" data-day="2">DAY 2<small>10 câu · Phản xạ</small></button>
-      <button class="day" data-day="3">DAY 3<small>10 câu · Nói tự nhiên</small></button>
-      <button class="day" data-day="4">DAY 4<small>40 câu · Thi thử</small></button>
+    <div class="days">
+      <button class="day active" data-day="1">DAY 1<small>#1–10 · Làm quen</small></button>
+      <button class="day" data-day="2">DAY 2<small>#11–20 · Phản xạ</small></button>
+      <button class="day" data-day="3">DAY 3<small>#21–30 · Tự nhiên</small></button>
+      <button class="day" data-day="4">DAY 4<small>Thi thử 40 câu</small></button>
     </div>
-
-    <!-- Bộ lọc theo bộ tranh cho Phần 3 -->
-    <div class="topic-selector-row" id="topicSelectorRow" style="display: none;">
-      <span style="font-weight: 800; font-size: 0.9rem; color: #a5b4fc;">Chọn bộ tranh luyện nói:</span>
-      <select class="topic-select" id="pictureTopicSelect" onchange="changePictureTopic(this.value)">
-      </select>
+    <div class="modebar">
+      <button class="btn" id="weakBtn">🔥 Câu yếu trước</button>
+      <button class="btn" id="focusBtn">🎯 Chế độ tập trung</button>
+      <span class="pill yellow">⏱️ Mục tiêu phản xạ: ≤ 5 giây</span>
     </div>
-
     <div class="progress"><div class="bar" id="bar"></div></div>
+  </section>
+
+  <!-- Box cho Phần 2: Khoa HUMG -->
+  <section class="daybox" id="p2box" style="display:none">
+    <div class="title">🏫 PHẦN 2 · CÁC KHOA TẠI ĐẠI HỌC MỎ - ĐỊA CHẤT (HUMG)</div>
+    <div class="sub">Mẫu câu hỏi - đáp: <b>What faculty are you in? => I'm studying at the Faculty of...</b></div>
+    <div class="progress"><div class="bar" id="bar2"></div></div>
+  </section>
+
+  <!-- Box cho Phần 3: 18 Bộ Tranh -->
+  <section class="daybox" id="p3box" style="display:none">
+    <div class="title">🖼️ PHẦN 3 · 18 BỘ TRANH CHỦ YẾU VÀ CÂU HỎI VẤN ĐÁP (90 CÂU)</div>
+    <div class="sub">Luyện phản xạ hỏi đáp theo thông tin biển hiệu, vé tham quan, trường học, bảo tàng.</div>
+    <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+      <select class="select" id="topicSelect" style="flex:1; min-width:260px;" onchange="changePictureTopic(this.value)"></select>
+    </div>
+    <div class="progress"><div class="bar" id="bar3"></div></div>
   </section>
 
   <!-- Màn hình thẻ câu hỏi & luyện nói -->
   <section class="card">
     <div class="screen">
       <div class="top">
-        <div class="counter" id="counter">Câu 1 / 10</div>
-        <div class="status" id="status">Sẵn sàng học</div>
+        <div class="counter" id="counter">Câu 1/10 · #1</div>
+        <div class="status" id="status">Sẵn sàng</div>
       </div>
-      
-      <div class="main">
-        <div id="topicTagBox" style="display: none;"><span class="topic-tag" id="topicTagText">Lenny Grade (Theatre School)</span></div>
-        <div class="label" id="qLabel">🔴 QUESTION · CÂU HỎI</div>
-        <div class="question" id="question"></div>
+      <div class="center">
+        <div class="topic" id="topicTag" style="display:none"></div>
+        <div class="label">🔴 CÂU HỎI · QUESTION</div>
+        <div class="q" id="q"></div>
         <div><span class="read-text" id="qRead"></span></div>
         <div class="ipa-text" id="qIpa"></div>
-        <div class="vi-text" id="qVi"></div>
-
+        <div class="vi" id="qvi"></div>
+        
+        <div class="timer" id="timer"></div>
+        
         <div class="answer locked" id="answer">
-          <div class="answer-label">🟢 MODEL ANSWER · CÂU TRẢ LỜI MẪU</div>
-          <div class="answer-text" id="answerText"></div>
+          <div class="label" style="color:#5ee5a8">🟢 CÂU TRẢ LỜI MẪU · MODEL ANSWER</div>
+          <div class="a" id="a"></div>
           <div><span class="read-text" id="aRead"></span></div>
           <div class="ipa-text" id="aIpa"></div>
-          <div class="vi-text" id="aVi"></div>
-          <div class="hint">💡 Hãy tự trả lời bằng giọng nói trước. Sau đó bấm xem đáp án để đối chiếu.</div>
-        </div>
-
-        <div class="quiz" id="quiz">
-          <div class="quiz-title">🎯 Tự kiểm tra câu trả lời (Gõ hoặc đối chiếu)</div>
-          <div class="quiz-row">
-            <input id="selfAnswer" placeholder="Gõ nhanh câu bạn vừa nói để hệ thống chấm điểm...">
-            <button class="btn green" id="checkBtn">Kiểm tra</button>
+          <div class="vi" id="avi"></div>
+          
+          <div class="keywords" id="keywordsBox">
+            <span class="kw-label">🔑 TỪ KHÓA:</span>
+            <div id="keywordsList" style="display:inline-flex; gap:6px; flex-wrap:wrap;"></div>
           </div>
-          <div class="result" id="result"></div>
+          <div class="hint">💡 Nhớ 3–4 từ khóa cốt lõi để nói câu hoàn chỉnh. Đừng dịch từng từ một trong đầu.</div>
         </div>
       </div>
-
       <div></div>
     </div>
-
+    
     <!-- Thanh điều khiển -->
     <div class="controls">
       <button class="btn" id="prev">⏮ Trước</button>
-      <button class="btn primary" id="play">▶ Nghe & Luyện tập</button>
+      <button class="btn primary" id="practice">▶ 5 GIÂY PHẢN XẠ</button>
       <button class="btn" id="next">Sau ⏭</button>
-      <button class="btn yellow" id="slow">🐢 Đọc từng từ</button>
-      <button class="btn green" id="show">👁 Xem đáp án</button>
-      <button class="btn active-toggle" id="readBtn" title="Bật/Tắt cách đọc theo âm Tiếng Việt">🗣 Đọc TV</button>
-      <button class="btn active-toggle" id="ipaBtn" title="Bật/Tắt phiên âm quốc tế IPA">🔤 IPA</button>
-      <button class="btn active-toggle" id="transBtn" title="Bật/Tắt dịch nghĩa Tiếng Việt">🌐 Dịch TV</button>
+      <button class="btn warn" id="slow">🐢 Đọc từng từ</button>
+      <button class="btn good" id="show">👁 Xem đáp án</button>
+      <button class="btn good" id="learnBtn">✅ Đã thuộc</button>
+      <button class="btn" id="hearAns">🔊 Nghe đáp án</button>
+      <button class="btn active-toggle" id="readToggleBtn">🗣 Đọc TV</button>
+      <button class="btn active-toggle" id="ipaToggleBtn">🔤 IPA</button>
+      <button class="btn active-toggle" id="viToggleBtn">🌐 Dịch TV</button>
+      
       <select class="btn" id="voiceSelect" aria-label="Giọng đọc">
         <option value="en-female-natural" selected>👩 Cô Giáo Mỹ (Jenny Natural · Chuẩn & Dễ Nghe)</option>
         <option value="en-female-clarity">👩 Nữ Mỹ Rõ Chữ (Aria / Samantha)</option>
@@ -503,11 +545,11 @@
         <option value="en-male">👨 Nam Bản Xứ (Guy / David)</option>
       </select>
       <button class="btn ghost" id="testVoiceBtn" title="Bấm để nghe thử giọng đọc này">🔊 Thử giọng</button>
+      
       <select class="btn" id="speed" aria-label="Tốc độ đọc">
-        <option value="0.20">0.20x · Chậm tối đa (Tách từng âm)</option>
-        <option value="0.30">0.30x · Siêu siêu chậm (Luyện khẩu hình)</option>
-        <option value="0.40">0.40x · Siêu chậm (Rõ từng âm đuôi)</option>
-        <option value="0.50">0.50x · Cực kỳ chậm</option>
+        <option value="0.20">0.20x · Chậm tối đa</option>
+        <option value="0.30">0.30x · Siêu chậm</option>
+        <option value="0.45">0.45x · Luyện âm đuôi</option>
         <option value="0.60">0.60x · Rất chậm</option>
         <option value="0.75" selected>0.75x · Chậm & Rõ</option>
         <option value="0.90">0.90x · Vừa phải</option>
@@ -516,596 +558,90 @@
     </div>
   </section>
 
-  <!-- Ghi chú Day 4 -->
-  <section class="quiz" id="testNote">
-    <div class="quiz-title">🟥 THI THỬ VẤN ĐÁP (XÁO TRỘN NGẪU NHIÊN)</div>
-    <div class="result">Ở chế độ thi thử, câu hỏi được xáo trộn ngẫu nhiên. Hãy trả lời bằng miệng trước 5-7 giây, sau đó mở đáp án để tự chấm điểm phản xạ của bạn.</div>
-  </section>
-
-  <!-- Danh sách câu hỏi trong phần -->
-  <section class="card list">
-    <div class="quiz-title" id="listTitle">📚 Danh sách câu hỏi</div>
-    <div id="list"></div>
+  <!-- Danh sách và Thống kê -->
+  <section class="list" id="listSection">
+    <div class="listhead">
+      <div class="listtitle">📌 Danh sách câu hỏi trong phần</div>
+      <div class="muted">Bấm nút <b>✅ Đã thuộc</b> để đánh dấu và ưu tiên câu chưa thuộc.</div>
+    </div>
+    
+    <div class="stats">
+      <div class="stat"><div class="muted">Đã thuộc</div><b id="sLearned" style="color:#55e8ad">0</b></div>
+      <div class="stat"><div class="muted">Câu chưa chắc</div><b id="sWeak" style="color:#ffd452">40</b></div>
+      <div class="stat"><div class="muted">Chế độ học</div><b id="sMode" style="color:#aecdff">Học ngày 1</b></div>
+    </div>
+    
+    <div class="rows" id="rows"></div>
   </section>
 </div>
 
 <script>
-// ==========================================
-// DỮ LIỆU PHẦN 1: 40 CÂU HỎI THÔNG DỤNG
-// ==========================================
-const PART1_DATA = [
-  {
-    id: 1,
-    q: "Do you have a job or are you a student?",
-    qRead: "🗣 Đọc: Đu diu he-vờ ờ dóp o a diu ờ sờ-tiu-đần-t?",
-    qIpa: "/duː juː hæv ə dʒɒb ɔːr ɑːr juː ə ˈstjuːdnt/",
-    qVi: "Bạn đã đi làm hay là học sinh/sinh viên?",
-    a: "I'm a student.",
-    aRead: "🗣 Đọc: Aim ờ sờ-tiu-đần-t.",
-    aIpa: "/aɪm ə ˈstjuːdnt/",
-    aVi: "Tôi là sinh viên."
-  },
-  {
-    id: 2,
-    q: "How do you usually get to your university?",
-    qRead: "🗣 Đọc: Hao đu diu diu-giu-ơ-li ghét tu gio diu-ni-vơ-xơ-ti?",
-    qIpa: "/haʊ duː juː ˈjuːʒuəli ɡet tuː jɔːr ˌjuːnɪˈvɜːrsəti/",
-    qVi: "Bạn thường đến trường đại học bằng phương tiện gì?",
-    a: "I usually get to my university by bus.",
-    aRead: "🗣 Đọc: Ai diu-giu-ơ-li ghét tu mai diu-ni-vơ-xơ-ti bai bớt-s.",
-    aIpa: "/aɪ ˈjuːʒuəli ɡet tuː maɪ ˌjuːnɪˈvɜːrsəti baɪ bʌs/",
-    aVi: "Tôi thường đến trường bằng xe buýt. (by + phương tiện)"
-  },
-  {
-    id: 3,
-    q: "When did you start to learn English?",
-    qRead: "🗣 Đọc: Guen đít-d diu sờ-ta-t tu lơn Inh-gờ-lít-sh?",
-    qIpa: "/wen dɪd juː stɑːrt tuː lɜːrn ˈɪŋɡlɪʃ/",
-    qVi: "Bạn bắt đầu học tiếng Anh từ khi nào?",
-    a: "I started learning English five years ago.",
-    aRead: "🗣 Đọc: Ai sờ-ta-tịt lơn-ninh Inh-gờ-lít-sh fai-vờ dia-zờ ờ-gâu.",
-    aIpa: "/aɪ ˈstɑːrtɪd ˈlɜːrnɪŋ ˈɪŋɡlɪʃ faɪv jɪərz əˈɡoʊ/",
-    aVi: "Tôi bắt đầu học tiếng Anh từ 5 năm trước."
-  },
-  {
-    id: 4,
-    q: "Do you like it? Why? Why not?",
-    qRead: "🗣 Đọc: Đu diu lai-kịt? Oai? Oai nót?",
-    qIpa: "/duː juː laɪk ɪt? waɪ? waɪ nɒt/",
-    qVi: "Bạn có thích nó không? Tại sao?",
-    a: "Yes, I do. Because it is very interesting and useful.",
-    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-zịt ít-z ve-ri in-trơ-sờ-tinh en-d diu-s-phun.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈveri ˈɪntrəstɪŋ ænd ˈjuːsfəl/",
-    aVi: "Có chứ. Vì tiếng Anh rất thú vị và bổ ích."
-  },
-  {
-    id: 5,
-    q: "Tell me something about your plans in the future?",
-    qRead: "🗣 Đọc: Teo mi săm-thinh ờ-bao-t gio plen-z in đơ phiu-chờ?",
-    qIpa: "/tel miː ˈsʌmθɪŋ əˈbaʊt jɔːr plænz ɪn ðə ˈfjuːtʃər/",
-    qVi: "Hãy chia sẻ về các kế hoạch tương lai của bạn?",
-    a: "In the future, I will find a good job, buy a car, and get married.",
-    aRead: "🗣 Đọc: In đơ phiu-chờ, ai guil fain-d ờ gút dóp, bai ờ ca, en-d ghét me-rịt-d.",
-    aIpa: "/ɪn ðə ˈfjuːtʃər, aɪ wɪl faɪnd ə ɡʊd dʒɒb, baɪ ə kɑːr, ænd ɡet ˈmærid/",
-    aVi: "Trong tương lai, tôi sẽ tìm việc tốt, mua xe và lập gia đình."
-  },
-  {
-    id: 6,
-    q: "What are your hobbies?",
-    qRead: "🗣 Đọc: Goát a gio hóp-bi-z?",
-    qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/",
-    qVi: "Sở thích của bạn là gì?",
-    a: "I like reading books and playing video games.",
-    aRead: "🗣 Đọc: Ai lai-k ri-đinh búc-s en-d pờ-lay-inh vi-đi-ô gêm-z.",
-    aIpa: "/aɪ laɪk ˈriːdɪŋ bʊks ænd ˈpleɪɪŋ ˈvɪdioʊ ɡeɪmz/",
-    aVi: "Tôi thích đọc sách và chơi trò chơi điện tử."
-  },
-  {
-    id: 7,
-    q: "Do you like video games? Why? Why not?",
-    qRead: "🗣 Đọc: Đu diu lai-k vi-đi-ô gêm-z? Oai? Oai nót?",
-    qIpa: "/duː juː laɪk ˈvɪdioʊ ɡeɪmz? waɪ? waɪ nɒt/",
-    qVi: "Bạn có thích trò chơi điện tử không? Tại sao?",
-    a: "Yes, I do. Because they are interesting and help me relax.",
-    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z đê a in-trơ-sờ-tinh en-d heo-p mi ri-léc-s.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz ðeɪ ɑːr ˈɪntrəstɪŋ ænd help miː rɪˈlæks/",
-    aVi: "Có, tôi thích. Vì game rất thú vị và giúp tôi thư giãn."
-  },
-  {
-    id: 8,
-    q: "Do you think video games are bad for children? Why?",
-    qRead: "🗣 Đọc: Đu diu thinh-k vi-đi-ô gêm-z a bét-d fo chil-đrần? Oai?",
-    qIpa: "/duː juː θɪŋk ˈvɪdioʊ ɡeɪmz ɑːr bæd fɔːr ˈtʃɪldrən? waɪ/",
-    qVi: "Bạn có nghĩ video game có hại cho trẻ em không? Tại sao?",
-    a: "Yes, I do. Because children can easily become addicted to games.",
-    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z chil-đrần ken i-zi-li bi-căm ờ-đích-tịt tu gêm-z.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz ˈtʃɪldrən kæn ˈiːzəli bɪˈkʌm əˈdɪktɪd tuː ɡeɪmz/",
-    aVi: "Có. Vì trẻ em rất dễ bị nghiện game."
-  },
-  {
-    id: 9,
-    q: "Where did you go on your last holiday?",
-    qRead: "🗣 Đọc: Gue-r đít-d diu gâu on gio lát-s-t ho-li-đê?",
-    qIpa: "/weər dɪd juː ɡoʊ ɒn jɔːr læst ˈhɒlədeɪ/",
-    qVi: "Kỳ nghỉ trước bạn đã đi đâu?",
-    a: "On my last holiday, I went to Sam Son beach with my family.",
-    aRead: "🗣 Đọc: On mai lát-s-t ho-li-đê, ai guen-t tu Sầm Sơn bít-sh guýth mai phe-mơ-li.",
-    aIpa: "/ɒn maɪ læst ˈhɒlədeɪ, aɪ went tuː Sam Son biːtʃ wɪð maɪ ˈfæməli/",
-    aVi: "Vào kỳ nghỉ trước, tôi đã đi biển Sầm Sơn cùng gia đình."
-  },
-  {
-    id: 10,
-    q: "Did you enjoy it? Why?",
-    qRead: "🗣 Đọc: Đít-d diu in-dôi-ịt? Oai?",
-    qIpa: "/dɪd juː ɪnˈdʒɔɪ ɪt? waɪ/",
-    qVi: "Bạn có thích chuyến đi đó không? Tại sao?",
-    a: "Yes, I did. Because I had a wonderful time there.",
-    aRead: "🗣 Đọc: Dét, ai đít-d. Bì-cơ-z ai hét-d ờ goăn-đơ-phun taim đe.",
-    aIpa: "/jes, aɪ dɪd. bɪˈkəz aɪ hæd ə ˈwʌndərfəl taɪm ðeər/",
-    aVi: "Có, tôi rất thích. Vì tôi đã có khoảng thời gian tuyệt vời ở đó."
-  },
-  {
-    id: 11,
-    q: "Do you have a large family or a small family?",
-    qRead: "🗣 Đọc: Đu diu he-vờ ờ la-dzh phe-mơ-li o ờ sờ-mo phe-mơ-li?",
-    qIpa: "/duː juː hæv ə lɑːrdʒ ˈfæməli ɔːr ə smɔːl ˈfæməli/",
-    qVi: "Gia đình bạn là gia đình lớn hay gia đình nhỏ?",
-    a: "I have a small family. There are four people: my dad, my mom, my brother, and me.",
-    aRead: "🗣 Đọc: Ai he-vờ ờ sờ-mo phe-mơ-li. Đe a pho pi-pồ: mai đét-d, mai mom, mai bờ-ra-đờ, en-d mi.",
-    aIpa: "/aɪ hæv ə smɔːl ˈfæməli. ðeər ɑːr fɔːr ˈpiːpl: maɪ dæd, maɪ mɒm, maɪ ˈbrʌðər, ænd miː/",
-    aVi: "Gia đình tôi nhỏ thôi. Có 4 người: bố, mẹ, anh trai và tôi."
-  },
-  {
-    id: 12,
-    q: "How much time do you spend with your family?",
-    qRead: "🗣 Đọc: Hao mát-sh taim đu diu sờ-pen-d guýth gio phe-mơ-li?",
-    qIpa: "/haʊ mʌtʃ taɪm duː juː spend wɪð jɔːr ˈfæməli/",
-    qVi: "Bạn dành bao nhiêu thời gian cho gia đình?",
-    a: "I spend every weekend with my family.",
-    aRead: "🗣 Đọc: Ai sờ-pen-d e-vờ-ri guýc-ken-d guýth mai phe-mơ-li.",
-    aIpa: "/aɪ spend ˈevri ˈwiːkend wɪð maɪ ˈfæməli/",
-    aVi: "Tôi dành trọn vẹn mỗi dịp cuối tuần bên gia đình."
-  },
-  {
-    id: 13,
-    q: "How many hours do you study each day?",
-    qRead: "🗣 Đọc: Hao me-ni ao-z đu diu sờ-ta-đi ích đê?",
-    qIpa: "/haʊ ˈmeni ˈaʊərz duː juː ˈstʌdi iːtʃ deɪ/",
-    qVi: "Mỗi ngày bạn học bao nhiêu tiếng?",
-    a: "I spend five hours studying each day.",
-    aRead: "🗣 Đọc: Ai sờ-pen-d fai-vờ ao-z sờ-ta-đi-inh ích đê.",
-    aIpa: "/aɪ spend faɪv ˈaʊərz ˈstʌdiɪŋ iːtʃ deɪ/",
-    aVi: "Tôi dành 5 tiếng mỗi ngày để học tập."
-  },
-  {
-    id: 14,
-    q: "Do you enjoy your study? Why?",
-    qRead: "🗣 Đọc: Đu diu in-dôi gio sờ-ta-đi? Oai?",
-    qIpa: "/duː juː ɪnˈdʒɔɪ jɔːr ˈstʌdi? waɪ/",
-    qVi: "Bạn có thích việc học của mình không? Tại sao?",
-    a: "Yes, I do. Because it is interesting and very useful.",
-    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-zịt ít-z in-trơ-sờ-tinh en-d ve-ri diu-s-phun.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈveri ˈɪntrəstɪŋ ænd ˈjuːsfəl/",
-    aVi: "Có chứ, vì việc học rất thú vị và rất bổ ích."
-  },
-  {
-    id: 15,
-    q: "What do you usually do in your free time?",
-    qRead: "🗣 Đọc: Goát đu diu diu-giu-ơ-li đu in gio fri taim?",
-    qIpa: "/wɒt duː juː ˈjuːʒuəli duː ɪn jɔːr friː taɪm/",
-    qVi: "Bạn thường làm gì vào thời gian rảnh?",
-    a: "In my free time, I usually listen to music and read books.",
-    aRead: "🗣 Đọc: In mai fri taim, ai diu-giu-ơ-li lís-sừn tu miu-zịch en-d rít-d búc-s.",
-    aIpa: "/ɪn maɪ friː taɪm, aɪ ˈjuːʒuəli ˈlɪsn tuː ˈmjuːzɪk ænd riːd bʊks/",
-    aVi: "Vào thời gian rảnh, tôi thường nghe nhạc và đọc sách."
-  },
-  {
-    id: 16,
-    q: "Do you prefer to stay alone or with your friends? Why?",
-    qRead: "🗣 Đọc: Đu diu pờ-ri-phơ tu sờ-tây ờ-lôn o guýth gio phren-z? Oai?",
-    qIpa: "/duː juː prɪˈfɜːr tuː steɪ əˈloʊn ɔːr wɪð jɔːr frendz? waɪ/",
-    qVi: "Bạn thích ở một mình hay ở cùng bạn bè hơn? Tại sao?",
-    a: "I prefer to stay with my friends because we can help each other easily.",
-    aRead: "🗣 Đọc: Ai pờ-ri-phơ tu sờ-tây guýth mai phren-z bì-cơ-z gui ken heo-p ích a-đờ i-zi-li.",
-    aIpa: "/aɪ prɪˈfɜːr tuː steɪ wɪð maɪ frendz bɪˈkəz wiː kæn help iːtʃ ˈʌðər ˈiːzəli/",
-    aVi: "Tôi thích ở cùng bạn bè hơn vì chúng tôi có thể giúp đỡ nhau dễ dàng."
-  },
-  {
-    id: 17,
-    q: "Do you like going out? Why?",
-    qRead: "🗣 Đọc: Đu diu lai-k gâu-inh ao-t? Oai?",
-    qIpa: "/duː juː laɪk ˈɡoʊɪŋ aʊt? waɪ/",
-    qVi: "Bạn có thích đi ra ngoài chơi không? Tại sao?",
-    a: "Yes, I do. Because going out makes me feel good.",
-    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z gâu-inh ao-t mê-k-s mi phiu gút.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz ˈɡoʊɪŋ aʊt meɪks miː fiːl ɡʊd/",
-    aVi: "Có, tôi thích. Vì ra ngoài khiến tôi cảm thấy thoải mái và vui vẻ."
-  },
-  {
-    id: 18,
-    q: "What do you usually do when you go out?",
-    qRead: "🗣 Đọc: Goát đu diu diu-giu-ơ-li đu guen diu gâu ao-t?",
-    qIpa: "/wɒt duː juː ˈjuːʒuəli duː wen juː ɡoʊ aʊt/",
-    qVi: "Bạn thường làm gì khi đi ra ngoài?",
-    a: "I usually go to the cinema with my friends.",
-    aRead: "🗣 Đọc: Ai diu-giu-ơ-li gâu tu đơ si-nê-ma guýth mai phren-z.",
-    aIpa: "/aɪ ˈjuːʒuəli ɡoʊ tuː ðə ˈsɪnəmə wɪð maɪ frendz/",
-    aVi: "Tôi thường đi xem phim rạp cùng bạn bè."
-  },
-  {
-    id: 19,
-    q: "Tell me about your favourite sport?",
-    qRead: "🗣 Đọc: Teo mi ờ-bao-t gio phây-vơ-rịt sờ-po-t?",
-    qIpa: "/tel miː əˈbaʊt jɔːr ˈfeɪvərɪt spɔːrt/",
-    qVi: "Hãy kể về môn thể thao yêu thích của bạn?",
-    a: "My favourite sport is swimming. I swim twice a week and it makes me feel good.",
-    aRead: "🗣 Đọc: Mai phây-vơ-rịt sờ-po-t ít-z suýt-minh. Ai suým thoai-s ờ guýc en-d ịt mê-k-s mi phiu gút.",
-    aIpa: "/maɪ ˈfeɪvərɪt spɔːrt ɪz ˈswɪmɪŋ. aɪ swɪm twaɪs ə wiːk ænd ɪt meɪks miː fiːl ɡʊd/",
-    aVi: "Môn thể thao tôi yêu thích là bơi lội. Tôi bơi 2 lần một tuần."
-  },
-  {
-    id: 20,
-    q: "What kind of food do you like best?",
-    qRead: "🗣 Đọc: Goát kain-d ờ-vờ phút-d đu diu lai-k bét-s-t?",
-    qIpa: "/wɒt kaɪnd əv fuːd duː juː laɪk best/",
-    qVi: "Bạn thích loại đồ ăn nào nhất?",
-    a: "I like beef, rice, and vegetables because they are good for my health.",
-    aRead: "🗣 Đọc: Ai lai-k bíp-ph, rai-s, en-d vét-s-tơ-bồ-z bì-cơ-z đê a gút fo mai hew-th.",
-    aIpa: "/aɪ laɪk biːf, raɪs, ænd ˈvedʒtəblz bɪˈkəz ðeɪ ɑːr ɡʊd fɔːr maɪ helθ/",
-    aVi: "Tôi thích thịt bò, cơm và rau vì chúng rất tốt cho sức khỏe."
-  },
-  {
-    id: 21,
-    q: "Do you like cooking? Why?",
-    qRead: "🗣 Đọc: Đu diu lai-k cúc-kinh? Oai?",
-    qIpa: "/duː juː laɪk ˈkʊkɪŋ? waɪ/",
-    qVi: "Bạn có thích nấu ăn không? Tại sao?",
-    a: "Yes, I do. Because cooking makes me feel good and relaxed.",
-    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z cúc-kinh mê-k-s mi phiu gút en-d ri-léc-s-t.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz ˈkʊkɪŋ meɪks miː fiːl ɡʊd ænd rɪˈlækst/",
-    aVi: "Có chứ. Vì nấu ăn giúp tôi thấy vui vẻ và thư thái."
-  },
-  {
-    id: 22,
-    q: "How often do you eat out?",
-    qRead: "🗣 Đọc: Hao óp-phừn đu diu ít ao-t?",
-    qIpa: "/haʊ ˈɒfn duː juː iːt aʊt/",
-    qVi: "Bạn có thường xuyên đi ăn ở ngoài không?",
-    a: "I sometimes eat out with my friends on weekends.",
-    aRead: "🗣 Đọc: Ai săm-taim-z ít ao-t guýth mai phren-z on guýc-ken-z.",
-    aIpa: "/aɪ ˈsʌmtaɪmz iːt aʊt wɪð maɪ frendz ɒn ˈwiːkendz/",
-    aVi: "Thỉnh thoảng tôi đi ăn ngoài với bạn bè vào dịp cuối tuần."
-  },
-  {
-    id: 23,
-    q: "What kind of sport do you like playing? Why?",
-    qRead: "🗣 Đọc: Goát kain-d ờ-vờ sờ-po-t đu diu lai-k pờ-lay-inh? Oai?",
-    qIpa: "/wɒt kaɪnd əv spɔːrt duː juː laɪk ˈpleɪɪŋ? waɪ/",
-    qVi: "Bạn thích chơi môn thể thao nào? Tại sao?",
-    a: "I like swimming because it helps me stay healthy.",
-    aRead: "🗣 Đọc: Ai lai-k suýt-minh bì-cơ-zịt heo-p-s mi sờ-tây heo-thi.",
-    aIpa: "/aɪ laɪk ˈswɪmɪŋ bɪˈkəz ɪt helps miː steɪ ˈhelθi/",
-    aVi: "Tôi thích bơi lội vì môn này giúp tôi luôn khỏe mạnh."
-  },
-  {
-    id: 24,
-    q: "Tell me what do you enjoy doing in your free time?",
-    qRead: "🗣 Đọc: Teo mi goát đu diu in-dôi đu-inh in gio fri taim?",
-    qIpa: "/tel miː wɒt duː juː ɪnˈdʒɔɪ ˈduːɪŋ ɪn jɔːr friː taɪm/",
-    qVi: "Hãy cho tôi biết bạn thích làm gì trong thời gian rảnh?",
-    a: "In my free time, I enjoy listening to music and watching movies.",
-    aRead: "🗣 Đọc: In mai fri taim, ai in-dôi lís-sừn-ninh tu miu-zịch en-d goát-sh-inh mu-vi-z.",
-    aIpa: "/ɪn maɪ friː taɪm, aɪ ɪnˈdʒɔɪ ˈlɪsnɪŋ tuː ˈmjuːzɪk ænd ˈwɒtʃɪŋ ˈmuːviz/",
-    aVi: "Vào thời gian rảnh, tôi thích nghe nhạc và xem phim."
-  },
-  {
-    id: 25,
-    q: "What do you study at the university?",
-    qRead: "🗣 Đọc: Goát đu diu sờ-ta-đi ét đơ diu-ni-vơ-xơ-ti?",
-    qIpa: "/wɒt duː juː ˈstʌdi æt ðə ˌjuːnɪˈvɜːrsəti/",
-    qVi: "Bạn học ngành gì ở trường đại học?",
-    a: "I study Information Technology at my university.",
-    aRead: "🗣 Đọc: Ai sờ-ta-đi In-pho-mê-shừn Téc-nơ-lo-di ét mai diu-ni-vơ-xơ-ti.",
-    aIpa: "/aɪ ˈstʌdi ˌɪnfərˈmeɪʃn tekˈnɒlədʒi æt maɪ ˌjuːnɪˈvɜːrsəti/",
-    aVi: "Tôi học ngành Công nghệ Thông tin tại trường đại học."
-  },
-  {
-    id: 26,
-    q: "Are you happy with your student life?",
-    qRead: "🗣 Đọc: A diu he-pi guýth gio sờ-tiu-đần-t lai-ph?",
-    qIpa: "/ɑːr juː ˈhæpi wɪð jɔːr ˈstjuːdnt laɪf/",
-    qVi: "Bạn có hài lòng với đời sống sinh viên không?",
-    a: "Yes, I am. Because I love my teachers and my friends.",
-    aRead: "🗣 Đọc: Dét, ai em. Bì-cơ-z ai lơ-vờ mai tít-chờ-z en-d mai phren-z.",
-    aIpa: "/jes, aɪ æm. bɪˈkəz aɪ lʌv maɪ ˈtiːtʃərz ænd maɪ frendz/",
-    aVi: "Có, tôi rất vui. Vì tôi quý mến thầy cô và bạn bè của mình."
-  },
-  {
-    id: 27,
-    q: "What did you have for dinner yesterday?",
-    qRead: "🗣 Đọc: Goát đít-d diu he-vờ fo đin-nơ dét-s-tơ-đê?",
-    qIpa: "/wɒt dɪd juː hæv fɔːr ˈdɪnər ˈjestərdeɪ/",
-    qVi: "Tối hôm qua bạn đã ăn món gì?",
-    a: "I had rice, fish, and vegetables for dinner yesterday.",
-    aRead: "🗣 Đọc: Ai hét-d rai-s, phít-sh, en-d vét-s-tơ-bồ-z fo đin-nơ dét-s-tơ-đê.",
-    aIpa: "/aɪ hæd raɪs, fɪʃ, ænd ˈvedʒtəblz fɔːr ˈdɪnər ˈjestərdeɪ/",
-    aVi: "Tối hôm qua tôi đã ăn cơm, cá và rau."
-  },
-  {
-    id: 28,
-    q: "Tell me about the kind of food you like?",
-    qRead: "🗣 Đọc: Teo mi ờ-bao-t đơ kain-d ờ-vờ phút-d diu lai-k?",
-    qIpa: "/tel miː əˈbaʊt ðə kaɪnd əv fuːd juː laɪk/",
-    qVi: "Hãy chia sẻ về các món ăn bạn thích?",
-    a: "I like traditional Vietnamese food like beef, soup, and fresh vegetables.",
-    aRead: "🗣 Đọc: Ai lai-k trơ-đí-shơ-nồ Vi-ét-na-mít-z phút-d lai-k bíp-ph, súp, en-d phré-sh vét-s-tơ-bồ-z.",
-    aIpa: "/aɪ laɪk trəˈdɪʃənl ˌvjetnəˈmiːz fuːd laɪk biːf, suːp, ænd freʃ ˈvedʒtəblz/",
-    aVi: "Tôi thích món ăn truyền thống Việt Nam như thịt bò, canh và rau tươi."
-  },
-  {
-    id: 29,
-    q: "Do you often watch TV?",
-    qRead: "🗣 Đọc: Đu diu óp-phừn goát-sh Ti-Vi?",
-    qIpa: "/duː juː ˈɒfn wɒtʃ ˌtiːˈviː/",
-    qVi: "Bạn có thường xem TV không?",
-    a: "Yes, I do. I often watch TV in the evening to relax.",
-    aRead: "🗣 Đọc: Dét, ai đu. Ai óp-phừn goát-sh Ti-Vi in đi í-vơ-ninh tu ri-léc-s.",
-    aIpa: "/jes, aɪ duː. aɪ ˈɒfn wɒtʃ ˌtiːˈviː ɪn ðə ˈiːvnɪŋ tuː rɪˈlæks/",
-    aVi: "Có chứ, tôi thường xem TV vào buổi tối để thư giãn."
-  },
-  {
-    id: 30,
-    q: "What TV programs do you like?",
-    qRead: "🗣 Đọc: Goát Ti-Vi pờ-râu-gờ-rem-z đu diu lai-k?",
-    qIpa: "/wɒt ˌtiːˈviː ˈproʊɡræmz duː juː laɪk/",
-    qVi: "Bạn thích những chương trình truyền hình nào?",
-    a: "I like The Voice because I really enjoy singing.",
-    aRead: "🗣 Đọc: Ai lai-k Đơ Voi-s bì-cơ-z ai rí-li in-dôi sin-inh.",
-    aIpa: "/aɪ laɪk ðə vɔɪs bɪˈkəz aɪ ˈrɪəli ɪnˈdʒɔɪ ˈsɪŋɪŋ/",
-    aVi: "Tôi thích chương trình The Voice vì tôi rất thích ca hát."
-  },
-  {
-    id: 31,
-    q: "Where do you live?",
-    qRead: "🗣 Đọc: Gue-r đu diu li-vờ?",
-    qIpa: "/weər duː juː lɪv/",
-    qVi: "Bạn đang sống ở đâu?",
-    a: "I live in Hanoi.",
-    aRead: "🗣 Đọc: Ai li-vờ in Hà Nội.",
-    aIpa: "/aɪ lɪv ɪn Hà Nội/",
-    aVi: "Tôi sống ở Hà Nội."
-  },
-  {
-    id: 32,
-    q: "Do you like living there? Why?",
-    qRead: "🗣 Đọc: Đu diu lai-k lí-vinh đe? Oai?",
-    qIpa: "/duː juː laɪk ˈlɪvɪŋ ðeər? waɪ/",
-    qVi: "Bạn có thích sống ở đó không? Tại sao?",
-    a: "Yes, I do. Because Hanoi is a big, beautiful, and exciting city.",
-    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z Hà Nội ít-z ờ bích, biu-ti-phun, en-d ếch-sai-tinh si-ti.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz Hà Nội ɪz ə bɪɡ, ˈbjuːtɪfl, ænd ɪkˈsaɪtɪŋ ˈsɪti/",
-    aVi: "Có chứ, vì Hà Nội là một thành phố lớn, tươi đẹp và sôi động."
-  },
-  {
-    id: 33,
-    q: "Can you play any musical instrument such as guitar, piano or violin?",
-    qRead: "🗣 Đọc: Ken diu pờ-lay e-ni miu-zi-cồ in-sờ-tru-mừn-t sát-sh ét ghi-ta, pi-a-nô o vai-ơ-lin?",
-    qIpa: "/kæn juː pleɪ ˈeni ˈmjuːzɪkl ˈɪnstrəmənt sʌtʃ æz ɡɪˈtɑːr, piˈænoʊ ɔːr ˌvaɪəˈlɪn/",
-    qVi: "Bạn có thể chơi nhạc cụ nào như guitar, piano hay violin không?",
-    a: "Yes, I can. I can play the guitar.",
-    aRead: "🗣 Đọc: Dét, ai ken. Ai ken pờ-lay đơ ghi-ta.",
-    aIpa: "/jes, aɪ kæn. aɪ kæn pleɪ ðə ɡɪˈtɑːr/",
-    aVi: "Có, tôi biết chơi đàn guitar. (play the guitar)"
-  },
-  {
-    id: 34,
-    q: "What other country would you like to visit? Why?",
-    qRead: "🗣 Đọc: Goát a-đờ căn-tri gút-d diu lai-k tu ví-zịt? Oai?",
-    qIpa: "/wɒt ˈʌðər ˈkʌntri wʊd juː laɪk tuː ˈvɪzɪt? waɪ/",
-    qVi: "Bạn muốn đến thăm quốc gia nào khác? Tại sao?",
-    a: "I would like to visit China because I want to see the Great Wall and it is very beautiful.",
-    aRead: "🗣 Đọc: Ai gút-d lai-k tu ví-zịt Chai-na bì-cơ-z ai goán-t tu si đơ gờ-rết go o en-d ịt ít-z ve-ri biu-ti-phun.",
-    aIpa: "/aɪ wʊd laɪk tuː ˈvɪzɪt ˈtʃaɪnə bɪˈkəz aɪ wɒnt tuː siː ðə ɡreɪt wɔːl ænd ɪt ɪz ˈveri ˈbjuːtɪfl/",
-    aVi: "Tôi muốn đi Trung Quốc vì tôi muốn chiêm ngưỡng Vạn Lý Trường Thành."
-  },
-  {
-    id: 35,
-    q: "What are the popular sports in Vietnam?",
-    qRead: "🗣 Đọc: Goát a đơ póp-piu-lơ sờ-po-t-s in Vi-ét-nam?",
-    qIpa: "/wɒt ɑːr ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm/",
-    qVi: "Các môn thể thao phổ biến ở Việt Nam là gì?",
-    a: "I think the popular sports in Vietnam are football and volleyball.",
-    aRead: "🗣 Đọc: Ai thinh-k đơ póp-piu-lơ sờ-po-t-s in Vi-ét-nam a phút-bol en-d vó-li-bol.",
-    aIpa: "/aɪ θɪŋk ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm ɑːr ˈfʊtbɔːl ænd ˈvɒlibɔːl/",
-    aVi: "Tôi nghĩ môn thể thao phổ biến ở Việt Nam là bóng đá và bóng chuyền."
-  },
-  {
-    id: 36,
-    q: "How often do you play sports? What sports?",
-    qRead: "🗣 Đọc: Hao óp-phừn đu diu pờ-lay sờ-po-t-s? Goát sờ-po-t-s?",
-    qIpa: "/haʊ ˈɒfn duː juː pleɪ spɔːrts? wɒt spɔːrts/",
-    qVi: "Bạn có thường chơi thể thao không? Chơi môn gì?",
-    a: "I usually play sports on weekends because it makes me feel good. I play football.",
-    aRead: "🗣 Đọc: Ai diu-giu-ơ-li pờ-lay sờ-po-t-s on guýc-ken-z bì-cơ-zịt mê-k-s mi phiu gút. Ai pờ-lay phút-bol.",
-    aIpa: "/aɪ ˈjuːʒuəli pleɪ spɔːrts ɒn ˈwiːkendz bɪˈkəz ɪt meɪks miː fiːl ɡʊd. aɪ pleɪ ˈfʊtbɔːl/",
-    aVi: "Tôi thường chơi thể thao vào cuối tuần vì nó giúp tôi khỏe mạnh. Tôi chơi bóng đá."
-  },
-  {
-    id: 37,
-    q: "What are your hobbies?",
-    qRead: "🗣 Đọc: Goát a gio hóp-bi-z?",
-    qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/",
-    qVi: "Sở thích của bạn là gì?",
-    a: "My hobbies are reading books, playing games, and listening to music.",
-    aRead: "🗣 Đọc: Mai hóp-bi-z a rí-đinh búc-s, pờ-lay-inh gêm-z, en-d lís-sừn-ninh tu miu-zịch.",
-    aIpa: "/maɪ ˈhɒbiz ɑːr ˈriːdɪŋ bʊks, ˈpleɪɪŋ ɡeɪmz, ænd ˈlɪsnɪŋ tuː ˈmjuːzɪk/",
-    aVi: "Sở thích của tôi là đọc sách, chơi game và nghe nhạc."
-  },
-  {
-    id: 38,
-    q: "Do you like reading? Why?",
-    qRead: "🗣 Đọc: Đu diu lai-k rí-đinh? Oai?",
-    qIpa: "/duː juː laɪk ˈriːdɪŋ? waɪ/",
-    qVi: "Bạn có thích đọc sách không? Tại sao?",
-    a: "Yes, I do. Because reading books makes me feel relaxed and good.",
-    aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z rí-đinh búc-s mê-k-s mi phiu ri-léc-s-t en-d gút.",
-    aIpa: "/jes, aɪ duː. bɪˈkəz ˈriːdɪŋ bʊks meɪks miː fiːl rɪˈlækst ænd ɡʊd/",
-    aVi: "Có chứ, vì đọc sách giúp tôi thấy thư giãn và thoải mái."
-  },
-  {
-    id: 39,
-    q: "What kind of book do you like best?",
-    qRead: "🗣 Đọc: Goát kain-d ờ-vờ búc đu diu lai-k bét-s-t?",
-    qIpa: "/wɒt kaɪnd əv bʊk duː juː laɪk best/",
-    qVi: "Bạn thích loại sách nào nhất?",
-    a: "I like short stories best.",
-    aRead: "🗣 Đọc: Ai lai-k sho-t sờ-to-ri-z bét-s-t.",
-    aIpa: "/aɪ laɪk ʃɔːrt ˈstɔːriz best/",
-    aVi: "Tôi thích truyện ngắn nhất."
-  },
-  {
-    id: 40,
-    q: "What do you think the importance of English in your life?",
-    qRead: "🗣 Đọc: Goát đu diu thinh-k đi im-po-từn-s ờ-vờ Inh-gờ-lít-sh in gio lai-ph?",
-    qIpa: "/wɒt duː juː θɪŋk ðə ɪmˈpɔːrtns əv ˈɪŋɡlɪʃ ɪn jɔːr laɪf/",
-    qVi: "Bạn nghĩ tầm quan trọng của tiếng Anh trong cuộc sống của mình là gì?",
-    a: "I think English is very important because if I am good at English, I can find a good job easily.",
-    aRead: "🗣 Đọc: Ai thinh-k Inh-gờ-lít-sh ít-z ve-ri im-po-từn-t bì-cơ-zíp phai em gút ét Inh-gờ-lít-sh, ai ken fain-d ờ gút dóp i-zi-li.",
-    aIpa: "/aɪ θɪŋk ˈɪŋɡlɪʃ ɪz ˈveri ɪmˈpɔːrtnt bɪˈkəz ɪf aɪ æm ɡʊd æt ˈɪŋɡlɪʃ, aɪ kæn faɪnd ə ɡʊd dʒɒb ˈiːzəli/",
-    aVi: "Tôi nghĩ tiếng Anh rất quan trọng vì nếu giỏi tiếng Anh, tôi có thể tìm việc tốt dễ dàng."
-  }
+// ====================================================
+// 1. DỮ LIỆU PHẦN 1: 40 CÂU HỎI THÔNG DỤNG (ĐẦY ĐỦ)
+// ====================================================
+const P1_DATA = [
+  { id: 1, q: "Do you have a job or are you a student?", qRead: "🗣 Đọc: Đu diu he-vờ ờ dóp o a diu ờ sờ-tiu-đần-t?", qIpa: "/duː juː hæv ə dʒɒb ɔːr ɑːr juː ə ˈstjuːdnt/", qVi: "Bạn đã đi làm hay là học sinh/sinh viên?", a: "I'm a student.", aRead: "🗣 Đọc: Aim ờ sờ-tiu-đần-t.", aIpa: "/aɪm ə ˈstjuːdnt/", aVi: "Tôi là sinh viên." },
+  { id: 2, q: "How do you usually get to your university?", qRead: "🗣 Đọc: Hao đu diu diu-giu-ơ-li ghét tu gio diu-ni-vơ-xơ-ti?", qIpa: "/haʊ duː juː ˈjuːʒuəli ɡet tuː jɔːr ˌjuːnɪˈvɜːrsəti/", qVi: "Bạn thường đến trường đại học bằng phương tiện gì?", a: "I usually get to my university by bus.", aRead: "🗣 Đọc: Ai diu-giu-ơ-li ghét tu mai diu-ni-vơ-xơ-ti bai bớt-s.", aIpa: "/aɪ ˈjuːʒuəli ɡet tuː maɪ ˌjuːnɪˈvɜːrsəti baɪ bʌs/", aVi: "Tôi thường đến trường bằng xe buýt." },
+  { id: 3, q: "When did you start to learn English?", qRead: "🗣 Đọc: Guen đít-d diu sờ-ta-t tu lơn Inh-gờ-lít-sh?", qIpa: "/wen dɪd juː stɑːrt tuː lɜːrn ˈɪŋɡlɪʃ/", qVi: "Bạn bắt đầu học tiếng Anh từ khi nào?", a: "I started learning English five years ago.", aRead: "🗣 Đọc: Ai sờ-ta-tịt lơn-ninh Inh-gờ-lít-sh fai-vờ dia-zờ ờ-gâu.", aIpa: "/aɪ ˈstɑːrtɪd ˈlɜːrnɪŋ ˈɪŋɡlɪʃ faɪv jɪərz əˈɡoʊ/", aVi: "Tôi bắt đầu học tiếng Anh từ 5 năm trước." },
+  { id: 4, q: "Do you like it? Why? Why not?", qRead: "🗣 Đọc: Đu diu lai-kịt? Oai? Oai nót?", qIpa: "/duː juː laɪk ɪt? waɪ? waɪ nɒt/", qVi: "Bạn có thích nó không? Tại sao?", a: "Yes, I do. Because it is very interesting and useful.", aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-zịt ít-z ve-ri in-trơ-sờ-tinh en-d diu-s-phun.", aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈveri ˈɪntrəstɪŋ ænd ˈjuːsfəl/", aVi: "Có chứ. Vì tiếng Anh rất thú vị và bổ ích." },
+  { id: 5, q: "Tell me something about your plans in the future?", qRead: "🗣 Đọc: Teo mi săm-thinh ờ-bao-t gio plen-z in đơ phiu-chờ?", qIpa: "/tel miː ˈsʌmθɪŋ əˈbaʊt jɔːr plænz ɪn ðə ˈfjuːtʃər/", qVi: "Hãy chia sẻ về các kế hoạch tương lai của bạn?", a: "In the future, I will find a good job, buy a car, and get married.", aRead: "🗣 Đọc: In đơ phiu-chờ, ai guil fain-d ờ gút dóp, bai ờ ca, en-d ghét me-rịt-d.", aIpa: "/ɪn ðə ˈfjuːtʃər, aɪ wɪl faɪnd ə ɡʊd dʒɒb, baɪ ə kɑːr, ænd ɡet ˈmærid/", aVi: "Trong tương lai, tôi sẽ tìm việc tốt, mua xe và lập gia đình." },
+  { id: 6, q: "What are your hobbies?", qRead: "🗣 Đọc: Goát a gio hóp-bi-z?", qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/", qVi: "Sở thích của bạn là gì?", a: "I like reading books and playing video games.", aRead: "🗣 Đọc: Ai lai-k ri-đinh búc-s en-d pờ-lay-inh vi-đi-ô gêm-z.", aIpa: "/aɪ laɪk ˈriːdɪŋ bʊks ænd ˈpleɪɪŋ ˈvɪdioʊ ɡeɪmz/", aVi: "Tôi thích đọc sách và chơi trò chơi điện tử." },
+  { id: 7, q: "Do you like video games? Why? Why not?", qRead: "🗣 Đọc: Đu diu lai-k vi-đi-ô gêm-z? Oai? Oai nót?", qIpa: "/duː juː laɪk ˈvɪdioʊ ɡeɪmz? waɪ? waɪ nɒt/", qVi: "Bạn có thích trò chơi điện tử không? Tại sao?", a: "Yes, I do. Because they are interesting and help me relax.", aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z đê a in-trơ-sờ-tinh en-d heo-p mi ri-léc-s.", aIpa: "/jes, aɪ duː. bɪˈkəz ðeɪ ɑːr ˈɪntrəstɪŋ ænd help miː rɪˈlæks/", aVi: "Có, tôi thích. Vì game rất thú vị và giúp tôi thư giãn." },
+  { id: 8, q: "Do you think video games are bad for children? Why?", qRead: "🗣 Đọc: Đu diu thinh-k vi-đi-ô gêm-z a bét-d fo chil-đrần? Oai?", qIpa: "/duː juː θɪŋk ˈvɪdioʊ ɡeɪmz ɑːr bæd fɔːr ˈtʃɪldrən? waɪ/", qVi: "Bạn có nghĩ video game có hại cho trẻ em không? Tại sao?", a: "Yes, I do. Because children can easily become addicted to games.", aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z chil-đrần ken i-zi-li bi-căm ờ-đích-tịt tu gêm-z.", aIpa: "/jes, aɪ duː. bɪˈkəz ˈtʃɪldrən kæn ˈiːzəli bɪˈkʌm əˈdɪktɪd tuː ɡeɪmz/", aVi: "Có. Vì trẻ em rất dễ bị nghiện game." },
+  { id: 9, q: "Where did you go on your last holiday?", qRead: "🗣 Đọc: Gue-r đít-d diu gâu on gio lát-s-t ho-li-đê?", qIpa: "/weər dɪd juː ɡoʊ ɒn jɔːr læst ˈhɒlədeɪ/", qVi: "Kỳ nghỉ trước bạn đã đi đâu?", a: "On my last holiday, I went to Sam Son beach with my family.", aRead: "🗣 Đọc: On mai lát-s-t ho-li-đê, ai guen-t tu Sầm Sơn bít-sh guýth mai phe-mơ-li.", aIpa: "/ɒn maɪ læst ˈhɒlədeɪ, aɪ went tuː Sam Son biːtʃ wɪð maɪ ˈfæməli/", aVi: "Vào kỳ nghỉ trước, tôi đã đi biển Sầm Sơn cùng gia đình." },
+  { id: 10, q: "Did you enjoy it? Why?", qRead: "🗣 Đọc: Đít-d diu in-dôi-ịt? Oai?", qIpa: "/dɪd juː ɪnˈdʒɔɪ ɪt? waɪ/", qVi: "Bạn có thích chuyến đi đó không? Tại sao?", a: "Yes, I did. Because I had a wonderful time there.", aRead: "🗣 Đọc: Dét, ai đít-d. Bì-cơ-z ai hét-d ờ goăn-đơ-phun taim đe.", aIpa: "/jes, aɪ dɪd. bɪˈkəz aɪ hæd ə ˈwʌndərfəl taɪm ðeər/", aVi: "Có, tôi rất thích. Vì tôi đã có khoảng thời gian tuyệt vời ở đó." },
+  { id: 11, q: "Do you have a large family or a small family?", qRead: "🗣 Đọc: Đu diu he-vờ ờ la-dzh phe-mơ-li o ờ sờ-mo phe-mơ-li?", qIpa: "/duː juː hæv ə lɑːrdʒ ˈfæməli ɔːr ə smɔːl ˈfæməli/", qVi: "Gia đình bạn là gia đình lớn hay gia đình nhỏ?", a: "I have a small family. There are four people: my dad, my mom, my brother, and me.", aRead: "🗣 Đọc: Ai he-vờ ờ sờ-mo phe-mơ-li. Đe a pho pi-pồ: mai đét-d, mai mom, mai bờ-ra-đờ, en-d mi.", aIpa: "/aɪ hæv ə smɔːl ˈfæməli. ðeər ɑːr fɔːr ˈpiːpl: maɪ dæd, maɪ mɒm, maɪ ˈbrʌðər, ænd miː/", aVi: "Gia đình tôi nhỏ thôi. Có 4 người: bố, mẹ, anh trai và tôi." },
+  { id: 12, q: "How much time do you spend with your family?", qRead: "🗣 Đọc: Hao mát-sh taim đu diu sờ-pen-d guýth gio phe-mơ-li?", qIpa: "/haʊ mʌtʃ taɪm duː juː spend wɪð jɔːr ˈfæməli/", qVi: "Bạn dành bao nhiêu thời gian cho gia đình?", a: "I spend every weekend with my family.", aRead: "🗣 Đọc: Ai sờ-pen-d e-vờ-ri guýc-ken-d guýth mai phe-mơ-li.", aIpa: "/aɪ spend ˈevri ˈwiːkend wɪð maɪ ˈfæməli/", aVi: "Tôi dành trọn vẹn mỗi dịp cuối tuần bên gia đình." },
+  { id: 13, q: "How many hours do you study each day?", qRead: "🗣 Đọc: Hao me-ni ao-z đu diu sờ-ta-đi ích đê?", qIpa: "/haʊ ˈmeni ˈaʊərz duː juː ˈstʌdi iːtʃ deɪ/", qVi: "Mỗi ngày bạn học bao nhiêu tiếng?", a: "I spend five hours studying each day.", aRead: "🗣 Đọc: Ai sờ-pen-d fai-vờ ao-z sờ-ta-đi-inh ích đê.", aIpa: "/aɪ spend faɪv ˈaʊərz ˈstʌdiɪŋ iːtʃ deɪ/", aVi: "Tôi dành 5 tiếng mỗi ngày để học tập." },
+  { id: 14, q: "Do you enjoy your study? Why?", qRead: "🗣 Đọc: Đu diu in-dôi gio sờ-ta-đi? Oai?", qIpa: "/duː juː ɪnˈdʒɔɪ jɔːr ˈstʌdi? waɪ/", qVi: "Bạn có thích việc học của mình không? Tại sao?", a: "Yes, I do. Because it is interesting and very useful.", aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-zịt ít-z in-trơ-sờ-tinh en-d ve-ri diu-s-phun.", aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈveri ˈɪntrəstɪŋ ænd ˈjuːsfəl/", aVi: "Có chứ, vì việc học rất thú vị và rất bổ ích." },
+  { id: 15, q: "What do you usually do in your free time?", qRead: "🗣 Đọc: Goát đu diu diu-giu-ơ-li đu in gio fri taim?", qIpa: "/wɒt duː juː ˈjuːʒuəli duː ɪn jɔːr friː taɪm/", qVi: "Bạn thường làm gì vào thời gian rảnh?", a: "In my free time, I usually listen to music and read books.", aRead: "🗣 Đọc: In mai fri taim, ai diu-giu-ơ-li lís-sừn tu miu-zịch en-d rít-d búc-s.", aIpa: "/ɪn maɪ friː taɪm, aɪ ˈjuːʒuəli ˈlɪsn tuː ˈmjuːzɪk ænd riːd bʊks/", aVi: "Vào thời gian rảnh, tôi thường nghe nhạc và đọc sách." },
+  { id: 16, q: "Do you prefer to stay alone or with your friends? Why?", qRead: "🗣 Đọc: Đu diu pờ-ri-phơ tu sờ-tây ờ-lôn o guýth gio phren-z? Oai?", qIpa: "/duː juː prɪˈfɜːr tuː steɪ əˈloʊn ɔːr wɪð jɔːr frendz? waɪ/", qVi: "Bạn thích ở một mình hay ở cùng bạn bè hơn? Tại sao?", a: "I prefer to stay with my friends because we can help each other easily.", aRead: "🗣 Đọc: Ai pờ-ri-phơ tu sờ-tây guýth mai phren-z bì-cơ-z gui ken heo-p ích a-đờ i-zi-li.", aIpa: "/aɪ prɪˈfɜːr tuː steɪ wɪð maɪ frendz bɪˈkəz wiː kæn help iːtʃ ˈʌðər ˈiːzəli/", aVi: "Tôi thích ở cùng bạn bè hơn vì chúng tôi có thể giúp đỡ nhau dễ dàng." },
+  { id: 17, q: "Do you like going out? Why?", qRead: "🗣 Đọc: Đu diu lai-k gâu-inh ao-t? Oai?", qIpa: "/duː juː laɪk ˈɡoʊɪŋ aʊt? waɪ/", qVi: "Bạn có thích đi ra ngoài chơi không? Tại sao?", a: "Yes, I do. Because going out makes me feel good.", aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z gâu-inh ao-t mê-k-s mi phiu gút.", aIpa: "/jes, aɪ duː. bɪˈkəz ˈɡoʊɪŋ aʊt meɪks miː fiːl ɡʊd/", aVi: "Có, tôi thích. Vì ra ngoài khiến tôi cảm thấy thoải mái và vui vẻ." },
+  { id: 18, q: "What do you usually do when you go out?", qRead: "🗣 Đọc: Goát đu diu diu-giu-ơ-li đu guen diu gâu ao-t?", qIpa: "/wɒt duː juː ˈjuːʒuəli duː wen juː ɡoʊ aʊt/", qVi: "Bạn thường làm gì khi đi ra ngoài?", a: "I usually go to the cinema with my friends.", aRead: "🗣 Đọc: Ai diu-giu-ơ-li gâu tu đơ si-nê-ma guýth mai phren-z.", aIpa: "/aɪ ˈjuːʒuəli ɡoʊ tuː ðə ˈsɪnəmə wɪð maɪ frendz/", aVi: "Tôi thường đi xem phim rạp cùng bạn bè." },
+  { id: 19, q: "Tell me about your favourite sport?", qRead: "🗣 Đọc: Teo mi ờ-bao-t gio phây-vơ-rịt sờ-po-t?", qIpa: "/tel miː əˈbaʊt jɔːr ˈfeɪvərɪt spɔːrt/", qVi: "Hãy kể về môn thể thao yêu thích của bạn?", a: "My favourite sport is swimming. I swim twice a week and it makes me feel good.", aRead: "🗣 Đọc: Mai phây-vơ-rịt sờ-po-t ít-z suýt-minh. Ai suým thoai-s ờ guýc en-d ịt mê-k-s mi phiu gút.", aIpa: "/maɪ ˈfeɪvərɪt spɔːrt ɪz ˈswɪmɪŋ. aɪ swɪm twaɪs ə wiːk ænd ɪt meɪks miː fiːl ɡʊd/", aVi: "Môn thể thao tôi yêu thích là bơi lội. Tôi bơi 2 lần một tuần." },
+  { id: 20, q: "What kind of food do you like best?", qRead: "🗣 Đọc: Goát kain-d ờ-vờ phút-d đu diu lai-k bét-s-t?", qIpa: "/wɒt kaɪnd əv fuːd duː juː laɪk best/", qVi: "Bạn thích loại đồ ăn nào nhất?", a: "I like beef, rice, and vegetables because they are good for my health.", aRead: "🗣 Đọc: Ai lai-k bíp-ph, rai-s, en-d vét-s-tơ-bồ-z bì-cơ-z đê a gút fo mai hew-th.", aIpa: "/aɪ laɪk biːf, raɪs, ænd ˈvedʒtəblz bɪˈkəz ðeɪ ɑːr ɡʊd fɔːr maɪ helθ/", aVi: "Tôi thích thịt bò, cơm và rau vì chúng rất tốt cho sức khỏe." },
+  { id: 21, q: "Do you like cooking? Why?", qRead: "🗣 Đọc: Đu diu lai-k cúc-kinh? Oai?", qIpa: "/duː juː laɪk ˈkʊkɪŋ? waɪ/", qVi: "Bạn có thích nấu ăn không? Tại sao?", a: "Yes, I do. Because cooking makes me feel good and relaxed.", aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z cúc-kinh mê-k-s mi phiu gút en-d ri-léc-s-t.", aIpa: "/jes, aɪ duː. bɪˈkəz ˈkʊkɪŋ meɪks miː fiːl ɡʊd ænd rɪˈlækst/", aVi: "Có chứ. Vì nấu ăn giúp tôi thấy vui vẻ và thư thái." },
+  { id: 22, q: "How often do you eat out?", qRead: "🗣 Đọc: Hao óp-phừn đu diu ít ao-t?", qIpa: "/haʊ ˈɒfn duː juː iːt aʊt/", qVi: "Bạn có thường xuyên đi ăn ở ngoài không?", a: "I sometimes eat out with my friends on weekends.", aRead: "🗣 Đọc: Ai săm-taim-z ít ao-t guýth mai phren-z on guýc-ken-z.", aIpa: "/aɪ ˈsʌmtaɪmz iːt aʊt wɪð maɪ frendz ɒn ˈwiːkendz/", aVi: "Thỉnh thoảng tôi đi ăn ngoài với bạn bè vào dịp cuối tuần." },
+  { id: 23, q: "What kind of sport do you like playing? Why?", qRead: "🗣 Đọc: Goát kain-d ờ-vờ sờ-po-t đu diu lai-k pờ-lay-inh? Oai?", qIpa: "/wɒt kaɪnd əv spɔːrt duː juː laɪk ˈpleɪɪŋ? waɪ/", qVi: "Bạn thích chơi môn thể thao nào? Tại sao?", a: "I like swimming because it helps me stay healthy.", aRead: "🗣 Đọc: Ai lai-k suýt-minh bì-cơ-zịt heo-p-s mi sờ-tây heo-thi.", aIpa: "/aɪ laɪk ˈswɪmɪŋ bɪˈkəz ɪt helps miː steɪ ˈhelθi/", aVi: "Tôi thích bơi lội vì môn này giúp tôi luôn khỏe mạnh." },
+  { id: 24, q: "Tell me what do you enjoy doing in your free time?", qRead: "🗣 Đọc: Teo mi goát đu diu in-dôi đu-inh in gio fri taim?", qIpa: "/tel miː wɒt duː juː ɪnˈdʒɔɪ ˈduːɪŋ ɪn jɔːr friː taɪm/", qVi: "Hãy cho tôi biết bạn thích làm gì trong thời gian rảnh?", a: "In my free time, I enjoy listening to music and watching movies.", aRead: "🗣 Đọc: In mai fri taim, ai in-dôi lís-sừn-ninh tu miu-zịch en-d goát-sh-inh mu-vi-z.", aIpa: "/ɪn maɪ friː taɪm, aɪ ɪnˈdʒɔɪ ˈlɪsnɪŋ tuː ˈmjuːzɪk ænd ˈwɒtʃɪŋ ˈmuːviz/", aVi: "Vào thời gian rảnh, tôi thích nghe nhạc và xem phim." },
+  { id: 25, q: "What do you study at the university?", qRead: "🗣 Đọc: Goát đu diu sờ-ta-đi ét đơ diu-ni-vơ-xơ-ti?", qIpa: "/wɒt duː juː ˈstʌdi æt ðə ˌjuːnɪˈvɜːrsəti/", qVi: "Bạn học ngành gì ở trường đại học?", a: "I study Information Technology at my university.", aRead: "🗣 Đọc: Ai sờ-ta-đi In-pho-mê-shừn Téc-nơ-lo-di ét mai diu-ni-vơ-xơ-ti.", aIpa: "/aɪ ˈstʌdi ˌɪnfərˈmeɪʃn tekˈnɒlədʒi æt maɪ ˌjuːnɪˈvɜːrsəti/", aVi: "Tôi học ngành Công nghệ Thông tin tại trường đại học." },
+  { id: 26, q: "Are you happy with your student life?", qRead: "🗣 Đọc: A diu he-pi guýth gio sờ-tiu-đần-t lai-ph?", qIpa: "/ɑːr juː ˈhæpi wɪð jɔːr ˈstjuːdnt laɪf/", qVi: "Bạn có hài lòng với đời sống sinh viên không?", a: "Yes, I am. Because I love my teachers and my friends.", aRead: "🗣 Đọc: Dét, ai em. Bì-cơ-z ai lơ-vờ mai tít-chờ-z en-d mai phren-z.", aIpa: "/jes, aɪ æm. bɪˈkəz aɪ lʌv maɪ ˈtiːtʃərz ænd maɪ frendz/", aVi: "Có, tôi rất vui. Vì tôi quý mến thầy cô và bạn bè của mình." },
+  { id: 27, q: "What did you have for dinner yesterday?", qRead: "🗣 Đọc: Goát đít-d diu he-vờ fo đin-nơ dét-s-tơ-đê?", qIpa: "/wɒt dɪd juː hæv fɔːr ˈdɪnər ˈjestərdeɪ/", qVi: "Tối hôm qua bạn đã ăn món gì?", a: "I had rice, fish, and vegetables for dinner yesterday.", aRead: "🗣 Đọc: Ai hét-d rai-s, phít-sh, en-d vét-s-tơ-bồ-z fo đin-nơ dét-s-tơ-đê.", aIpa: "/aɪ hæd raɪs, fɪʃ, ænd ˈvedʒtəblz fɔːr ˈdɪnər ˈjestərdeɪ/", aVi: "Tối hôm qua tôi đã ăn cơm, cá và rau." },
+  { id: 28, q: "Tell me about the kind of food you like?", qRead: "🗣 Đọc: Teo mi ờ-bao-t đơ kain-d ờ-vờ phút-d diu lai-k?", qIpa: "/tel miː əˈbaʊt ðə kaɪnd əv fuːd juː laɪk/", qVi: "Hãy chia sẻ về các món ăn bạn thích?", a: "I like traditional Vietnamese food like beef, soup, and fresh vegetables.", aRead: "🗣 Đọc: Ai lai-k trơ-đí-shơ-nồ Vi-ét-na-mít-z phút-d lai-k bíp-ph, súp, en-d phré-sh vét-s-tơ-bồ-z.", aIpa: "/aɪ laɪk trəˈdɪʃənl ˌvjetnəˈmiːz fuːd laɪk biːf, suːp, ænd freʃ ˈvedʒtəblz/", aVi: "Tôi thích món ăn truyền thống Việt Nam như thịt bò, canh và rau tươi." },
+  { id: 29, q: "Do you often watch TV?", qRead: "🗣 Đọc: Đu diu óp-phừn goát-sh Ti-Vi?", qIpa: "/duː juː ˈɒfn wɒtʃ ˌtiːˈviː/", qVi: "Bạn có thường xem TV không?", a: "Yes, I do. I often watch TV in the evening to relax.", aRead: "🗣 Đọc: Dét, ai đu. Ai óp-phừn goát-sh Ti-Vi in đi í-vơ-ninh tu ri-léc-s.", aIpa: "/jes, aɪ duː. aɪ ˈɒfn wɒtʃ ˌtiːˈviː ɪn ðə ˈiːvnɪŋ tuː rɪˈlæks/", aVi: "Có chứ, tôi thường xem TV vào buổi tối để thư giãn." },
+  { id: 30, q: "What TV programs do you like?", qRead: "🗣 Đọc: Goát Ti-Vi pờ-râu-gờ-rem-z đu diu lai-k?", qIpa: "/wɒt ˌtiːˈviː ˈproʊɡræmz duː juː laɪk/", qVi: "Bạn thích những chương trình truyền hình nào?", a: "I like The Voice because I really enjoy singing.", aRead: "🗣 Đọc: Ai lai-k Đơ Voi-s bì-cơ-z ai rí-li in-dôi sin-inh.", aIpa: "/aɪ laɪk ðə vɔɪs bɪˈkəz aɪ ˈrɪəli ɪnˈdʒɔɪ ˈsɪŋɪŋ/", aVi: "Tôi thích chương trình The Voice vì tôi rất thích ca hát." },
+  { id: 31, q: "Where do you live?", qRead: "🗣 Đọc: Gue-r đu diu li-vờ?", qIpa: "/weər duː juː lɪv/", qVi: "Bạn đang sống ở đâu?", a: "I live in Hanoi.", aRead: "🗣 Đọc: Ai li-vờ in Hà Nội.", aIpa: "/aɪ lɪv ɪn Hà Nội/", aVi: "Tôi sống ở Hà Nội." },
+  { id: 32, q: "Do you like living there? Why?", qRead: "🗣 Đọc: Đu diu lai-k lí-vinh đe? Oai?", qIpa: "/duː juː laɪk ˈlɪvɪŋ ðeər? waɪ/", qVi: "Bạn có thích sống ở đó không? Tại sao?", a: "Yes, I do. Because Hanoi is a big, beautiful, and exciting city.", aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z Hà Nội ít-z ờ bích, biu-ti-phun, en-d ếch-sai-tinh si-ti.", aIpa: "/jes, aɪ duː. bɪˈkəz Hà Nội ɪz ə bɪɡ, ˈbjuːtɪfl, ænd ɪkˈsaɪtɪŋ ˈsɪti/", aVi: "Có chứ, vì Hà Nội là một thành phố lớn, tươi đẹp và sôi động." },
+  { id: 33, q: "Can you play any musical instrument such as guitar, piano or violin?", qRead: "🗣 Đọc: Ken diu pờ-lay e-ni miu-zi-cồ in-sờ-tru-mừn-t sát-sh ét ghi-ta, pi-a-nô o vai-ơ-lin?", qIpa: "/kæn juː pleɪ ˈeni ˈmjuːzɪkl ˈɪnstrəmənt sʌtʃ æz ɡɪˈtɑːr, piˈænoʊ ɔːr ˌvaɪəˈlɪn/", qVi: "Bạn có thể chơi nhạc cụ nào như guitar, piano hay violin không?", a: "Yes, I can. I can play the guitar.", aRead: "🗣 Đọc: Dét, ai ken. Ai ken pờ-lay đơ ghi-ta.", aIpa: "/jes, aɪ kæn. aɪ kæn pleɪ ðə ɡɪˈtɑːr/", aVi: "Có, tôi biết chơi đàn guitar." },
+  { id: 34, q: "What other country would you like to visit? Why?", qRead: "🗣 Đọc: Goát a-đờ căn-tri gút-d diu lai-k tu ví-zịt? Oai?", qIpa: "/wɒt ˈʌðər ˈkʌntri wʊd juː laɪk tuː ˈvɪzɪt? waɪ/", qVi: "Bạn muốn đến thăm quốc gia nào khác? Tại sao?", a: "I would like to visit China because I want to see the Great Wall and it is very beautiful.", aRead: "🗣 Đọc: Ai gút-d lai-k tu ví-zịt Chai-na bì-cơ-z ai goán-t tu si đơ gờ-rết go o en-d ịt ít-z ve-ri biu-ti-phun.", aIpa: "/aɪ wʊd laɪk tuː ˈvɪzɪt ˈtʃaɪnə bɪˈkəz aɪ wɒnt tuː siː ðə ɡreɪt wɔːl ænd ɪt ɪz ˈveri ˈbjuːtɪfl/", aVi: "Tôi muốn đi Trung Quốc vì tôi muốn chiêm ngưỡng Vạn Lý Trường Thành." },
+  { id: 35, q: "What are the popular sports in Vietnam?", qRead: "🗣 Đọc: Goát a đơ póp-piu-lơ sờ-po-t-s in Vi-ét-nam?", qIpa: "/wɒt ɑːr ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm/", qVi: "Các môn thể thao phổ biến ở Việt Nam là gì?", a: "I think the popular sports in Vietnam are football and volleyball.", aRead: "🗣 Đọc: Ai thinh-k đơ póp-piu-lơ sờ-po-t-s in Vi-ét-nam a phút-bol en-d vó-li-bol.", aIpa: "/aɪ θɪŋk ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm ɑːr ˈfʊtbɔːl ænd ˈvɒlibɔːl/", aVi: "Tôi nghĩ môn thể thao phổ biến ở Việt Nam là bóng đá và bóng chuyền." },
+  { id: 36, q: "How often do you play sports? What sports?", qRead: "🗣 Đọc: Hao óp-phừn đu diu pờ-lay sờ-po-t-s? Goát sờ-po-t-s?", qIpa: "/haʊ ˈɒfn duː juː pleɪ spɔːrts? wɒt spɔːrts/", qVi: "Bạn có thường chơi thể thao không? Chơi môn gì?", a: "I usually play sports on weekends because it makes me feel good. I play football.", aRead: "🗣 Đọc: Ai diu-giu-ơ-li pờ-lay sờ-po-t-s on guýc-ken-z bì-cơ-zịt mê-k-s mi phiu gút. Ai pờ-lay phút-bol.", aIpa: "/aɪ ˈjuːʒuəli pleɪ spɔːrts ɒn ˈwiːkendz bɪˈkəz ɪt meɪks miː fiːl ɡʊd. aɪ pleɪ ˈfʊtbɔːl/", aVi: "Tôi thường chơi thể thao vào cuối tuần vì nó giúp tôi khỏe mạnh. Tôi chơi bóng đá." },
+  { id: 37, q: "What are your hobbies?", qRead: "🗣 Đọc: Goát a gio hóp-bi-z?", qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/", qVi: "Sở thích của bạn là gì?", a: "My hobbies are reading books, playing games, and listening to music.", aRead: "🗣 Đọc: Mai hóp-bi-z a rí-đinh búc-s, pờ-lay-inh gêm-z, en-d lís-sừn-ninh tu miu-zịch.", aIpa: "/maɪ ˈhɒbiz ɑːr ˈriːdɪŋ bʊks, ˈpleɪɪŋ ɡeɪmz, ænd ˈlɪsnɪŋ tuː ˈmjuːzɪk/", aVi: "Sở thích của tôi là đọc sách, chơi game và nghe nhạc." },
+  { id: 38, q: "Do you like reading? Why?", qRead: "🗣 Đọc: Đu diu lai-k rí-đinh? Oai?", qIpa: "/duː juː laɪk ˈriːdɪŋ? waɪ/", qVi: "Bạn có thích đọc sách không? Tại sao?", a: "Yes, I do. Because reading books makes me feel relaxed and good.", aRead: "🗣 Đọc: Dét, ai đu. Bì-cơ-z rí-đinh búc-s mê-k-s mi phiu ri-léc-s-t en-d gút.", aIpa: "/jes, aɪ duː. bɪˈkəz ˈriːdɪŋ bʊks meɪks miː fiːl rɪˈlækst ænd ɡʊd/", aVi: "Có chứ, vì đọc sách giúp tôi thấy thư giãn và thoải mái." },
+  { id: 39, q: "What kind of book do you like best?", qRead: "🗣 Đọc: Goát kain-d ờ-vờ búc đu diu lai-k bét-s-t?", qIpa: "/wɒt kaɪnd əv bʊk duː juː laɪk best/", qVi: "Bạn thích loại sách nào nhất?", a: "I like short stories best.", aRead: "🗣 Đọc: Ai lai-k sho-t sờ-to-ri-z bét-s-t.", aIpa: "/aɪ laɪk ʃɔːrt ˈstɔːriz best/", aVi: "Tôi thích truyện ngắn nhất." },
+  { id: 40, q: "What do you think the importance of English in your life?", qRead: "🗣 Đọc: Goát đu diu thinh-k đi im-po-từn-s ờ-vờ Inh-gờ-lít-sh in gio lai-ph?", qIpa: "/wɒt duː juː θɪŋk ðə ɪmˈpɔːrtns əv ˈɪŋɡlɪʃ ɪn jɔːr laɪf/", qVi: "Bạn nghĩ tầm quan trọng của tiếng Anh trong cuộc sống của mình là gì?", a: "I think English is very important because if I am good at English, I can find a good job easily.", aRead: "🗣 Đọc: Ai thinh-k Inh-gờ-lít-sh ít-z ve-ri im-po-từn-t bì-cơ-zíp phai em gút ét Inh-gờ-lít-sh, ai ken fain-d ờ gút dóp i-zi-li.", aIpa: "/aɪ θɪŋk ˈɪŋɡlɪʃ ɪz ˈveri ɪmˈpɔːrtnt bɪˈkəz ɪf aɪ æm ɡʊd æt ˈɪŋɡlɪʃ, aɪ kæn faɪnd ə ɡʊd dʒɒb ˈiːzəli/", aVi: "Tôi nghĩ tiếng Anh rất quan trọng vì nếu giỏi tiếng Anh, tôi có thể tìm việc tốt dễ dàng." }
 ];
 
-// ==========================================
-// DỮ LIỆU PHẦN 2: CÁC KHOA TẠI HUMG (10 KHOA)
-// ==========================================
-const PART2_DATA = [
-  {
-    id: 1,
-    topic: "Khoa Công nghệ thông tin",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Information Technology.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ In-pho-mê-shừn Téc-nơ-lo-di.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌɪnfərˈmeɪʃn tekˈnɒlədʒi/",
-    aVi: "Tôi đang học tại Khoa Công nghệ thông tin (IT)."
-  },
-  {
-    id: 2,
-    topic: "Khoa Mỏ",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Mining.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Mai-ninh.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈmaɪnɪŋ/",
-    aVi: "Tôi đang học tại Khoa Mỏ."
-  },
-  {
-    id: 3,
-    topic: "Khoa Dầu khí",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Oil and Gas.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Oi-ồ en-d Gét-s.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ɔɪl ænd ɡæs/",
-    aVi: "Tôi đang học tại Khoa Dầu khí."
-  },
-  {
-    id: 4,
-    topic: "Khoa Trắc địa - Bản đồ và QLĐĐ",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Geomatics and Land Administration.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Di-ô-me-tích-s en-d Len-d Ét-min-nít-s-trây-shừn.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv dʒiːoʊˈmætɪks ænd lænd ədˌmɪnɪˈstreɪʃn/",
-    aVi: "Tôi đang học tại Khoa Trắc địa - Bản đồ và Quản lý đất đai."
-  },
-  {
-    id: 5,
-    topic: "Khoa Xây dựng",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Civil Engineering.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Si-vồ En-di-nhi-ơ-rinh.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈsɪvl ˌendʒɪˈnɪərɪŋ/",
-    aVi: "Tôi đang học tại Khoa Xây dựng."
-  },
-  {
-    id: 6,
-    topic: "Khoa Cơ - Điện",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Mechanical and Electrical Engineering.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Mê-ce-ni-cồ en-d I-léc-tri-cồ En-di-nhi-ơ-rinh.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv məˈkænɪkl ænd ɪˈlektrɪkl ˌendʒɪˈnɪərɪŋ/",
-    aVi: "Tôi đang học tại Khoa Cơ - Điện."
-  },
-  {
-    id: 7,
-    topic: "Khoa Môi trường",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Environment.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ En-vai-rừn-mừn-t.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ɪnˈvaɪrənmənt/",
-    aVi: "Tôi đang học tại Khoa Môi trường."
-  },
-  {
-    id: 8,
-    topic: "Khoa Kinh tế & Quản trị kinh doanh",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Economics and Business Administration.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ E-cơ-no-mích-s en-d Bít-z-nịt-s Ét-min-nít-s-trây-shừn.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌekəˈnɒmɪks ænd ˈbɪznəs ədˌmɪnɪˈstreɪʃn/",
-    aVi: "Tôi đang học tại Khoa Kinh tế và Quản trị kinh doanh."
-  },
-  {
-    id: 9,
-    topic: "Khoa Khoa học và Kỹ thuật Địa chất",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Geosciences and Geoengineering.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Di-ô-sai-ừn-s-z en-d Di-ô-en-di-nhi-ơ-rinh.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌdʒiːoʊˈsaɪənsɪz ænd ˌdʒiːoʊˌendʒɪˈnɪərɪŋ/",
-    aVi: "Tôi đang học tại Khoa Khoa học và Kỹ thuật Địa chất."
-  },
-  {
-    id: 10,
-    topic: "Khoa Khoa học Cơ bản",
-    q: "What faculty are you in?",
-    qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?",
-    qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/",
-    qVi: "Bạn học ở khoa nào?",
-    a: "I'm studying at the Faculty of Basic Sciences.",
-    aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Bê-sích Sai-ừn-s-z.",
-    aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈbeɪsɪk ˈsaɪənsɪz/",
-    aVi: "Tôi đang học tại Khoa Khoa học Cơ bản."
-  }
+// ====================================================
+// 2. DỮ LIỆU PHẦN 2: CÁC KHOA TẠI HUMG (10 KHOA)
+// ====================================================
+const P2_DATA = [
+  { id: 1, topic: "Khoa CNTT", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Information Technology.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ In-pho-mê-shừn Téc-nơ-lo-di.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌɪnfərˈmeɪʃn tekˈnɒlədʒi/", aVi: "Tôi đang học tại Khoa Công nghệ thông tin (IT)." },
+  { id: 2, topic: "Khoa Mỏ", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Mining.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Mai-ninh.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈmaɪnɪŋ/", aVi: "Tôi đang học tại Khoa Mỏ." },
+  { id: 3, topic: "Khoa Dầu khí", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Oil and Gas.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Oi-ồ en-d Gét-s.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ɔɪl ænd ɡæs/", aVi: "Tôi đang học tại Khoa Dầu khí." },
+  { id: 4, topic: "Khoa Trắc địa - Bản đồ & QLĐĐ", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Geomatics and Land Administration.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Di-ô-me-tích-s en-d Len-d Ét-min-nít-s-trây-shừn.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv dʒiːoʊˈmætɪks ænd lænd ədˌmɪnɪˈstreɪʃn/", aVi: "Tôi đang học tại Khoa Trắc địa - Bản đồ và Quản lý đất đai." },
+  { id: 5, topic: "Khoa Xây dựng", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Civil Engineering.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Si-vồ En-di-nhi-ơ-rinh.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈsɪvl ˌendʒɪˈnɪərɪŋ/", aVi: "Tôi đang học tại Khoa Xây dựng." },
+  { id: 6, topic: "Khoa Cơ - Điện", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Mechanical and Electrical Engineering.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Mê-ce-ni-cồ en-d I-léc-tri-cồ En-di-nhi-ơ-rinh.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv məˈkænɪkl ænd ɪˈlektrɪkl ˌendʒɪˈnɪərɪŋ/", aVi: "Tôi đang học tại Khoa Cơ - Điện." },
+  { id: 7, topic: "Khoa Môi trường", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Environment.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ En-vai-rừn-mừn-t.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ɪnˈvaɪrənmənt/", aVi: "Tôi đang học tại Khoa Môi trường." },
+  { id: 8, topic: "Khoa Kinh tế & QTKD", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Economics and Business Administration.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ E-cơ-no-mích-s en-d Bít-z-nịt-s Ét-min-nít-s-trây-shừn.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌekəˈnɒmɪks ænd ˈbɪznəs ədˌmɪnɪˈstreɪʃn/", aVi: "Tôi đang học tại Khoa Kinh tế và Quản trị kinh doanh." },
+  { id: 9, topic: "Khoa Kỹ thuật Địa chất", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Geosciences and Geoengineering.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Di-ô-sai-ừn-s-z en-d Di-ô-en-di-nhi-ơ-rinh.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˌdʒiːoʊˈsaɪənsɪz ænd ˌdʒiːoʊˌendʒɪˈnɪərɪŋ/", aVi: "Tôi đang học tại Khoa Khoa học và Kỹ thuật Địa chất." },
+  { id: 10, topic: "Khoa Khoa học Cơ bản", q: "What faculty are you in?", qRead: "🗣 Đọc: Goát phe-cồ-ti a diu in?", qIpa: "/wɒt ˈfæklti ɑːr juː ɪn/", qVi: "Bạn học ở khoa nào?", a: "I'm studying at the Faculty of Basic Sciences.", aRead: "🗣 Đọc: Aim sờ-ta-đi-inh ét đơ Phe-cồ-ti ờ-vờ Bê-sích Sai-ừn-s-z.", aIpa: "/aɪm ˈstʌdiɪŋ æt ðə ˈfæklti əv ˈbeɪsɪk ˈsaɪənsɪz/", aVi: "Tôi đang học tại Khoa Khoa học Cơ bản." }
 ];
 
-// ==========================================
-// DỮ LIỆU PHẦN 3: 18 BỘ TRANH VẤN ĐÁP (90 CÂU HỎI ĐÁP)
-// ==========================================
-const PART3_TOPICS = [
+// ====================================================
+// 3. DỮ LIỆU PHẦN 3: 18 BỘ TRANH VẤN ĐÁP (90 CÂU)
+// ====================================================
+const P3_TOPICS = [
   "1. Lenny Grade (Theatre School)",
   "2. Horse-Riding Lessons (Bell Riding School)",
   "3. Alien Adventure",
@@ -1126,7 +662,7 @@ const PART3_TOPICS = [
   "18. Maths lessons (Richard Wilson)"
 ];
 
-const PART3_DATA = [
+const P3_DATA = [
   // 1. Lenny Grade (Theatre School)
   { topicId: 1, topic: "1. Lenny Grade (Theatre School)", id: 1, q: "What is the name of the school?", qRead: "🗣 Đọc: Goát ít-z đơ nêm ờ-vờ đơ sờ-cun?", qIpa: "/wɒt ɪz ðə neɪm əv ðə skuːl/", qVi: "Tên của trường là gì?", a: "It’s Lenny Grade.", aRead: "🗣 Đọc: Ít-s Len-ni Gờ-rết-d.", aIpa: "/ɪts ˈleni ɡreɪd/", aVi: "Đó là trường Lenny Grade." },
   { topicId: 1, topic: "1. Lenny Grade (Theatre School)", id: 2, q: "What can you learn in the classes?", qRead: "🗣 Đọc: Goát ken diu lơn in đơ cla-sít-z?", qIpa: "/wɒt kæn juː lɜːrn ɪn ðə ˈklɑːsɪz/", qVi: "Bạn có thể học gì trong các lớp học?", a: "I can learn to act, sing and dance.", aRead: "🗣 Đọc: Ai ken lơn tu éc-t, sin en-d đen-s.", aIpa: "/aɪ kæn lɜːrn tuː ækt, sɪŋ ænd dɑːns/", aVi: "Tôi có thể học diễn xuất, hát và nhảy múa." },
@@ -1262,25 +798,42 @@ const DAY_CONFIG = {
   4: { name: "DAY 4 · THI THỬ", sub: "Ngày 4: kiểm tra ngẫu nhiên toàn bộ 40 câu hỏi không theo thứ tự.", range: [0, 39] }
 };
 
-let currentPart = 1;
+// Từ dừng (Stop words) khi lọc Keywords
+const STOP_WORDS = new Set("i im i'm a an the is are am do did you your my to of in on and or because it they them me we can will would have has had for this that very really what how when where why".split(/\s+/));
+
+let part = 1;
 let day = 1;
 let currentPictureTopic = 0; // 0 = all topics, 1..18 = specific topic
 let items = [];
 let index = 0;
-let speaking = false;
-let run = 0;
-
+let timerRun = 0;
+let showAnswer = false;
 let showRead = true;
 let showIpa = true;
-let showTrans = true;
+let showVi = true;
+let focusMode = false;
+let weakMode = false;
+
+// Quản lý câu đã thuộc & câu hay sai
+const learned = new Set(JSON.parse(localStorage.getItem("humg-learned") || "[]"));
+const misses = JSON.parse(localStorage.getItem("humg-misses") || "{}");
 
 const $ = id => document.getElementById(id);
-const question = $("question"), qRead = $("qRead"), qIpa = $("qIpa"), qVi = $("qVi");
-const answer = $("answer"), answerText = $("answerText"), aRead = $("aRead"), aIpa = $("aIpa"), aVi = $("aVi");
-const counter = $("counter"), status = $("status"), bar = $("bar");
-const quiz = $("quiz"), selfAnswer = $("selfAnswer"), result = $("result");
-const showBtn = $("show"), readBtn = $("readBtn"), ipaBtn = $("ipaBtn"), transBtn = $("transBtn");
-const topicTagBox = $("topicTagBox"), topicTagText = $("topicTagText");
+const qEl = $("q"), qReadEl = $("qRead"), qIpaEl = $("qIpa"), qViEl = $("qvi");
+const aEl = $("a"), aReadEl = $("aRead"), aIpaEl = $("aIpa"), aViEl = $("avi");
+const answerBox = $("answer"), timerEl = $("timer"), counterEl = $("counter"), statusEl = $("status");
+const showBtn = $("show"), learnBtn = $("learnBtn"), weakBtn = $("weakBtn"), focusBtn = $("focusBtn");
+const topicTag = $("topicTag"), topicSelect = $("topicSelect");
+
+function extractKeywords(text) {
+  if (!text) return [];
+  const words = text.toLowerCase().replace(/[^a-z0-9\s']/g, "").split(/\s+/).filter(w => w.length > 2 && !STOP_WORDS.has(w));
+  const unique = [];
+  for (const w of words) {
+    if (!unique.includes(w)) unique.push(w);
+  }
+  return unique.slice(0, 4);
+}
 
 function shuffle(arr) {
   const a = [...arr];
@@ -1291,17 +844,14 @@ function shuffle(arr) {
   return a;
 }
 
-function setStatus(t, cls = "") {
-  if (status) {
-    status.textContent = t;
-    status.className = "status " + cls;
-  }
+function setStatus(t) {
+  if (statusEl) statusEl.textContent = t;
 }
 
 function stopSpeech() {
-  run++;
-  speaking = false;
+  timerRun++;
   if ("speechSynthesis" in window) speechSynthesis.cancel();
+  timerEl.textContent = "";
 }
 
 function getVoiceChoice() {
@@ -1349,7 +899,7 @@ function getVoiceChoice() {
 function speak(text, rate) {
   return new Promise(resolve => {
     if (!("speechSynthesis" in window)) {
-      setStatus("⚠️ Trình duyệt không hỗ trợ đọc giọng nói");
+      setStatus("⚠️ Không hỗ trợ giọng nói");
       resolve();
       return;
     }
@@ -1360,316 +910,355 @@ function speak(text, rate) {
       u.voice = v;
       u.lang = v.lang || "en-US";
     }
-    u.onstart = () => setStatus("🔊 Đang đọc...", "speak");
-    u.onend = () => { setStatus("Sẵn sàng học", "ok"); resolve(); };
-    u.onerror = () => { setStatus("Sẵn sàng học", "ok"); resolve(); };
+    u.onstart = () => setStatus("🔊 Đang đọc...");
+    u.onend = () => { setStatus("Sẵn sàng"); resolve(); };
+    u.onerror = () => { setStatus("Sẵn sàng"); resolve(); };
     speechSynthesis.speak(u);
   });
+}
+
+function updateStats() {
+  const totalLearned = [...learned].filter(k => {
+    const [p] = String(k).split("-");
+    return Number(p) === part;
+  }).length;
+  
+  const totalInPart = items.length;
+  const weakCount = Math.max(0, totalInPart - totalLearned);
+  
+  $("sLearned").textContent = totalLearned;
+  $("sWeak").textContent = weakCount;
+  $("overall").textContent = `Đã thuộc ${totalLearned}/${totalInPart}`;
+  
+  if (part === 1) {
+    $("sMode").textContent = day === 4 ? "Thi thử 40 câu" : `Học ngày ${day}`;
+  } else if (part === 2) {
+    $("sMode").textContent = "10 Khoa HUMG";
+  } else {
+    $("sMode").textContent = currentPictureTopic === 0 ? "Toàn bộ 18 tranh" : `Bộ tranh #${currentPictureTopic}`;
+  }
+}
+
+function save() {
+  localStorage.setItem("humg-learned", JSON.stringify([...learned]));
+  localStorage.setItem("humg-misses", JSON.stringify(misses));
+  localStorage.setItem("humg-state", JSON.stringify({ part, day, currentPictureTopic, index }));
+  updateStats();
+}
+
+function getLearnedKey(item) {
+  return `${part}-${item.id}`;
+}
+
+function isLearned(item) {
+  return learned.has(getLearnedKey(item));
+}
+
+function setupItems() {
+  if (part === 1) {
+    const cfg = DAY_CONFIG[day];
+    items = day === 4 ? shuffle(P1_DATA) : P1_DATA.slice(cfg.range[0], cfg.range[1] + 1);
+  } else if (part === 2) {
+    items = P2_DATA;
+  } else if (part === 3) {
+    if (currentPictureTopic === 0) {
+      items = P3_DATA;
+    } else {
+      items = P3_DATA.filter(x => x.topicId === currentPictureTopic);
+    }
+  }
+  
+  if (weakMode) {
+    items = [...items].sort((a, b) => {
+      const aLearned = isLearned(a) ? 1 : 0;
+      const bLearned = isLearned(b) ? 1 : 0;
+      if (aLearned !== bLearned) return aLearned - bLearned;
+      return (misses[getLearnedKey(b)] || 0) - (misses[getLearnedKey(a)] || 0);
+    });
+  }
+  
+  if (index >= items.length) index = 0;
+  renderRows();
+  render();
+  save();
 }
 
 function render() {
   if (!items || !items.length) return;
   const item = items[index];
+  const itemKey = getLearnedKey(item);
+  
+  counterEl.textContent = `Câu ${index + 1}/${items.length} · #${item.id}`;
   
   if (item.topic) {
-    topicTagBox.style.display = "block";
-    topicTagText.textContent = item.topic;
+    topicTag.style.display = "inline-block";
+    topicTag.textContent = item.topic;
   } else {
-    topicTagBox.style.display = "none";
+    topicTag.style.display = "none";
   }
-
-  question.innerHTML = item.q.split(/\s+/).map((w, i) => `<span class="word" id="qw-${i}">${w}</span>`).join(" ");
-  qRead.textContent = item.qRead || "";
-  qIpa.textContent = item.qIpa || "";
-  qVi.textContent = item.qVi || "";
   
-  answerText.innerHTML = item.a.split(/\s+/).map((w, i) => `<span class="word" id="aw-${i}">${w}</span>`).join(" ");
-  aRead.textContent = item.aRead || "";
-  aIpa.textContent = item.aIpa || "";
-  aVi.textContent = item.aVi || "";
+  qEl.innerHTML = item.q.split(/\s+/).map((w, i) => `<span class="word" id="qw-${i}">${w}</span>`).join(" ");
+  qReadEl.textContent = item.qRead || "";
+  qIpaEl.textContent = item.qIpa || "";
+  qViEl.textContent = item.qVi || item.vi || "";
   
-  qRead.parentElement.classList.toggle("hidden", !showRead || !item.qRead);
-  aRead.parentElement.classList.toggle("hidden", !showRead || !item.aRead);
-  qIpa.classList.toggle("hidden", !showIpa || !item.qIpa);
-  aIpa.classList.toggle("hidden", !showIpa || !item.aIpa);
-  qVi.classList.toggle("hidden", !showTrans || !item.qVi);
-  aVi.classList.toggle("hidden", !showTrans || !item.aVi);
+  aEl.innerHTML = item.a.split(/\s+/).map((w, i) => `<span class="word" id="aw-${i}">${w}</span>`).join(" ");
+  aReadEl.textContent = item.aRead || "";
+  aIpaEl.textContent = item.aIpa || "";
+  aViEl.textContent = item.aVi || item.vi || "";
   
-  answer.classList.add("locked");
-  quiz.classList.remove("show");
-  showBtn.textContent = "👁 Xem đáp án";
-  selfAnswer.value = "";
-  result.innerHTML = "";
+  // Keywords
+  const kwList = extractKeywords(item.a);
+  $("keywordsList").innerHTML = kwList.map(k => `<span class="kw">${k}</span>`).join("");
   
-  counter.textContent = `Câu ${index + 1} / ${items.length} (ID #${item.id})`;
-  bar.style.width = `${((index + 1) / items.length) * 100}%`;
+  // Toggles
+  qReadEl.parentElement.classList.toggle("hidden", !showRead || !item.qRead);
+  aReadEl.parentElement.classList.toggle("hidden", !showRead || !item.aRead);
+  qIpaEl.classList.toggle("hidden", !showIpa || !item.qIpa);
+  aIpaEl.classList.toggle("hidden", !showIpa || !item.aIpa);
+  qViEl.classList.toggle("hidden", !showVi || (!item.qVi && !item.vi));
+  aViEl.classList.toggle("hidden", !showVi || (!item.aVi && !item.vi));
   
-  document.querySelectorAll(".item").forEach(el => {
-    el.classList.toggle("active", Number(el.dataset.id) === item.id);
-  });
-}
-
-function save() {
-  localStorage.setItem("humg-speaking-progress", JSON.stringify({ currentPart, day, currentPictureTopic, index }));
-}
-
-function renderDayList() {
-  $("list").innerHTML = items.map((item, idx) => `
-    <div class="item ${idx === index ? 'active' : ''}" data-id="${item.id}" data-idx="${idx}">
-      <div class="num">#${item.id}</div>
-      <div style="flex:1">
-        ${item.topic ? `<div style="font-size:0.75rem; color:#38bdf8; font-weight:800; margin-bottom:2px;">${item.topic}</div>` : ''}
-        <div class="qsmall">${item.q}</div>
-        <div class="as">→ ${item.a}</div>
-      </div>
-    </div>
-  `).join("");
-}
-
-function populatePictureTopicSelect() {
-  const sel = $("pictureTopicSelect");
-  sel.innerHTML = '<option value="0">⭐ Toàn bộ 18 Bộ Tranh (Đầy đủ 90 câu)</option>' +
-    PART3_TOPICS.map((t, i) => `<option value="${i+1}">${t}</option>`).join("");
-  sel.value = currentPictureTopic;
-}
-
-function changePictureTopic(topicVal) {
-  stopSpeech();
-  currentPictureTopic = Number(topicVal);
-  if (currentPictureTopic === 0) {
-    items = PART3_DATA;
-  } else {
-    items = PART3_DATA.filter(x => x.topicId === currentPictureTopic);
-  }
-  index = 0;
-  renderDayList();
-  render();
-  save();
-}
-
-function switchPart(partNum) {
-  stopSpeech();
-  currentPart = partNum;
+  answerBox.classList.toggle("locked", !showAnswer);
+  showBtn.textContent = showAnswer ? "🙈 Ẩn đáp án" : "👁 Xem đáp án";
   
-  document.querySelectorAll(".part-btn").forEach((b, i) => {
-    b.classList.toggle("active", i + 1 === currentPart);
-  });
+  const learnedStatus = isLearned(item);
+  learnBtn.innerHTML = learnedStatus ? "⭐ Đã thuộc (Bỏ dấu)" : "✅ Đã thuộc";
+  learnBtn.className = learnedStatus ? "btn good" : "btn";
   
-  const dayBoxSection = $("dayBoxSection");
-  const dayBtns = $("dayButtonsContainer");
-  const topicSel = $("topicSelectorRow");
-  const boxTitle = $("boxTitle");
-  const daySub = $("daySub");
-  const dayBadge = $("dayBadge");
-  const testNote = $("testNote");
+  const pct = items.length ? ((index + 1) / items.length) * 100 : 0;
+  $("bar").style.width = pct + "%";
+  if ($("bar2")) $("bar2").style.width = pct + "%";
+  if ($("bar3")) $("bar3").style.width = pct + "%";
   
-  testNote.classList.remove("show");
-  
-  if (currentPart === 1) {
-    dayBoxSection.style.display = "block";
-    dayBtns.style.display = "grid";
-    topicSel.style.display = "none";
-    boxTitle.textContent = "LỘ TRÌNH HỌC CẤP TỐC 4 NGÀY (40 TOPICS)";
-    loadDay(day, 0);
-  } else if (currentPart === 2) {
-    dayBoxSection.style.display = "block";
-    dayBtns.style.display = "none";
-    topicSel.style.display = "none";
-    boxTitle.textContent = "PHẦN 2: CÁC KHOA TẠI ĐẠI HỌC MỎ - ĐỊA CHẤT (HUMG)";
-    daySub.textContent = "Mẫu câu: What faculty are you in? => I’m studying at faculty of...";
-    dayBadge.textContent = "HUMG FACULTIES";
-    items = PART2_DATA;
-    index = 0;
-    renderDayList();
-    render();
-    save();
-  } else if (currentPart === 3) {
-    dayBoxSection.style.display = "block";
-    dayBtns.style.display = "none";
-    topicSel.style.display = "flex";
-    boxTitle.textContent = "PHẦN 3: 18 BỘ TRANH CHỦ YẾU VÀ CÂU HỎI VẤN ĐÁP (90 CÂU)";
-    daySub.textContent = "Luyện phản xạ hỏi đáp theo thông tin biển hiệu, vé tham quan, trường học, bảo tàng.";
-    dayBadge.textContent = "18 PICTURE CUES";
-    populatePictureTopicSelect();
-    changePictureTopic(currentPictureTopic);
-  }
-}
-
-function loadDay(d, savedIndex = 0) {
-  stopSpeech();
-  day = d;
   document.querySelectorAll(".day").forEach(b => b.classList.toggle("active", Number(b.dataset.day) === day));
-  const cfg = DAY_CONFIG[day];
-  $("dayBadge").textContent = cfg.name;
-  $("daySub").textContent = cfg.sub;
-  items = day === 4 ? shuffle(PART1_DATA) : PART1_DATA.slice(cfg.range[0], cfg.range[1] + 1);
-  index = (savedIndex >= 0 && savedIndex < items.length) ? savedIndex : 0;
-  renderDayList();
-  render();
-  save();
-  $("testNote").classList.toggle("show", day === 4);
+  
+  renderRows();
 }
 
-// Event Listeners
-$("prev").onclick = () => {
-  stopSpeech();
-  if (index > 0) index--;
-  else index = items.length - 1;
-  render();
-  save();
-};
+function renderRows() {
+  $("rows").innerHTML = items.map((x, i) => {
+    const key = getLearnedKey(x);
+    const hasLearned = learned.has(key);
+    return `
+      <div class="row ${i === index ? 'active' : ''} ${hasLearned ? 'learned' : ''}" data-idx="${i}">
+        <div class="num">#${x.id}</div>
+        <div style="flex:1">
+          ${x.topic ? `<div style="font-size:0.75rem; color:#38bdf8; font-weight:900;">${x.topic}</div>` : ''}
+          <div class="rq">${x.q}</div>
+          <div class="ra">→ ${x.a}</div>
+        </div>
+        <div class="mark">${hasLearned ? '✓' : '○'}</div>
+      </div>
+    `;
+  }).join("");
+}
 
-$("next").onclick = () => {
-  stopSpeech();
-  if (index < items.length - 1) index++;
-  else index = 0;
-  render();
-  save();
-};
+function populateTopicSelect() {
+  topicSelect.innerHTML = '<option value="0">⭐ Toàn bộ 18 Bộ Tranh (Đầy đủ 90 câu)</option>' +
+    P3_TOPICS.map((t, i) => `<option value="${i+1}">${t}</option>`).join("");
+  topicSelect.value = currentPictureTopic;
+}
 
-showBtn.onclick = () => {
-  const isLocked = answer.classList.contains("locked");
-  if (isLocked) {
-    answer.classList.remove("locked");
-    quiz.classList.add("show");
-    showBtn.textContent = "🙈 Ẩn đáp án";
-  } else {
-    answer.classList.add("locked");
-    quiz.classList.remove("show");
-    showBtn.textContent = "👁 Xem đáp án";
-  }
-};
-
-$("play").onclick = async () => {
+function changePictureTopic(val) {
   stopSpeech();
-  const r = ++run;
-  speaking = true;
+  currentPictureTopic = Number(val);
+  setupItems();
+}
+
+function switchPart(p) {
+  stopSpeech();
+  part = p;
+  
+  document.querySelectorAll(".nav button").forEach((b, i) => {
+    b.classList.toggle("active", i + 1 === part);
+  });
+  
+  $("p1box").style.display = part === 1 ? "block" : "none";
+  $("p2box").style.display = part === 2 ? "block" : "none";
+  $("p3box").style.display = part === 3 ? "block" : "none";
+  
+  if (part === 3) populateTopicSelect();
+  index = 0;
+  setupItems();
+}
+
+// 5 Giây Phản Xạ
+async function practiceReflex() {
+  stopSpeech();
+  const token = ++timerRun;
   const item = items[index];
   const rate = Number($("speed").value);
   
-  setStatus("🎧 Hãy lắng nghe câu hỏi...", "speak");
+  showAnswer = false;
+  render();
+  
+  setStatus("🎧 Hãy nghe câu hỏi...");
   await speak(item.q, rate);
-  if (r !== run || !speaking) return;
+  if (token !== timerRun) return;
   
-  setStatus("🗣 Đến lượt bạn trả lời (5s)...", "ok");
+  setStatus("🗣 BẮT ĐẦU NÓI CÂU TRẢ LỜI!");
   for (let s = 5; s >= 1; s--) {
-    if (r !== run || !speaking) return;
-    setStatus(`🗣 Hãy nói to câu trả lời! (${s}s)...`, "ok");
-    await new Promise(res => setTimeout(res, 1000));
+    if (token !== timerRun) return;
+    timerEl.textContent = s + "s";
+    await new Promise(r => setTimeout(r, 1000));
   }
+  timerEl.textContent = "";
+  if (token !== timerRun) return;
   
-  if (r !== run || !speaking) return;
-  answer.classList.remove("locked");
-  quiz.classList.add("show");
-  showBtn.textContent = "🙈 Ẩn đáp án";
+  showAnswer = true;
+  render();
   
-  setStatus("🔊 Nghe đáp án mẫu...", "speak");
+  setStatus("🔊 Nghe đối chiếu đáp án mẫu...");
   await speak(item.a, rate);
-  if (r !== run || !speaking) return;
-  
-  setStatus("✅ Hoàn thành! Bấm 'Sau ⏭' để tiếp tục.", "ok");
-  speaking = false;
+  if (token === timerRun) {
+    setStatus("✅ Hoàn thành lượt nói! Bấm 'Sau ⏭' để tiếp tục.");
+  }
+}
+
+// Event Listeners
+$("practice").onclick = practiceReflex;
+
+$("show").onclick = () => {
+  showAnswer = !showAnswer;
+  render();
+};
+
+$("hearAns").onclick = () => {
+  stopSpeech();
+  showAnswer = true;
+  render();
+  speak(items[index].a, Number($("speed").value));
 };
 
 $("slow").onclick = async () => {
   stopSpeech();
-  const r = ++run;
-  speaking = true;
+  const token = ++timerRun;
   const words = items[index].q.split(/\s+/);
-  setStatus("🐢 Đọc từng từ rất chậm...", "speak");
+  showAnswer = true;
+  render();
+  setStatus("🐢 Đọc từng từ rất chậm...");
   
   for (let i = 0; i < words.length; i++) {
-    if (r !== run || !speaking) return;
+    if (token !== timerRun) return;
     const wEl = document.getElementById(`qw-${i}`);
     if (wEl) wEl.classList.add("active");
     await speak(words[i], Math.min(0.40, Number($("speed").value)));
-    await new Promise(res => setTimeout(res, 350));
+    await new Promise(r => setTimeout(r, 300));
     if (wEl) wEl.classList.remove("active");
   }
-  
-  setStatus("Sẵn sàng học", "ok");
-  speaking = false;
+  setStatus("Sẵn sàng");
 };
 
-readBtn.onclick = () => {
-  showRead = !showRead;
-  readBtn.classList.toggle("active-toggle", showRead);
-  qRead.parentElement.classList.toggle("hidden", !showRead);
-  aRead.parentElement.classList.toggle("hidden", !showRead);
-};
-
-ipaBtn.onclick = () => {
-  showIpa = !showIpa;
-  ipaBtn.classList.toggle("active-toggle", showIpa);
-  qIpa.classList.toggle("hidden", !showIpa);
-  aIpa.classList.toggle("hidden", !showIpa);
-};
-
-transBtn.onclick = () => {
-  showTrans = !showTrans;
-  transBtn.classList.toggle("active-toggle", showTrans);
-  qVi.classList.toggle("hidden", !showTrans);
-  aVi.classList.toggle("hidden", !showTrans);
-};
-
-$("checkBtn").onclick = () => {
-  const typed = selfAnswer.value.trim().toLowerCase();
-  if (!typed) {
-    result.innerHTML = '<span class="warn">⚠️ Bạn hãy gõ câu trả lời vừa nói để đối chiếu.</span>';
-    return;
+$("next").onclick = () => {
+  stopSpeech();
+  if (weakMode) {
+    const key = getLearnedKey(items[index]);
+    if (!isLearned(items[index])) {
+      misses[key] = (misses[key] || 0) + 1;
+      save();
+    }
   }
-  const target = items[index].a.toLowerCase().replace(/[^a-z0-9\s]/gi, "");
-  const typedClean = typed.replace(/[^a-z0-9\s]/gi, "");
-  const targetWords = target.split(/\s+/);
-  const common = targetWords.filter(w => typedClean.includes(w)).length;
-  const score = Math.round((common / targetWords.length) * 10);
-  
-  if (score >= 8) {
-    result.innerHTML = `<span class="good">🎉 Xuất sắc! Đạt ${score}/10 điểm. Câu của bạn rất chuẩn xác!</span>`;
-  } else if (score >= 5) {
-    result.innerHTML = `<span class="warn">👍 Khá tốt (${score}/10). Hãy đọc to lại theo đáp án mẫu một lần nữa nhé!</span>`;
+  index = index < items.length - 1 ? index + 1 : 0;
+  showAnswer = false;
+  render();
+  save();
+};
+
+$("prev").onclick = () => {
+  stopSpeech();
+  index = index > 0 ? index - 1 : items.length - 1;
+  showAnswer = false;
+  render();
+  save();
+};
+
+$("learnBtn").onclick = () => {
+  const item = items[index];
+  const key = getLearnedKey(item);
+  if (learned.has(key)) {
+    learned.delete(key);
   } else {
-    result.innerHTML = `<span class="warn">⚠️ Đạt ${score}/10 điểm. Hãy xem đáp án mẫu và luyện đọc lại nào!</span>`;
+    learned.add(key);
   }
+  save();
+  render();
 };
 
-$("resetBtn").onclick = () => {
-  if (confirm("Bạn có chắc muốn đặt lại toàn bộ tiến độ học tập?")) {
-    localStorage.removeItem("humg-speaking-progress");
+$("readToggleBtn").onclick = () => {
+  showRead = !showRead;
+  $("readToggleBtn").classList.toggle("active-toggle", showRead);
+  render();
+};
+
+$("ipaToggleBtn").onclick = () => {
+  showIpa = !showIpa;
+  $("ipaToggleBtn").classList.toggle("active-toggle", showIpa);
+  render();
+};
+
+$("viToggleBtn").onclick = () => {
+  showVi = !showVi;
+  $("viToggleBtn").classList.toggle("active-toggle", showVi);
+  render();
+};
+
+$("weakBtn").onclick = () => {
+  weakMode = !weakMode;
+  $("weakBtn").classList.toggle("active-toggle", weakMode);
+  $("weakBtn").textContent = weakMode ? "🔥 Câu yếu đang ở trước" : "🔥 Câu yếu trước";
+  setupItems();
+};
+
+$("focusBtn").onclick = () => {
+  focusMode = !focusMode;
+  $("focusBtn").classList.toggle("active-toggle", focusMode);
+  $("listSection").style.display = focusMode ? "none" : "block";
+  $("focusBtn").textContent = focusMode ? "📚 Hiện danh sách" : "🎯 Chế độ tập trung";
+};
+
+$("rows").onclick = e => {
+  const row = e.target.closest(".row");
+  if (!row) return;
+  stopSpeech();
+  index = Number(row.dataset.idx);
+  showAnswer = false;
+  render();
+  save();
+  window.scrollTo({ top: 180, behavior: "smooth" });
+};
+
+$("reset").onclick = () => {
+  if (confirm("Bạn có chắc muốn đặt lại toàn bộ tiến độ và danh sách câu đã thuộc?")) {
+    learned.clear();
+    for (const k of Object.keys(misses)) delete misses[k];
+    save();
     switchPart(1);
   }
 };
 
-document.querySelectorAll(".day").forEach(b => {
-  b.onclick = () => loadDay(Number(b.dataset.day), 0);
-});
-
-$("list").addEventListener("click", e => {
-  const el = e.target.closest(".item");
-  if (!el) return;
-  const idx = Number(el.dataset.idx);
-  if (idx >= 0 && idx < items.length) {
-    stopSpeech();
-    index = idx;
-    render();
-    save();
-    window.scrollTo({ top: 120, behavior: "smooth" });
-  }
+document.querySelectorAll("[data-day]").forEach(b => {
+  b.onclick = () => {
+    day = Number(b.dataset.day);
+    part = 1;
+    switchPart(1);
+  };
 });
 
 document.addEventListener("keydown", e => {
-  if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
-  if (e.code === "Space") { e.preventDefault(); $("play").click(); }
+  if (["INPUT", "SELECT"].includes(e.target.tagName)) return;
+  if (e.code === "Space") { e.preventDefault(); practiceReflex(); }
   if (e.key === "ArrowRight") { e.preventDefault(); $("next").click(); }
   if (e.key === "ArrowLeft") { e.preventDefault(); $("prev").click(); }
-  if (e.key === "a" || e.key === "A") { e.preventDefault(); showBtn.click(); }
+  if (e.key === "a" || e.key === "A") { e.preventDefault(); $("show").click(); }
+  if (e.key === "m" || e.key === "M") { e.preventDefault(); $("learnBtn").click(); }
 });
 
 if ($("testVoiceBtn")) {
   $("testVoiceBtn").onclick = async () => {
     stopSpeech();
-    setStatus("🔊 Đang thử giọng nói...", "speak");
-    await speak("Hello! Welcome to HUMG English speaking practice.", Number($("speed").value));
+    setStatus("🔊 Đang thử giọng nói...");
+    await speak("Hello! Welcome to HUMG English speaking practice. Let's study together!", Number($("speed").value));
   };
 }
 
@@ -1684,13 +1273,13 @@ if ($("voiceSelect")) {
 
 // Khôi phục tiến độ đã lưu
 try {
-  const saved = JSON.parse(localStorage.getItem("humg-speaking-progress"));
-  if (saved && saved.currentPart) {
-    currentPictureTopic = saved.currentPictureTopic || 0;
-    day = saved.day || 1;
-    switchPart(saved.currentPart);
-    if (saved.index) {
-      index = saved.index;
+  const savedState = JSON.parse(localStorage.getItem("humg-state"));
+  if (savedState && savedState.part) {
+    day = savedState.day || 1;
+    currentPictureTopic = savedState.currentPictureTopic || 0;
+    switchPart(savedState.part);
+    if (savedState.index) {
+      index = savedState.index;
       render();
     }
   } else {
