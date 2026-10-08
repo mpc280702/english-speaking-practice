@@ -400,9 +400,11 @@
       <button class="btn active-toggle" id="ipaBtn">🔤 IPA</button>
       <button class="btn active-toggle" id="transBtn">🌐 Dịch TV</button>
       <select class="btn" id="speed" aria-label="Tốc độ đọc">
-        <option value="0.6">0.60x · Rất chậm</option>
-        <option value="0.75" selected>0.75x · Chậm & Rõ</option>
-        <option value="0.9">0.90x · Vừa phải</option>
+        <option value="0.35">0.35x · Siêu siêu chậm (Luyện khẩu hình)</option>
+        <option value="0.45">0.45x · Siêu chậm (Rõ từng âm đuôi)</option>
+        <option value="0.55">0.55x · Rất chậm</option>
+        <option value="0.70" selected>0.70x · Chậm & Rõ</option>
+        <option value="0.85">0.85x · Vừa phải</option>
         <option value="1.0">1.00x · Chuẩn bản xứ</option>
       </select>
     </div>
@@ -979,8 +981,8 @@ $("slow").onclick = async () => {
     if (r !== run || !speaking) return;
     const wEl = document.getElementById(`qw-${i}`);
     if (wEl) wEl.classList.add("active");
-    await speak(words[i], 0.55);
-    await new Promise(res => setTimeout(res, 250));
+    await speak(words[i], Math.min(0.45, Number($("speed").value)));
+    await new Promise(res => setTimeout(res, 350));
     if (wEl) wEl.classList.remove("active");
   }
   
