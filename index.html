@@ -3,1338 +3,1073 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Luyện Nói Tiếng Anh - 40 Câu Chuẩn Thứ Tự (Đọc Siêu Chậm & Rõ Chữ)</title>
+  <title>English Speaking — 4 Day Fast Track (40 Topics)</title>
   <style>
     :root {
-      --bg-dark: #080c14;
-      --card-bg: #111827;
+      --bg: #080c14;
+      --card: #111827;
+      --card2: #0f172a;
       --primary: #6366f1;
       --primary-hover: #4f46e5;
+      --primary2: #818cf8;
       --accent: #10b981;
-      --accent-glow: rgba(16, 185, 129, 0.25);
-      --highlight: #facc15;
-      --warning: #f59e0b;
+      --yellow: #facc15;
       --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.1);
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.10);
+      --danger: #fb7185;
+      --highlight: #facc15;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      background: var(--bg-dark);
+      margin: 0;
+      background: radial-gradient(circle at top, #172033 0%, #080c14 48%);
       color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 16px;
+      padding: 18px;
     }
-
-    .app-header {
-      width: 100%;
-      max-width: 1040px;
+    button, select, input { font: inherit; }
+    .wrap { width: min(1080px, 100%); margin: auto; }
+    
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      gap: 15px;
+      margin-bottom: 14px;
       flex-wrap: wrap;
-      gap: 12px;
     }
-
-    .app-title {
+    .brand {
       font-size: 1.35rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #a5b4fc, #6366f1, #38bdf8);
+      font-weight: 900;
+      background: linear-gradient(135deg, #a5b4fc, #38bdf8);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: transparent;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
-
-    .section-selector {
-      display: flex;
-      gap: 5px;
-      background: rgba(255,255,255,0.06);
-      padding: 4px;
-      border-radius: 12px;
-      flex-wrap: wrap;
+    
+    .day-box, .card {
+      background: rgba(17, 24, 39, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
     }
-
-    .sec-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      padding: 7px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 700;
-      transition: all 0.2s;
-    }
-
-    .sec-btn.active {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    /* Player Container */
-    .player-card {
-      width: 100%;
-      max-width: 1040px;
-      background: var(--card-bg);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .video-viewport {
-      position: relative;
-      width: 100%;
-      min-height: 500px;
-      background: radial-gradient(circle at 50% 15%, #1e293b 0%, #090e1a 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 28px 40px;
-      overflow: hidden;
-    }
-
-    .viewport-top {
+    .day-box { padding: 16px; margin-bottom: 14px; }
+    .day-head {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      z-index: 2;
+      gap: 12px;
+      align-items: flex-start;
       flex-wrap: wrap;
-      gap: 10px;
     }
-
-    .badge-counter {
-      background: rgba(99, 102, 241, 0.25);
-      border: 1px solid rgba(99, 102, 241, 0.45);
-      color: #c7d2fe;
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      font-weight: 700;
+    .day-title { font-weight: 900; color: #c7d2fe; font-size: 1.05rem; }
+    .day-sub { font-size: 0.86rem; color: var(--muted); margin-top: 4px; }
+    .badge {
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      font-size: 0.78rem;
+      font-weight: 900;
       letter-spacing: 0.5px;
     }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
+    
+    .days {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid var(--border);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      color: var(--warning);
-      font-weight: 600;
+      margin-top: 14px;
     }
-
-    .status-badge.speaking {
-      color: #38bdf8;
-      border-color: rgba(56, 189, 248, 0.4);
+    .day {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: #cbd5e1;
+      border-radius: 12px;
+      padding: 11px 10px;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 900;
+      transition: all 0.2s ease;
     }
-
-    .status-badge.speaking-word {
-      color: var(--highlight);
-      border-color: rgba(250, 204, 21, 0.5);
-      background: rgba(250, 204, 21, 0.12);
+    .day:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(99, 102, 241, 0.4); }
+    .day small { display: block; color: #64748b; margin-top: 3px; font-weight: 700; font-size: 0.75rem; }
+    .day.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
     }
-
-    .status-badge.your-turn {
-      color: var(--accent);
-      border-color: rgba(16, 185, 129, 0.4);
-      background: var(--accent-glow);
+    .day.active small { color: #e0e7ff; }
+    
+    .progress {
+      height: 6px;
+      background: #1e293b;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 14px;
     }
-
-    .dot-pulse {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: currentColor;
-      animation: pulse 1.2s infinite;
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.3s ease;
     }
-
-    @keyframes pulse {
-      0% { opacity: 0.3; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1.2); }
-      100% { opacity: 0.3; transform: scale(0.8); }
-    }
-
-    /* Content Area */
-    .viewport-content {
+    
+    .card { overflow: hidden; margin-bottom: 14px; }
+    .screen {
+      padding: 26px 32px;
+      min-height: 480px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      gap: 20px;
-      z-index: 2;
-      width: 100%;
-      padding: 6px 0;
+      justify-content: space-between;
     }
-
-    .question-block {
-      max-width: 920px;
-      width: 100%;
-    }
-
-    .tag-header {
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
+    .top {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-
-    .tag-q { color: #f43f5e; }
-    .tag-a { color: var(--accent); }
-
-    /* Word highlighting / Karaoke */
-    .word {
-      display: inline-block;
-      padding: 2px 4px;
-      border-radius: 6px;
-      transition: all 0.15s ease;
+    .counter {
+      background: rgba(99, 102, 241, 0.18);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 900;
+      color: #c7d2fe;
+      font-size: 0.88rem;
     }
-
-    .word.active {
-      background: var(--highlight);
-      color: #000 !important;
-      font-weight: 900 !important;
-      transform: scale(1.15);
-      box-shadow: 0 0 18px rgba(250, 204, 21, 0.85);
-    }
-
-    .q-en {
-      font-size: 1.95rem;
+    .status {
       font-weight: 800;
+      font-size: 0.92rem;
+      color: #fbbf24;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status.ok { color: #6ee7b7; }
+    .status.speak { color: #38bdf8; }
+    
+    .main { text-align: center; margin: 10px 0; }
+    .label {
+      font-size: 0.76rem;
+      letter-spacing: 2px;
+      font-weight: 900;
+      color: #fb7185;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .question {
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-weight: 900;
+      line-height: 1.38;
       color: #ffffff;
-      line-height: 1.35;
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
-
+    
     .ipa-text {
       font-size: 1.02rem;
       color: #38bdf8;
       font-family: 'Consolas', 'Courier New', monospace;
       margin-top: 6px;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.5px;
+      transition: all 0.2s ease;
     }
-
-    .q-vi {
-      font-size: 1.05rem;
-      color: var(--text-muted);
+    .vi-text {
+      font-size: 1rem;
+      color: var(--muted);
       margin-top: 6px;
       font-weight: 500;
+      line-height: 1.4;
+      transition: all 0.2s ease;
     }
-
-    .answer-block {
-      width: 100%;
-      max-width: 920px;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-left: 6px solid var(--accent);
-      border-radius: 14px;
-      padding: 16px 24px;
+    .hidden { display: none !important; }
+    
+    .answer {
+      margin: 22px auto 0;
+      max-width: 900px;
       text-align: left;
-      transition: all 0.35s ease;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
+      transition: all 0.25s ease;
     }
-
-    .answer-block.dimmed {
-      opacity: 0.15;
-      filter: blur(4px);
+    .answer.locked {
+      opacity: 0.12;
+      filter: blur(5px);
+      user-select: none;
+      pointer-events: none;
     }
-
-    .a-en {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #a7f3d0;
-      line-height: 1.35;
-    }
-
-    .a-vi {
-      font-size: 1.02rem;
-      color: #94a3b8;
-      margin-top: 6px;
-    }
-
-    /* Countdown overlay */
-    .countdown-indicator {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.05rem;
-      color: var(--warning);
-      font-weight: 700;
-      background: rgba(0,0,0,0.4);
-      padding: 6px 16px;
-      border-radius: 30px;
-      border: 1px solid rgba(245, 158, 11, 0.4);
-    }
-
-    .countdown-number {
-      font-size: 1.55rem;
+    .answer-label {
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
       font-weight: 900;
-      color: #fbbf24;
+      color: #6ee7b7;
+      margin-bottom: 6px;
+      text-transform: uppercase;
     }
-
-    /* Progress timeline */
-    .timeline-container {
-      width: 100%;
-      height: 6px;
-      background: rgba(255,255,255,0.1);
-      cursor: pointer;
+    .answer-text {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #a7f3d0;
+      line-height: 1.45;
     }
-
-    .timeline-progress {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transition: width 0.25s linear;
+    .hint {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-style: italic;
     }
-
-    /* Controls bar */
-    .controls-bar {
-      padding: 16px 24px;
-      background: rgba(15, 23, 42, 0.95);
+    
+    .word {
+      display: inline-block;
+      padding: 1px 3px;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+    }
+    .word.active {
+      background: var(--highlight);
+      color: #000 !important;
+      font-weight: 900 !important;
+      transform: scale(1.12);
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.8);
+    }
+    
+    .controls {
+      padding: 14px 18px;
+      background: rgba(15, 23, 42, 0.96);
+      border-top: 1px solid var(--line);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .control-group {
-      display: flex;
+      gap: 8px;
+      justify-content: center;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
     }
-
     .btn {
+      border: 1px solid var(--line);
       background: #1e293b;
       color: #fff;
-      border: 1px solid rgba(255,255,255,0.12);
       padding: 9px 14px;
       border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
       cursor: pointer;
+      font-weight: 800;
+      font-size: 0.88rem;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s;
+      transition: all 0.15s ease;
     }
-
-    .btn:hover {
-      background: #334155;
-      border-color: rgba(255,255,255,0.25);
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      border-color: transparent;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-hover);
-    }
-
-    .btn-accent {
-      background: #065f46;
-      border-color: rgba(16, 185, 129, 0.4);
-      color: #a7f3d0;
-    }
-
-    .btn-accent:hover {
-      background: #047857;
-    }
-
-    .btn-warning {
-      background: #78350f;
-      border-color: rgba(245, 158, 11, 0.4);
-      color: #fde68a;
-    }
-
-    .btn-warning:hover {
-      background: #92400e;
-    }
-
-    .select-dropdown {
-      background: #1e293b;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      outline: none;
-      cursor: pointer;
-    }
-
-    /* Jump to question */
-    .jump-box {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* List Tab */
-    .list-view {
-      display: none;
-      width: 100%;
-      max-width: 1040px;
-      background: var(--card-bg);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      padding: 24px;
-    }
-
-    .list-item {
+    .btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .primary { background: var(--primary); border-color: transparent; }
+    .green { background: #065f46; color: #d1fae5; border-color: #047857; }
+    .yellow { background: #78350f; color: #fde68a; border-color: #92400e; }
+    .ghost { background: transparent; }
+    .btn.active-toggle { background: rgba(99, 102, 241, 0.35); border-color: var(--primary); color: #c7d2fe; }
+    
+    .quiz {
+      margin-top: 14px;
       padding: 16px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      display: none;
+    }
+    .quiz.show { display: block; }
+    .quiz-title { font-weight: 900; margin-bottom: 8px; font-size: 0.95rem; }
+    .quiz-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .quiz input {
+      flex: 1;
+      min-width: 220px;
+      background: #0b1220;
+      color: #fff;
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      border-radius: 10px;
+      outline: none;
+    }
+    .quiz input:focus { border-color: var(--primary); }
+    .result { margin-top: 10px; line-height: 1.55; font-weight: 700; font-size: 0.92rem; }
+    .good { color: #6ee7b7; }
+    .warn { color: #fbbf24; }
+    
+    .list { padding: 18px; margin-top: 14px; }
+    .item {
       display: flex;
-      justify-content: space-between;
+      gap: 12px;
       align-items: center;
-      gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 8px;
       cursor: pointer;
+      background: rgba(255, 255, 255, 0.02);
       transition: all 0.2s;
     }
-
-    .list-item:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(99, 102, 241, 0.3);
-    }
-
-    .list-item-num {
-      font-weight: 800;
-      color: var(--primary-light);
-      font-size: 1.15rem;
-      min-width: 50px;
-    }
-
-    .list-item-body {
-      flex: 1;
-    }
-
-    .list-item-q {
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: #fff;
-    }
-
-    .list-item-a {
-      font-size: 0.95rem;
-      color: #a7f3d0;
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    .play-btn-circle {
-      background: rgba(99, 102, 241, 0.2);
-      color: #818cf8;
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .q-en { font-size: 1.4rem; }
-      .a-en { font-size: 1.2rem; }
-      .video-viewport { padding: 18px; min-height: 420px; }
-      .controls-bar { justify-content: center; }
+    .item:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(99, 102, 241, 0.35); }
+    .item.active { border-color: var(--primary); background: rgba(99, 102, 241, 0.12); }
+    .num { color: #818cf8; font-weight: 900; min-width: 40px; font-size: 0.95rem; }
+    .qsmall { font-weight: 750; flex: 1; font-size: 0.95rem; }
+    .as { color: #a7f3d0; font-size: 0.88rem; margin-top: 3px; }
+    
+    @media(max-width:700px){
+      body { padding: 10px; }
+      .days { grid-template-columns: repeat(2, 1fr); }
+      .screen { padding: 18px 14px; min-height: 440px; }
+      .controls { padding: 12px 8px; }
+      .btn { padding: 9px 11px; font-size: 0.82rem; }
+      .quiz-row { flex-direction: column; align-items: stretch; }
+      .quiz input { width: 100%; }
     }
   </style>
 </head>
 <body>
-
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="app-title">
-      <span>🎓🐢</span> Video Luyện Nói Tiếng Anh (Đầy Đủ 40 Câu Chuẩn Thứ Tự)
-    </div>
-    
-    <!-- Section Navigation -->
-    <div class="section-selector">
-      <button class="sec-btn active" id="secBtnAll" onclick="filterRange('all')">📚 Tất Cả (40 Câu)</button>
-      <button class="sec-btn" id="secBtnP1" onclick="filterRange('p1')">📘 Câu 1 - 12</button>
-      <button class="sec-btn" id="secBtnP2" onclick="filterRange('p2')">📙 Câu 13 - 29</button>
-      <button class="sec-btn" id="secBtnP3" onclick="filterRange('p3')">📗 Câu 30 - 40</button>
-      <button class="sec-btn" id="secBtnList" onclick="toggleViewMode()">📋 Xem Toàn Bộ</button>
-    </div>
+<div class="wrap">
+  <header>
+    <div class="brand">🎓 English Speaking — 4 Day Fast Track</div>
+    <button class="btn ghost" id="resetBtn">↺ Đặt lại tiến độ</button>
   </header>
 
-  <!-- Video Player Section -->
-  <div class="player-card" id="videoSection">
-    <div class="video-viewport" id="viewport">
-      
-      <!-- Top header in video -->
-      <div class="viewport-top">
-        <div class="badge-counter" id="slideBadge">Câu 1 / 40</div>
-        <div class="status-badge" id="statusBadge">
-          <span class="dot-pulse"></span>
-          <span id="statusText">Sẵn sàng học</span>
-        </div>
-        <div class="countdown-indicator" id="countdownBox" style="display: none;">
-          <span id="countdownLabel">Lượt bạn nói:</span>
-          <span class="countdown-number" id="countdownSec">4</span>s
-        </div>
+  <!-- Section Lộ trình học 4 ngày -->
+  <section class="day-box">
+    <div class="day-head">
+      <div>
+        <div class="day-title">LỘ TRÌNH HỌC CẤP TỐC 4 NGÀY (40 TOPICS)</div>
+        <div class="day-sub" id="daySub">Ngày 1: nghe, hiểu và bắt đầu làm quen 10 câu đầu.</div>
       </div>
+      <div class="badge" id="dayBadge">DAY 1 · LÀM QUEN</div>
+    </div>
+    <div class="days">
+      <button class="day active" data-day="1">DAY 1<small>10 câu · Làm quen</small></button>
+      <button class="day" data-day="2">DAY 2<small>10 câu · Phản xạ</small></button>
+      <button class="day" data-day="3">DAY 3<small>10 câu · Nói tự nhiên</small></button>
+      <button class="day" data-day="4">DAY 4<small>40 câu · Thi thử</small></button>
+    </div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+  </section>
 
-      <!-- Center content: Question & Answer with Word Highlight -->
-      <div class="viewport-content">
-        <div class="question-block">
-          <div class="tag-header tag-q">
-            <span>🔴 QUESTION (CÂU HỎI)</span>
-          </div>
-          <div class="q-en" id="qText"></div>
-          <div class="ipa-text" id="qIpaText"></div>
-          <div class="q-vi" id="qViText"></div>
+  <!-- Màn hình thẻ câu hỏi & luyện nói -->
+  <section class="card">
+    <div class="screen">
+      <div class="top">
+        <div class="counter" id="counter">Câu 1 / 10</div>
+        <div class="status" id="status">Sẵn sàng học</div>
+      </div>
+      
+      <div class="main">
+        <div class="label">🔴 QUESTION · CÂU HỎI</div>
+        <div class="question" id="question"></div>
+        <div class="ipa-text" id="qIpa"></div>
+        <div class="vi-text" id="qVi"></div>
+
+        <div class="answer locked" id="answer">
+          <div class="answer-label">🟢 MODEL ANSWER · CÂU TRẢ LỜI MẪU</div>
+          <div class="answer-text" id="answerText"></div>
+          <div class="ipa-text" id="aIpa"></div>
+          <div class="vi-text" id="aVi"></div>
+          <div class="hint">💡 Hãy tự trả lời bằng giọng nói trước. Sau đó bấm xem đáp án để đối chiếu.</div>
         </div>
 
-        <div class="answer-block dimmed" id="answerBlock">
-          <div class="tag-header tag-a" style="justify-content: flex-start;">
-            <span>🟢 MODEL ANSWER (CÂU TRẢ LỜI MẪU)</span>
+        <div class="quiz" id="quiz">
+          <div class="quiz-title">🎯 Tự kiểm tra câu trả lời (Gõ hoặc đối chiếu)</div>
+          <div class="quiz-row">
+            <input id="selfAnswer" placeholder="Gõ nhanh câu bạn vừa nói để hệ thống chấm điểm...">
+            <button class="btn green" id="checkBtn">Kiểm tra</button>
           </div>
-          <div class="a-en" id="aText"></div>
-          <div class="ipa-text" id="aIpaText"></div>
-          <div class="a-vi" id="aViText"></div>
+          <div class="result" id="result"></div>
         </div>
       </div>
 
       <div></div>
     </div>
 
-    <!-- Timeline Progress -->
-    <div class="timeline-container" onclick="handleTimelineClick(event)">
-      <div class="timeline-progress" id="progressBar"></div>
+    <!-- Thanh điều khiển -->
+    <div class="controls">
+      <button class="btn" id="prev">⏮ Trước</button>
+      <button class="btn primary" id="play">▶ Nghe & Luyện tập</button>
+      <button class="btn" id="next">Sau ⏭</button>
+      <button class="btn yellow" id="slow">🐢 Đọc từng từ</button>
+      <button class="btn green" id="show">👁 Xem đáp án</button>
+      <button class="btn active-toggle" id="ipaBtn">🔤 IPA</button>
+      <button class="btn active-toggle" id="transBtn">🌐 Dịch TV</button>
+      <select class="btn" id="speed" aria-label="Tốc độ đọc">
+        <option value="0.6">0.60x · Rất chậm</option>
+        <option value="0.75" selected>0.75x · Chậm & Rõ</option>
+        <option value="0.9">0.90x · Vừa phải</option>
+        <option value="1.0">1.00x · Chuẩn bản xứ</option>
+      </select>
     </div>
+  </section>
 
-    <!-- Controls -->
-    <div class="controls-bar">
-      <div class="control-group">
-        <button class="btn" onclick="prevSlide()">⏮ Trước</button>
-        <button class="btn btn-primary" id="btnPlayPause" onclick="togglePlayPause()">
-          ▶ Phát Video Tự Động
-        </button>
-        <button class="btn" onclick="nextSlide()">Sau ⏭</button>
-      </div>
+  <!-- Ghi chú Day 4 -->
+  <section class="quiz" id="testNote">
+    <div class="quiz-title">🟥 DAY 4 — THI THỬ 40 CÂU (XÁO TRỘN NGẪU NHIÊN)</div>
+    <div class="result">Ở Day 4, câu hỏi được xáo trộn ngẫu nhiên. Hãy trả lời bằng miệng trước 5-7 giây, sau đó mở đáp án để tự chấm điểm phản xạ của bạn.</div>
+  </section>
 
-      <!-- Pronunciation Controls -->
-      <div class="control-group">
-        <button class="btn btn-warning" onclick="speakWordByWord('q')" title="Đọc ngắt từng từ một cực kỳ rõ ràng">
-          🐢 Đọc Từng Chữ (Câu Hỏi)
-        </button>
-        <button class="btn btn-accent" onclick="speakWordByWord('a')" title="Đọc ngắt từng từ một cực kỳ rõ ràng">
-          🐢 Đọc Từng Chữ (Đáp Án)
-        </button>
-      </div>
+  <!-- Danh sách 40 câu -->
+  <section class="card list">
+    <div class="quiz-title">📚 Danh sách câu hỏi trong ngày</div>
+    <div id="list"></div>
+  </section>
+</div>
 
-      <div class="control-group">
-        <div class="jump-box">
-          <span style="font-size: 0.88rem; color: #94a3b8;">Đến câu:</span>
-          <select class="select-dropdown" id="jumpSelect" onchange="jumpTo(this.value)">
-          </select>
-        </div>
+<script>
+// TOÀN BỘ DỮ LIỆU 40 CÂU HỎI KÈM PHIÊN ÂM IPA & BẢN DỊCH TIẾNG VIỆT
+const DATA = [
+  {
+    id: 1,
+    q: "Do you have a job or are you a student?",
+    qIpa: "/duː juː hæv ə dʒɒb ɔːr ɑːr juː ə ˈstjuːdnt/",
+    qVi: "Bạn đã đi làm hay là học sinh/sinh viên?",
+    a: "I'm a student.",
+    aIpa: "/aɪm ə ˈstjuːdnt/",
+    aVi: "Tôi là sinh viên."
+  },
+  {
+    id: 2,
+    q: "How do you usually get to your university?",
+    qIpa: "/haʊ duː juː ˈjuːʒuəli ɡet tuː jɔːr ˌjuːnɪˈvɜːrsəti/",
+    qVi: "Bạn thường đến trường đại học bằng phương tiện gì?",
+    a: "I usually get to my university by bus.",
+    aIpa: "/aɪ ˈjuːʒuəli ɡet tuː maɪ ˌjuːnɪˈvɜːrsəti baɪ bʌs/",
+    aVi: "Tôi thường đến trường bằng xe buýt. (by + phương tiện)"
+  },
+  {
+    id: 3,
+    q: "When did you start to learn English?",
+    qIpa: "/wen dɪd juː stɑːrt tuː lɜːrn ˈɪŋɡlɪʃ/",
+    qVi: "Bạn bắt đầu học tiếng Anh từ khi nào?",
+    a: "I started learning English five years ago.",
+    aIpa: "/aɪ ˈstɑːrtɪd ˈlɜːrnɪŋ ˈɪŋɡlɪʃ faɪv jɪərz əˈɡoʊ/",
+    aVi: "Tôi bắt đầu học tiếng Anh từ 5 năm trước. (started: quá khứ)"
+  },
+  {
+    id: 4,
+    q: "Do you like it? Why? Why not?",
+    qIpa: "/duː juː laɪk ɪt? waɪ? waɪ nɒt/",
+    qVi: "Bạn có thích nó không? Tại sao?",
+    a: "Yes, I do. Because it is very interesting and useful.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈveri ˈɪntrəstɪŋ ænd ˈjuːsfəl/",
+    aVi: "Có chứ. Vì tiếng Anh rất thú vị và bổ ích."
+  },
+  {
+    id: 5,
+    q: "Tell me something about your plans in the future?",
+    qIpa: "/tel miː ˈsʌmθɪŋ əˈbaʊt jɔːr plænz ɪn ðə ˈfjuːtʃər/",
+    qVi: "Hãy chia sẻ về các kế hoạch tương lai của bạn?",
+    a: "In the future, I will find a good job, buy a car, and get married.",
+    aIpa: "/ɪn ðə ˈfjuːtʃər, aɪ wɪl faɪnd ə ɡʊd dʒɒb, baɪ ə kɑːr, ænd ɡet ˈmærid/",
+    aVi: "Trong tương lai, tôi sẽ tìm việc tốt, mua xe và lập gia đình."
+  },
+  {
+    id: 6,
+    q: "What are your hobbies?",
+    qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/",
+    qVi: "Sở thích của bạn là gì?",
+    a: "I like reading books and playing video games.",
+    aIpa: "/aɪ laɪk ˈriːdɪŋ bʊks ænd ˈpleɪɪŋ ˈvɪdioʊ ɡeɪmz/",
+    aVi: "Tôi thích đọc sách và chơi trò chơi điện tử."
+  },
+  {
+    id: 7,
+    q: "Do you like video games? Why? Why not?",
+    qIpa: "/duː juː laɪk ˈvɪdioʊ ɡeɪmz? waɪ? waɪ nɒt/",
+    qVi: "Bạn có thích trò chơi điện tử không? Tại sao?",
+    a: "Yes, I do. Because they are interesting and help me relax.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz ðeɪ ɑːr ˈɪntrəstɪŋ ænd help miː rɪˈlæks/",
+    aVi: "Có, tôi thích. Vì game rất thú vị và giúp tôi thư giãn."
+  },
+  {
+    id: 8,
+    q: "Do you think video games are bad for children? Why?",
+    qIpa: "/duː juː θɪŋk ˈvɪdioʊ ɡeɪmz ɑːr bæd fɔːr ˈtʃɪldrən? waɪ/",
+    qVi: "Bạn có nghĩ video game có hại cho trẻ em không? Tại sao?",
+    a: "Yes, I do. Because children can easily become addicted to games.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz ˈtʃɪldrən kæn ˈiːzəli bɪˈkʌm əˈdɪktɪd tuː ɡeɪmz/",
+    aVi: "Có. Vì trẻ em rất dễ bị nghiện game."
+  },
+  {
+    id: 9,
+    q: "Where did you go on your last holiday?",
+    qIpa: "/weər dɪd juː ɡoʊ ɒn jɔːr læst ˈhɒlədeɪ/",
+    qVi: "Kỳ nghỉ trước bạn đã đi đâu?",
+    a: "On my last holiday, I went to Sam Son beach with my family.",
+    aIpa: "/ɒn maɪ læst ˈhɒlədeɪ, aɪ went tuː Sam Son biːtʃ wɪð maɪ ˈfæməli/",
+    aVi: "Vào kỳ nghỉ trước, tôi đã đi biển Sầm Sơn cùng gia đình."
+  },
+  {
+    id: 10,
+    q: "Did you enjoy it? Why?",
+    qIpa: "/dɪd juː ɪnˈdʒɔɪ ɪt? waɪ/",
+    qVi: "Bạn có thích chuyến đi đó không? Tại sao?",
+    a: "Yes, I did. Because I had a wonderful time there.",
+    aIpa: "/jes, aɪ dɪd. bɪˈkəz aɪ hæd ə ˈwʌndərfəl taɪm ðeər/",
+    aVi: "Có, tôi rất thích. Vì tôi đã có khoảng thời gian tuyệt vời ở đó."
+  },
+  {
+    id: 11,
+    q: "Do you have a large family or a small family?",
+    qIpa: "/duː juː hæv ə lɑːrdʒ ˈfæməli ɔːr ə smɔːl ˈfæməli/",
+    qVi: "Gia đình bạn là gia đình lớn hay gia đình nhỏ?",
+    a: "I have a small family. There are four people: my dad, my mom, my brother, and me.",
+    aIpa: "/aɪ hæv ə smɔːl ˈfæməli. ðeər ɑːr fɔːr ˈpiːpl: maɪ dæd, maɪ mɒm, maɪ ˈbrʌðər, ænd miː/",
+    aVi: "Gia đình tôi nhỏ thôi. Có 4 người: bố, mẹ, anh trai và tôi."
+  },
+  {
+    id: 12,
+    q: "How much time do you spend with your family?",
+    qIpa: "/haʊ mʌtʃ taɪm duː juː spend wɪð jɔːr ˈfæməli/",
+    qVi: "Bạn dành bao nhiêu thời gian cho gia đình?",
+    a: "I spend every weekend with my family.",
+    aIpa: "/aɪ spend ˈevri ˈwiːkend wɪð maɪ ˈfæməli/",
+    aVi: "Tôi dành trọn vẹn mỗi dịp cuối tuần bên gia đình."
+  },
+  {
+    id: 13,
+    q: "How many hours do you study each day?",
+    qIpa: "/haʊ ˈmeni ˈaʊərz duː juː ˈstʌdi iːtʃ deɪ/",
+    qVi: "Mỗi ngày bạn học bao nhiêu tiếng?",
+    a: "I spend five hours studying each day.",
+    aIpa: "/aɪ spend faɪv ˈaʊərz ˈstʌdiɪŋ iːtʃ deɪ/",
+    aVi: "Tôi dành 5 tiếng mỗi ngày để học tập."
+  },
+  {
+    id: 14,
+    q: "Do you enjoy your study? Why?",
+    qIpa: "/duː juː ɪnˈdʒɔɪ jɔːr ˈstʌdi? waɪ/",
+    qVi: "Bạn có thích việc học của mình không? Tại sao?",
+    a: "Yes, I do. Because it is interesting and very useful.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈɪntrəstɪŋ ænd ˈveri ˈjuːsfəl/",
+    aVi: "Có chứ, vì việc học rất thú vị và rất bổ ích."
+  },
+  {
+    id: 15,
+    q: "What do you usually do in your free time?",
+    qIpa: "/wɒt duː juː ˈjuːʒuəli duː ɪn jɔːr friː taɪm/",
+    qVi: "Bạn thường làm gì vào thời gian rảnh?",
+    a: "In my free time, I usually listen to music and read books.",
+    aIpa: "/ɪn maɪ friː taɪm, aɪ ˈjuːʒuəli ˈlɪsn tuː ˈmjuːzɪk ænd riːd bʊks/",
+    aVi: "Vào thời gian rảnh, tôi thường nghe nhạc và đọc sách."
+  },
+  {
+    id: 16,
+    q: "Do you prefer to stay alone or with your friends? Why?",
+    qIpa: "/duː juː prɪˈfɜːr tuː steɪ əˈloʊn ɔːr wɪð jɔːr frendz? waɪ/",
+    qVi: "Bạn thích ở một mình hay ở cùng bạn bè hơn? Tại sao?",
+    a: "I prefer to stay with my friends because we can help each other easily.",
+    aIpa: "/aɪ prɪˈfɜːr tuː steɪ wɪð maɪ frendz bɪˈkəz wiː kæn help iːtʃ ˈʌðər ˈiːzəli/",
+    aVi: "Tôi thích ở cùng bạn bè hơn vì chúng tôi có thể giúp đỡ nhau dễ dàng."
+  },
+  {
+    id: 17,
+    q: "Do you like going out? Why?",
+    qIpa: "/duː juː laɪk ˈɡoʊɪŋ aʊt? waɪ/",
+    qVi: "Bạn có thích đi ra ngoài chơi không? Tại sao?",
+    a: "Yes, I do. Because going out makes me feel good.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz ˈɡoʊɪŋ aʊt meɪks miː fiːl ɡʊd/",
+    aVi: "Có, tôi thích. Vì ra ngoài khiến tôi cảm thấy thoải mái và vui vẻ."
+  },
+  {
+    id: 18,
+    q: "What do you usually do when you go out?",
+    qIpa: "/wɒt duː juː ˈjuːʒuəli duː wen juː ɡoʊ aʊt/",
+    qVi: "Bạn thường làm gì khi đi ra ngoài?",
+    a: "I usually go to the cinema with my friends.",
+    aIpa: "/aɪ ˈjuːʒuəli ɡoʊ tuː ðə ˈsɪnəmə wɪð maɪ frendz/",
+    aVi: "Tôi thường đi xem phim rạp cùng bạn bè."
+  },
+  {
+    id: 19,
+    q: "Tell me about your favourite sport?",
+    qIpa: "/tel miː əˈbaʊt jɔːr ˈfeɪvərɪt spɔːrt/",
+    qVi: "Hãy kể về môn thể thao yêu thích của bạn?",
+    a: "My favourite sport is swimming. I swim twice a week and it makes me feel good.",
+    aIpa: "/maɪ ˈfeɪvərɪt spɔːrt ɪz ˈswɪmɪŋ. aɪ swɪm twaɪs ə wiːk ænd ɪt meɪks miː fiːl ɡʊd/",
+    aVi: "Môn thể thao tôi yêu thích là bơi lội. Tôi bơi 2 lần một tuần và nó giúp tôi thấy khỏe khoắn."
+  },
+  {
+    id: 20,
+    q: "What kind of food do you like best?",
+    qIpa: "/wɒt kaɪnd əv fuːd duː juː laɪk best/",
+    qVi: "Bạn thích loại đồ ăn nào nhất?",
+    a: "I like beef, rice, and vegetables because they are good for my health.",
+    aIpa: "/aɪ laɪk biːf, raɪs, ænd ˈvedʒtəblz bɪˈkəz ðeɪ ɑːr ɡʊd fɔːr maɪ helθ/",
+    aVi: "Tôi thích thịt bò, cơm và rau vì chúng rất tốt cho sức khỏe."
+  },
+  {
+    id: 21,
+    q: "Do you like cooking? Why?",
+    qIpa: "/duː juː laɪk ˈkʊkɪŋ? waɪ/",
+    qVi: "Bạn có thích nấu ăn không? Tại sao?",
+    a: "Yes, I do. Because cooking makes me feel good and relaxed.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz ˈkʊkɪŋ meɪks miː fiːl ɡʊd ænd rɪˈlækst/",
+    aVi: "Có chứ. Vì nấu ăn giúp tôi thấy vui vẻ và thư thái."
+  },
+  {
+    id: 22,
+    q: "How often do you eat out?",
+    qIpa: "/haʊ ˈɒfn duː juː iːt aʊt/",
+    qVi: "Bạn có thường xuyên đi ăn ở ngoài không?",
+    a: "I sometimes eat out with my friends on weekends.",
+    aIpa: "/aɪ ˈsʌmtaɪmz iːt aʊt wɪð maɪ frendz ɒn ˈwiːkendz/",
+    aVi: "Thỉnh thoảng tôi đi ăn ngoài với bạn bè vào dịp cuối tuần."
+  },
+  {
+    id: 23,
+    q: "What kind of sport do you like playing? Why?",
+    qIpa: "/wɒt kaɪnd əv spɔːrt duː juː laɪk ˈpleɪɪŋ? waɪ/",
+    qVi: "Bạn thích chơi môn thể thao nào? Tại sao?",
+    a: "I like swimming because it helps me stay healthy.",
+    aIpa: "/aɪ laɪk ˈswɪmɪŋ bɪˈkəz ɪt helps miː steɪ ˈhelθi/",
+    aVi: "Tôi thích bơi lội vì môn này giúp tôi luôn khỏe mạnh."
+  },
+  {
+    id: 24,
+    q: "Tell me what do you enjoy doing in your free time?",
+    qIpa: "/tel miː wɒt duː juː ɪnˈdʒɔɪ ˈduːɪŋ ɪn jɔːr friː taɪm/",
+    qVi: "Hãy cho tôi biết bạn thích làm gì trong thời gian rảnh?",
+    a: "In my free time, I enjoy listening to music and watching movies.",
+    aIpa: "/ɪn maɪ friː taɪm, aɪ ɪnˈdʒɔɪ ˈlɪsnɪŋ tuː ˈmjuːzɪk ænd ˈwɒtʃɪŋ ˈmuːviz/",
+    aVi: "Vào thời gian rảnh, tôi thích nghe nhạc và xem phim."
+  },
+  {
+    id: 25,
+    q: "What do you study at the university?",
+    qIpa: "/wɒt duː juː ˈstʌdi æt ðə ˌjuːnɪˈvɜːrsəti/",
+    qVi: "Bạn học ngành gì ở trường đại học?",
+    a: "I study Information Technology at my university.",
+    aIpa: "/aɪ ˈstʌdi ˌɪnfərˈmeɪʃn tekˈnɒlədʒi æt maɪ ˌjuːnɪˈvɜːrsəti/",
+    aVi: "Tôi học ngành Công nghệ Thông tin tại trường đại học."
+  },
+  {
+    id: 26,
+    q: "Are you happy with your student life?",
+    qIpa: "/ɑːr juː ˈhæpi wɪð jɔːr ˈstjuːdnt laɪf/",
+    qVi: "Bạn có hài lòng với đời sống sinh viên không?",
+    a: "Yes, I am. Because I love my teachers and my friends.",
+    aIpa: "/jes, aɪ æm. bɪˈkəz aɪ lʌv maɪ ˈtiːtʃərz ænd maɪ frendz/",
+    aVi: "Có, tôi rất vui. Vì tôi quý mến thầy cô và bạn bè của mình."
+  },
+  {
+    id: 27,
+    q: "What did you have for dinner yesterday?",
+    qIpa: "/wɒt dɪd juː hæv fɔːr ˈdɪnər ˈjestərdeɪ/",
+    qVi: "Tối hôm qua bạn đã ăn món gì?",
+    a: "I had rice, fish, and vegetables for dinner yesterday.",
+    aIpa: "/aɪ hæd raɪs, fɪʃ, ænd ˈvedʒtəblz fɔːr ˈdɪnər ˈjestərdeɪ/",
+    aVi: "Tối hôm qua tôi đã ăn cơm, cá và rau."
+  },
+  {
+    id: 28,
+    q: "Tell me about the kind of food you like?",
+    qIpa: "/tel miː əˈbaʊt ðə kaɪnd əv fuːd juː laɪk/",
+    qVi: "Hãy chia sẻ về các món ăn bạn thích?",
+    a: "I like traditional Vietnamese food like beef, soup, and fresh vegetables.",
+    aIpa: "/aɪ laɪk trəˈdɪʃənl ˌvjetnəˈmiːz fuːd laɪk biːf, suːp, ænd freʃ ˈvedʒtəblz/",
+    aVi: "Tôi thích món ăn truyền thống Việt Nam như thịt bò, canh và rau tươi."
+  },
+  {
+    id: 29,
+    q: "Do you often watch TV?",
+    qIpa: "/duː juː ˈɒfn wɒtʃ ˌtiːˈviː/",
+    qVi: "Bạn có thường xem TV không?",
+    a: "Yes, I do. I often watch TV in the evening to relax.",
+    aIpa: "/jes, aɪ duː. aɪ ˈɒfn wɒtʃ ˌtiːˈviː ɪn ðə ˈiːvnɪŋ tuː rɪˈlæks/",
+    aVi: "Có chứ, tôi thường xem TV vào buổi tối để thư giãn."
+  },
+  {
+    id: 30,
+    q: "What TV programs do you like?",
+    qIpa: "/wɒt ˌtiːˈviː ˈproʊɡræmz duː juː laɪk/",
+    qVi: "Bạn thích những chương trình truyền hình nào?",
+    a: "I like The Voice because I really enjoy singing.",
+    aIpa: "/aɪ laɪk ðə vɔɪs bɪˈkəz aɪ ˈrɪəli ɪnˈdʒɔɪ ˈsɪŋɪŋ/",
+    aVi: "Tôi thích chương trình The Voice vì tôi rất thích ca hát."
+  },
+  {
+    id: 31,
+    q: "Where do you live?",
+    qIpa: "/weər duː juː lɪv/",
+    qVi: "Bạn đang sống ở đâu?",
+    a: "I live in Hanoi.",
+    aIpa: "/aɪ lɪv ɪn Hà Nội/",
+    aVi: "Tôi sống ở Hà Nội."
+  },
+  {
+    id: 32,
+    q: "Do you like living there? Why?",
+    qIpa: "/duː juː laɪk ˈlɪvɪŋ ðeər? waɪ/",
+    qVi: "Bạn có thích sống ở đó không? Tại sao?",
+    a: "Yes, I do. Because Hanoi is a big, beautiful, and exciting city.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz Hà Nội ɪz ə bɪɡ, ˈbjuːtɪfl, ænd ɪkˈsaɪtɪŋ ˈsɪti/",
+    aVi: "Có chứ, vì Hà Nội là một thành phố lớn, tươi đẹp và sôi động."
+  },
+  {
+    id: 33,
+    q: "Can you play any musical instrument such as guitar, piano or violin?",
+    qIpa: "/kæn juː pleɪ ˈeni ˈmjuːzɪkl ˈɪnstrəmənt sʌtʃ æz ɡɪˈtɑːr, piˈænoʊ ɔːr ˌvaɪəˈlɪn/",
+    qVi: "Bạn có thể chơi nhạc cụ nào như guitar, piano hay violin không?",
+    a: "Yes, I can. I can play the guitar.",
+    aIpa: "/jes, aɪ kæn. aɪ kæn pleɪ ðə ɡɪˈtɑːr/",
+    aVi: "Có, tôi biết chơi đàn guitar. (nhạc cụ đi với 'the': play the guitar)"
+  },
+  {
+    id: 34,
+    q: "What other country would you like to visit? Why?",
+    qIpa: "/wɒt ˈʌðər ˈkʌntri wʊd juː laɪk tuː ˈvɪzɪt? waɪ/",
+    qVi: "Bạn muốn đến thăm quốc gia nào khác? Tại sao?",
+    a: "I would like to visit China because I want to see the Great Wall and it is very beautiful.",
+    aIpa: "/aɪ wʊd laɪk tuː ˈvɪzɪt ˈtʃaɪnə bɪˈkəz aɪ wɒnt tuː siː ðə ɡreɪt wɔːl ænd ɪt ɪz ˈveri ˈbjuːtɪfl/",
+    aVi: "Tôi muốn đi Trung Quốc vì tôi muốn chiêm ngưỡng Vạn Lý Trường Thành và nơi đó rất đẹp."
+  },
+  {
+    id: 35,
+    q: "What are the popular sports in Vietnam?",
+    qIpa: "/wɒt ɑːr ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm/",
+    qVi: "Các môn thể thao phổ biến ở Việt Nam là gì?",
+    a: "I think the popular sports in Vietnam are football and volleyball.",
+    aIpa: "/aɪ θɪŋk ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm ɑːr ˈfʊtbɔːl ænd ˈvɒlibɔːl/",
+    aVi: "Tôi nghĩ môn thể thao phổ biến ở Việt Nam là bóng đá và bóng chuyền."
+  },
+  {
+    id: 36,
+    q: "How often do you play sports? What sports?",
+    qIpa: "/haʊ ˈɒfn duː juː pleɪ spɔːrts? wɒt spɔːrts/",
+    qVi: "Bạn có thường chơi thể thao không? Chơi môn gì?",
+    a: "I usually play sports on weekends because it makes me feel good. I play football.",
+    aIpa: "/aɪ ˈjuːʒuəli pleɪ spɔːrts ɒn ˈwiːkendz bɪˈkəz ɪt meɪks miː fiːl ɡʊd. aɪ pleɪ ˈfʊtbɔːl/",
+    aVi: "Tôi thường chơi thể thao vào cuối tuần vì nó giúp tôi khỏe mạnh. Tôi chơi bóng đá."
+  },
+  {
+    id: 37,
+    q: "What are your hobbies?",
+    qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/",
+    qVi: "Sở thích của bạn là gì?",
+    a: "My hobbies are reading books, playing games, and listening to music.",
+    aIpa: "/maɪ ˈhɒbiz ɑːr ˈriːdɪŋ bʊks, ˈpleɪɪŋ ɡeɪmz, ænd ˈlɪsnɪŋ tuː ˈmjuːzɪk/",
+    aVi: "Sở thích của tôi là đọc sách, chơi game và nghe nhạc."
+  },
+  {
+    id: 38,
+    q: "Do you like reading? Why?",
+    qIpa: "/duː juː laɪk ˈriːdɪŋ? waɪ/",
+    qVi: "Bạn có thích đọc sách không? Tại sao?",
+    a: "Yes, I do. Because reading books makes me feel relaxed and good.",
+    aIpa: "/jes, aɪ duː. bɪˈkəz ˈriːdɪŋ bʊks meɪks miː fiːl rɪˈlækst ænd ɡʊd/",
+    aVi: "Có chứ, vì đọc sách giúp tôi thấy thư giãn và thoải mái."
+  },
+  {
+    id: 39,
+    q: "What kind of book do you like best?",
+    qIpa: "/wɒt kaɪnd əv bʊk duː juː laɪk best/",
+    qVi: "Bạn thích loại sách nào nhất?",
+    a: "I like short stories best.",
+    aIpa: "/aɪ laɪk ʃɔːrt ˈstɔːriz best/",
+    aVi: "Tôi thích truyện ngắn nhất."
+  },
+  {
+    id: 40,
+    q: "What do you think the importance of English in your life?",
+    qIpa: "/wɒt duː juː θɪŋk ðə ɪmˈpɔːrtns əv ˈɪŋɡlɪʃ ɪn jɔːr laɪf/",
+    qVi: "Bạn nghĩ tầm quan trọng của tiếng Anh trong cuộc sống của mình là gì?",
+    a: "I think English is very important because if I am good at English, I can find a good job easily.",
+    aIpa: "/aɪ θɪŋk ˈɪŋɡlɪʃ ɪz ˈveri ɪmˈpɔːrtnt bɪˈkəz ɪf aɪ æm ɡʊd æt ˈɪŋɡlɪʃ, aɪ kæn faɪnd ə ɡʊd dʒɒb ˈiːzəli/",
+    aVi: "Tôi nghĩ tiếng Anh rất quan trọng vì nếu tôi giỏi tiếng Anh, tôi có thể tìm việc tốt dễ dàng."
+  }
+];
 
-        <label for="speedSelect" style="font-size: 0.88rem; color: #94a3b8;">Tốc độ:</label>
-        <select class="select-dropdown" id="speedSelect">
-          <option value="0.6" selected>0.60x (Siêu chậm)</option>
-          <option value="0.75">0.75x (Chậm & rõ)</option>
-          <option value="0.9">0.90x (Vừa phải)</option>
-          <option value="1.0">1.0x (Chuẩn bản xứ)</option>
-        </select>
+const DAY_CONFIG = {
+  1: { name: "DAY 1 · LÀM QUEN", sub: "Ngày 1: nghe, hiểu và bắt đầu làm quen 10 câu đầu.", range: [0, 9] },
+  2: { name: "DAY 2 · PHẢN XẠ", sub: "Ngày 2: nghe câu hỏi và tự trả lời trước khi xem đáp án.", range: [10, 19] },
+  3: { name: "DAY 3 · NÓI TỰ NHIÊN", sub: "Ngày 3: luyện phát âm chuẩn, giảm nhìn phụ đề và tăng tốc độ.", range: [20, 29] },
+  4: { name: "DAY 4 · THI THỬ", sub: "Ngày 4: kiểm tra ngẫu nhiên toàn bộ 40 câu hỏi không theo thứ tự.", range: [0, 39] }
+};
 
-        <button class="btn" id="btnToggleIpa" onclick="toggleIpa()">🔤 IPA</button>
-        <button class="btn" id="btnToggleTrans" onclick="toggleTranslation()">🌐 Dịch TV</button>
+let day = 1, items = [], index = 0, speaking = false, run = 0;
+let showIpa = true, showTrans = true;
+
+const $ = id => document.getElementById(id);
+const question = $("question"), qIpa = $("qIpa"), qVi = $("qVi");
+const answer = $("answer"), answerText = $("answerText"), aIpa = $("aIpa"), aVi = $("aVi");
+const counter = $("counter"), status = $("status"), bar = $("bar");
+const quiz = $("quiz"), selfAnswer = $("selfAnswer"), result = $("result");
+const showBtn = $("show"), ipaBtn = $("ipaBtn"), transBtn = $("transBtn");
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function setStatus(t, cls = "") {
+  status.textContent = t;
+  status.className = "status " + cls;
+}
+
+function stopSpeech() {
+  run++;
+  speaking = false;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+}
+
+function speak(text, rate) {
+  return new Promise(resolve => {
+    if (!("speechSynthesis" in window)) {
+      setStatus("⚠️ Trình duyệt không hỗ trợ đọc giọng nói");
+      resolve();
+      return;
+    }
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    u.rate = rate;
+    const voices = speechSynthesis.getVoices();
+    const v = voices.find(x => x.lang.startsWith("en") && /(Google|Natural|Jenny|Samantha|David|Zira|Mark)/i.test(x.name));
+    if (v) u.voice = v;
+    u.onstart = () => setStatus("🔊 Đang đọc...", "speak");
+    u.onend = () => { setStatus("Sẵn sàng học", "ok"); resolve(); };
+    u.onerror = () => { setStatus("Sẵn sàng học", "ok"); resolve(); };
+    speechSynthesis.speak(u);
+  });
+}
+
+function render() {
+  if (!items.length) return;
+  const item = items[index];
+  
+  // Wrap words for karaoke highlight if needed
+  question.innerHTML = item.q.split(/\s+/).map((w, i) => `<span class="word" id="qw-${i}">${w}</span>`).join(" ");
+  qIpa.textContent = item.qIpa;
+  qVi.textContent = item.qVi;
+  
+  answerText.innerHTML = item.a.split(/\s+/).map((w, i) => `<span class="word" id="aw-${i}">${w}</span>`).join(" ");
+  aIpa.textContent = item.aIpa;
+  aVi.textContent = item.aVi;
+  
+  qIpa.classList.toggle("hidden", !showIpa);
+  aIpa.classList.toggle("hidden", !showIpa);
+  qVi.classList.toggle("hidden", !showTrans);
+  aVi.classList.toggle("hidden", !showTrans);
+  
+  answer.classList.add("locked");
+  quiz.classList.remove("show");
+  showBtn.textContent = "👁 Xem đáp án";
+  selfAnswer.value = "";
+  result.innerHTML = "";
+  
+  counter.textContent = `Câu ${index + 1} / ${items.length} (ID #${item.id})`;
+  bar.style.width = `${((index + 1) / items.length) * 100}%`;
+  
+  // Update list active state
+  document.querySelectorAll(".item").forEach(el => {
+    el.classList.toggle("active", Number(el.dataset.id) === item.id);
+  });
+}
+
+function save() {
+  localStorage.setItem("english4day-progress", JSON.stringify({ day, index }));
+}
+
+function renderDayList() {
+  $("list").innerHTML = items.map((item, idx) => `
+    <div class="item ${idx === index ? 'active' : ''}" data-id="${item.id}" data-idx="${idx}">
+      <div class="num">#${item.id}</div>
+      <div style="flex:1">
+        <div class="qsmall">${item.q}</div>
+        <div class="as">→ ${item.a}</div>
       </div>
     </div>
-  </div>
+  `).join("");
+}
 
-  <!-- List View Section -->
-  <div class="list-view" id="listSection">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-      <h2 style="font-size: 1.25rem; color: var(--primary-light);">
-        Toàn Bộ 40 Câu Hỏi & Câu Trả Lời (Có Phiên Âm IPA & Dịch Nghĩa)
-      </h2>
-      <button class="btn btn-primary" onclick="toggleViewMode()">📺 Quay Lại Video</button>
-    </div>
-    <div id="listContainer"></div>
-  </div>
+function loadDay(d, savedIndex = 0) {
+  stopSpeech();
+  day = d;
+  document.querySelectorAll(".day").forEach(b => b.classList.toggle("active", Number(b.dataset.day) === day));
+  const cfg = DAY_CONFIG[day];
+  $("dayBadge").textContent = cfg.name;
+  $("daySub").textContent = cfg.sub;
+  items = day === 4 ? shuffle(DATA) : DATA.slice(cfg.range[0], cfg.range[1] + 1);
+  index = (savedIndex >= 0 && savedIndex < items.length) ? savedIndex : 0;
+  renderDayList();
+  render();
+  save();
+  $("testNote").classList.toggle("show", day === 4);
+}
 
-  <script>
-    // TOÀN BỘ 40 CÂU HỎI THEO ĐÚNG THỨ TỰ CỦA NGƯỜI HỌC
-    const allData = [
-      // --- PHẦN 1: CÂU 1 - 12 ---
-      {
-        id: 1,
-        q: "Do you have a job or are you a student?",
-        qIpa: "/duː juː hæv ə dʒɒb ɔːr ɑːr juː ə ˈstjuːdnt/",
-        qVi: "Bạn đã đi làm hay là học sinh/sinh viên?",
-        a: "I'm a student.",
-        aIpa: "/aɪm ə ˈstjuːdnt/",
-        aVi: "Tôi là sinh viên."
-      },
-      {
-        id: 2,
-        q: "How do you usually get to your university?",
-        qIpa: "/haʊ duː juː ˈjuːʒuəli ɡet tuː jɔːr ˌjuːnɪˈvɜːrsəti/",
-        qVi: "Bạn thường đến trường đại học bằng phương tiện gì?",
-        a: "I usually get to my university by bus.",
-        aIpa: "/aɪ ˈjuːʒuəli ɡet tuː maɪ ˌjuːnɪˈvɜːrsəti baɪ bʌs/",
-        aVi: "Tôi thường đến trường bằng xe buýt. (by + phương tiện)"
-      },
-      {
-        id: 3,
-        q: "When did you start to learn English?",
-        qIpa: "/wen dɪd juː stɑːrt tuː lɜːrn ˈɪŋɡlɪʃ/",
-        qVi: "Bạn bắt đầu học tiếng Anh từ khi nào?",
-        a: "I started learning English five years ago.",
-        aIpa: "/aɪ ˈstɑːrtɪd ˈlɜːrnɪŋ ˈɪŋɡlɪʃ faɪv jɪərz əˈɡoʊ/",
-        aVi: "Tôi bắt đầu học tiếng Anh từ 5 năm trước. (started: quá khứ)"
-      },
-      {
-        id: 4,
-        q: "Do you like it? Why? Why not?",
-        qIpa: "/duː juː laɪk ɪt? waɪ? waɪ nɒt/",
-        qVi: "Bạn có thích nó không? Tại sao?",
-        a: "Yes, I do. Because it is very interesting and useful.",
-        aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈveri ˈɪntrəstɪŋ ænd ˈjuːsfəl/",
-        aVi: "Có chứ. Vì tiếng Anh rất thú vị và bổ ích."
-      },
-      {
-        id: 5,
-        q: "Tell me something about your plans in the future?",
-        qIpa: "/tel miː ˈsʌmθɪŋ əˈbaʊt jɔːr plænz ɪn ðə ˈfjuːtʃər/",
-        qVi: "Hãy chia sẻ về các kế hoạch tương lai của bạn?",
-        a: "In the future, I will find a good job, buy a car, and get married.",
-        aIpa: "/ɪn ðə ˈfjuːtʃər, aɪ wɪl faɪnd ə ɡʊd dʒɒb, baɪ ə kɑːr, ænd ɡet ˈmærid/",
-        aVi: "Trong tương lai, tôi sẽ tìm việc tốt, mua xe và lập gia đình."
-      },
-      {
-        id: 6,
-        q: "What are your hobbies?",
-        qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/",
-        qVi: "Sở thích của bạn là gì?",
-        a: "I like reading books and playing video games.",
-        aIpa: "/aɪ laɪk ˈriːdɪŋ bʊks ænd ˈpleɪɪŋ ˈvɪdioʊ ɡeɪmz/",
-        aVi: "Tôi thích đọc sách và chơi trò chơi điện tử. (like + V-ing)"
-      },
-      {
-        id: 7,
-        q: "Do you like video games? Why? Why not?",
-        qIpa: "/duː juː laɪk ˈvɪdioʊ ɡeɪmz? waɪ? waɪ nɒt/",
-        qVi: "Bạn có thích trò chơi điện tử không? Tại sao?",
-        a: "Yes, I do. Because they are interesting and help me relax.",
-        aIpa: "/jes, aɪ duː. bɪˈkəz ðeɪ ɑːr ˈɪntrəstɪŋ ænd help miː rɪˈlæks/",
-        aVi: "Có, tôi thích. Vì game rất thú vị và giúp tôi thư giãn."
-      },
-      {
-        id: 8,
-        q: "Do you think video games are bad for children? Why?",
-        qIpa: "/duː juː θɪŋk ˈvɪdioʊ ɡeɪmz ɑːr bæd fɔːr ˈtʃɪldrən? waɪ/",
-        qVi: "Bạn có nghĩ video game có hại cho trẻ em không? Tại sao?",
-        a: "Yes, I do. Because children can easily become addicted to games.",
-        aIpa: "/jes, aɪ duː. bɪˈkəz ˈtʃɪldrən kæn ˈiːzəli bɪˈkʌm əˈdɪktɪd tuː ɡeɪmz/",
-        aVi: "Có. Vì trẻ em rất dễ bị nghiện game."
-      },
-      {
-        id: 9,
-        q: "Where did you go on your last holiday?",
-        qIpa: "/weər dɪd juː ɡoʊ ɒn jɔːr læst ˈhɒlədeɪ/",
-        qVi: "Kỳ nghỉ trước bạn đã đi đâu?",
-        a: "On my last holiday, I went to Sam Son beach with my family.",
-        aIpa: "/ɒn maɪ læst ˈhɒlədeɪ, aɪ went tuː Sam Son biːtʃ wɪð maɪ ˈfæməli/",
-        aVi: "Vào kỳ nghỉ trước, tôi đã đi biển Sầm Sơn cùng gia đình."
-      },
-      {
-        id: 10,
-        q: "Did you enjoy it? Why?",
-        qIpa: "/dɪd juː ɪnˈdʒɔɪ ɪt? waɪ/",
-        qVi: "Bạn có thích chuyến đi đó không? Tại sao?",
-        a: "Yes, I did. Because I had a wonderful time there.",
-        aIpa: "/jes, aɪ dɪd. bɪˈkəz aɪ hæd ə ˈwʌndərfəl taɪm ðeər/",
-        aVi: "Có, tôi rất thích. Vì tôi đã có khoảng thời gian tuyệt vời ở đó."
-      },
-      {
-        id: 11,
-        q: "Do you have a large family or a small family?",
-        qIpa: "/duː juː hæv ə lɑːrdʒ ˈfæməli ɔːr ə smɔːl ˈfæməli/",
-        qVi: "Gia đình bạn là gia đình lớn hay gia đình nhỏ?",
-        a: "I have a small family. There are four people: my dad, my mom, my brother, and me.",
-        aIpa: "/aɪ hæv ə smɔːl ˈfæməli. ðeər ɑːr fɔːr ˈpiːpl: maɪ dæd, maɪ mɒm, maɪ ˈbrʌðər, ænd miː/",
-        aVi: "Gia đình tôi nhỏ thôi. Có 4 người: bố, mẹ, anh trai và tôi."
-      },
-      {
-        id: 12,
-        q: "How much time do you spend with your family?",
-        qIpa: "/haʊ mʌtʃ taɪm duː juː spend wɪð jɔːr ˈfæməli/",
-        qVi: "Bạn dành bao nhiêu thời gian cho gia đình?",
-        a: "I spend every weekend with my family.",
-        aIpa: "/aɪ spend ˈevri ˈwiːkend wɪð maɪ ˈfæməli/",
-        aVi: "Tôi dành trọn vẹn mỗi dịp cuối tuần bên gia đình."
-      },
+// Event Listeners
+$("prev").onclick = () => {
+  stopSpeech();
+  if (index > 0) index--;
+  else index = items.length - 1;
+  render();
+  save();
+};
 
-      // --- PHẦN 2: CÂU 13 - 29 ---
-      {
-        id: 13,
-        q: "How many hours do you study each day?",
-        qIpa: "/haʊ ˈmeni ˈaʊərz duː juː ˈstʌdi iːtʃ deɪ/",
-        qVi: "Mỗi ngày bạn học bao nhiêu tiếng?",
-        a: "I spend five hours studying each day.",
-        aIpa: "/aɪ spend faɪv ˈaʊərz ˈstʌdiɪŋ iːtʃ deɪ/",
-        aVi: "Tôi dành 5 tiếng mỗi ngày để học tập."
-      },
-      {
-        id: 14,
-        q: "Do you enjoy your study? Why?",
-        qIpa: "/duː juː ɪnˈdʒɔɪ jɔːr ˈstʌdi? waɪ/",
-        qVi: "Bạn có thích việc học của mình không? Tại sao?",
-        a: "Yes, I do. Because it is interesting and very useful.",
-        aIpa: "/jes, aɪ duː. bɪˈkəz ɪt ɪz ˈɪntrəstɪŋ ænd ˈveri ˈjuːsfəl/",
-        aVi: "Có chứ, vì việc học rất thú vị và rất bổ ích."
-      },
-      {
-        id: 15,
-        q: "What do you usually do in your free time?",
-        qIpa: "/wɒt duː juː ˈjuːʒuəli duː ɪn jɔːr friː taɪm/",
-        qVi: "Bạn thường làm gì vào thời gian rảnh?",
-        a: "In my free time, I usually listen to music and read books.",
-        aIpa: "/ɪn maɪ friː taɪm, aɪ ˈjuːʒuəli ˈlɪsn tuː ˈmjuːzɪk ænd riːd bʊks/",
-        aVi: "Vào thời gian rảnh, tôi thường nghe nhạc và đọc sách."
-      },
-      {
-        id: 16,
-        q: "Do you prefer to stay alone or with your friends? Why?",
-        qIpa: "/duː juː prɪˈfɜːr tuː steɪ əˈloʊn ɔːr wɪð jɔːr frendz? waɪ/",
-        qVi: "Bạn thích ở một mình hay ở cùng bạn bè hơn? Tại sao?",
-        a: "I prefer to stay with my friends because we can help each other easily.",
-        aIpa: "/aɪ prɪˈfɜːr tuː steɪ wɪð maɪ frendz bɪˈkəz wiː kæn help iːtʃ ˈʌðər ˈiːzəli/",
-        aVi: "Tôi thích ở cùng bạn bè hơn vì chúng tôi có thể giúp đỡ nhau dễ dàng."
-      },
-      {
-        id: 17,
-        q: "Do you like going out? Why?",
-        qIpa: "/duː juː laɪk ˈɡoʊɪŋ aʊt? waɪ/",
-        qVi: "Bạn có thích đi ra ngoài chơi không? Tại sao?",
-        a: "Yes, I do. Because going out makes me feel good.",
-        aIpa: "/jes, aɪ duː. bɪˈkəz ˈɡoʊɪŋ aʊt meɪks miː fiːl ɡʊd/",
-        aVi: "Có, tôi thích. Vì ra ngoài khiến tôi cảm thấy thoải mái và vui vẻ."
-      },
-      {
-        id: 18,
-        q: "What do you usually do when you go out?",
-        qIpa: "/wɒt duː juː ˈjuːʒuəli duː wen juː ɡoʊ aʊt/",
-        qVi: "Bạn thường làm gì khi đi ra ngoài?",
-        a: "I usually go to the cinema with my friends.",
-        aIpa: "/aɪ ˈjuːʒuəli ɡoʊ tuː ðə ˈsɪnəmə wɪð maɪ frendz/",
-        aVi: "Tôi thường đi xem phim rạp cùng bạn bè."
-      },
-      {
-        id: 19,
-        q: "Tell me about your favourite sport?",
-        qIpa: "/tel miː əˈbaʊt jɔːr ˈfeɪvərɪt spɔːrt/",
-        qVi: "Hãy kể về môn thể thao yêu thích của bạn?",
-        a: "My favourite sport is swimming. I swim twice a week and it makes me feel good.",
-        aIpa: "/maɪ ˈfeɪvərɪt spɔːrt ɪz ˈswɪmɪŋ. aɪ swɪm twaɪs ə wiːk ænd ɪt meɪks miː fiːl ɡʊd/",
-        aVi: "Môn thể thao tôi yêu thích là bơi lội. Tôi bơi 2 lần một tuần và nó giúp tôi thấy khỏe khoắn."
-      },
-      {
-        id: 20,
-        q: "What kind of food do you like best?",
-        qIpa: "/wɒt kaɪnd əv fuːd duː juː laɪk best/",
-        qVi: "Bạn thích loại đồ ăn nào nhất?",
-        a: "I like beef, rice, and vegetables because they are good for my health.",
-        aIpa: "/aɪ laɪk biːf, raɪs, ænd ˈvedʒtəblz bɪˈkəz ðeɪ ɑːr ɡʊd fɔːr maɪ helθ/",
-        aVi: "Tôi thích thịt bò, cơm và rau vì chúng rất tốt cho sức khỏe."
-      },
-      {
-        id: 21,
-        q: "Do you like cooking? Why?",
-        qIpa: "/duː juː laɪk ˈkʊkɪŋ? waɪ/",
-        qVi: "Bạn có thích nấu ăn không? Tại sao?",
-        a: "Yes, I do. Because cooking makes me feel good and relaxed.",
-        aIpa: "/jes, aɪ duː. bɪˈkəz ˈkʊkɪŋ meɪks miː fiːl ɡʊd ænd rɪˈlækst/",
-        aVi: "Có chứ. Vì nấu ăn giúp tôi thấy vui vẻ và thư thái."
-      },
-      {
-        id: 22,
-        q: "How often do you eat out?",
-        qIpa: "/haʊ ˈɒfn duː juː iːt aʊt/",
-        qVi: "Bạn có thường xuyên đi ăn ở ngoài không?",
-        a: "I sometimes eat out with my friends on weekends.",
-        aIpa: "/aɪ ˈsʌmtaɪmz iːt aʊt wɪð maɪ frendz ɒn ˈwiːkendz/",
-        aVi: "Thỉnh thoảng tôi đi ăn ngoài với bạn bè vào dịp cuối tuần."
-      },
-      {
-        id: 23,
-        q: "What kind of sport do you like playing? Why?",
-        qIpa: "/wɒt kaɪnd əv spɔːrt duː juː laɪk ˈpleɪɪŋ? waɪ/",
-        qVi: "Bạn thích chơi môn thể thao nào? Tại sao?",
-        a: "I like swimming because it helps me stay healthy.",
-        aIpa: "/aɪ laɪk ˈswɪmɪŋ bɪˈkəz ɪt helps miː steɪ ˈhelθi/",
-        aVi: "Tôi thích bơi lội vì môn này giúp tôi luôn khỏe mạnh."
-      },
-      {
-        id: 24,
-        q: "Tell me what do you enjoy doing in your free time?",
-        qIpa: "/tel miː wɒt duː juː ɪnˈdʒɔɪ ˈduːɪŋ ɪn jɔːr friː taɪm/",
-        qVi: "Hãy cho tôi biết bạn thích làm gì trong thời gian rảnh?",
-        a: "In my free time, I enjoy listening to music and watching movies.",
-        aIpa: "/ɪn maɪ friː taɪm, aɪ ɪnˈdʒɔɪ ˈlɪsnɪŋ tuː ˈmjuːzɪk ænd ˈwɒtʃɪŋ ˈmuːviz/",
-        aVi: "Vào thời gian rảnh, tôi thích nghe nhạc và xem phim."
-      },
-      {
-        id: 25,
-        q: "What do you study at the university?",
-        qIpa: "/wɒt duː juː ˈstʌdi æt ðə ˌjuːnɪˈvɜːrsəti/",
-        qVi: "Bạn học ngành gì ở trường đại học?",
-        a: "I study Information Technology at my university.",
-        aIpa: "/aɪ ˈstʌdi ˌɪnfərˈmeɪʃn tekˈnɒlədʒi æt maɪ ˌjuːnɪˈvɜːrsəti/",
-        aVi: "Tôi học ngành Công nghệ Thông tin tại trường đại học."
-      },
-      {
-        id: 26,
-        q: "Are you happy with your student life?",
-        qIpa: "/ɑːr juː ˈhæpi wɪð jɔːr ˈstjuːdnt laɪf/",
-        qVi: "Bạn có hài lòng với đời sống sinh viên không?",
-        a: "Yes, I am. Because I love my teachers and my friends.",
-        aIpa: "/jes, aɪ æm. bɪˈkəz aɪ lʌv maɪ ˈtiːtʃərz ænd maɪ frendz/",
-        aVi: "Có, tôi rất vui. Vì tôi quý mến thầy cô và bạn bè của mình."
-      },
-      {
-        id: 27,
-        q: "What did you have for dinner yesterday?",
-        qIpa: "/wɒt dɪd juː hæv fɔːr ˈdɪnər ˈjestərdeɪ/",
-        qVi: "Tối hôm qua bạn đã ăn món gì?",
-        a: "I had rice, fish, and vegetables for dinner yesterday.",
-        aIpa: "/aɪ hæd raɪs, fɪʃ, ænd ˈvedʒtəblz fɔːr ˈdɪnər ˈjestərdeɪ/",
-        aVi: "Tối hôm qua tôi đã ăn cơm, cá và rau."
-      },
-      {
-        id: 28,
-        q: "Tell me about the kind of food you like?",
-        qIpa: "/tel miː əˈbaʊt ðə kaɪnd əv fuːd juː laɪk/",
-        qVi: "Hãy chia sẻ về các món ăn bạn thích?",
-        a: "I like traditional Vietnamese food like beef, soup, and fresh vegetables.",
-        aIpa: "/aɪ laɪk trəˈdɪʃənl ˌvjetnəˈmiːz fuːd laɪk biːf, suːp, ænd freʃ ˈvedʒtəblz/",
-        aVi: "Tôi thích món ăn truyền thống Việt Nam như thịt bò, canh và rau tươi."
-      },
-      {
-        id: 29,
-        q: "Do you often watch TV?",
-        qIpa: "/duː juː ˈɒfn wɒtʃ ˌtiːˈviː/",
-        qVi: "Bạn có thường xem TV không?",
-        a: "Yes, I do. I often watch TV in the evening to relax.",
-        aIpa: "/jes, aɪ duː. aɪ ˈɒfn wɒtʃ ˌtiːˈviː ɪn ðə ˈiːvnɪŋ tuː rɪˈlæks/",
-        aVi: "Có chứ, tôi thường xem TV vào buổi tối để thư giãn."
-      },
+$("next").onclick = () => {
+  stopSpeech();
+  if (index < items.length - 1) index++;
+  else index = 0;
+  render();
+  save();
+};
 
-      // --- PHẦN 3: CÂU 30 - 40 MỚI NHẤT ---
-      {
-        id: 30,
-        q: "What TV programs do you like?",
-        qIpa: "/wɒt ˌtiːˈviː ˈproʊɡræmz duː juː laɪk/",
-        qVi: "Bạn thích những chương trình truyền hình nào?",
-        a: "I like The Voice because I really enjoy singing.",
-        aIpa: "/aɪ laɪk ðə vɔɪs bɪˈkəz aɪ ˈrɪəli ɪnˈdʒɔɪ ˈsɪŋɪŋ/",
-        aVi: "Tôi thích chương trình The Voice vì tôi rất thích ca hát."
-      },
-      {
-        id: 31,
-        q: "Where do you live?",
-        qIpa: "/weər duː juː lɪv/",
-        qVi: "Bạn đang sống ở đâu?",
-        a: "I live in Hanoi.",
-        aIpa: "/aɪ lɪv ɪn Hà Nội/",
-        aVi: "Tôi sống ở Hà Nội."
-      },
-      {
-        id: 32,
-        q: "Do you like living there? Why?",
-        qIpa: "/duː juː laɪk ˈlɪvɪŋ ðeər? waɪ/",
-        qVi: "Bạn có thích sống ở đó không? Tại sao?",
-        a: "Yes, I do. Because Hanoi is a big, beautiful, and exciting city.",
-        aIpa: "/jes, aɪ duː. bɪˈkəz Hà Nội ɪz ə bɪɡ, ˈbjuːtɪfl, ænd ɪkˈsaɪtɪŋ ˈsɪti/",
-        aVi: "Có chứ, vì Hà Nội là một thành phố lớn, tươi đẹp và sôi động."
-      },
-      {
-        id: 33,
-        q: "Can you play any musical instrument such as guitar, piano or violin?",
-        qIpa: "/kæn juː pleɪ ˈeni ˈmjuːzɪkl ˈɪnstrəmənt sʌtʃ æz ɡɪˈtɑːr, piˈænoʊ ɔːr ˌvaɪəˈlɪn/",
-        qVi: "Bạn có thể chơi nhạc cụ nào như guitar, piano hay violin không?",
-        a: "Yes, I can. I can play the guitar.",
-        aIpa: "/jes, aɪ kæn. aɪ kæn pleɪ ðə ɡɪˈtɑːr/",
-        aVi: "Có, tôi biết chơi đàn guitar. (nhạc cụ luôn đi với 'the': play the guitar)"
-      },
-      {
-        id: 34,
-        q: "What other country would you like to visit? Why?",
-        qIpa: "/wɒt ˈʌðər ˈkʌntri wʊd juː laɪk tuː ˈvɪzɪt? waɪ/",
-        qVi: "Bạn muốn đến thăm quốc gia nào khác? Tại sao?",
-        a: "I would like to visit China because I want to see the Great Wall and it is very beautiful.",
-        aIpa: "/aɪ wʊd laɪk tuː ˈvɪzɪt ˈtʃaɪnə bɪˈkəz aɪ wɒnt tuː siː ðə ɡreɪt wɔːl ænd ɪt ɪz ˈveri ˈbjuːtɪfl/",
-        aVi: "Tôi muốn đi Trung Quốc vì tôi muốn chiêm ngưỡng Vạn Lý Trường Thành và nơi đó rất đẹp."
-      },
-      {
-        id: 35,
-        q: "What are the popular sports in Vietnam?",
-        qIpa: "/wɒt ɑːr ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm/",
-        qVi: "Các môn thể thao phổ biến ở Việt Nam là gì?",
-        a: "I think the popular sports in Vietnam are football and volleyball.",
-        aIpa: "/aɪ θɪŋk ðə ˈpɒpjələr spɔːrts ɪn ˌvjetˈnɑːm ɑːr ˈfʊtbɔːl ænd ˈvɒlibɔːl/",
-        aVi: "Tôi nghĩ môn thể thao phổ biến ở Việt Nam là bóng đá và bóng chuyền."
-      },
-      {
-        id: 36,
-        q: "How often do you play sports? What sports?",
-        qIpa: "/haʊ ˈɒfn duː juː pleɪ spɔːrts? wɒt spɔːrts/",
-        qVi: "Bạn có thường chơi thể thao không? Chơi môn gì?",
-        a: "I usually play sports on weekends because it makes me feel good. I play football.",
-        aIpa: "/aɪ ˈjuːʒuəli pleɪ spɔːrts ɒn ˈwiːkendz bɪˈkəz ɪt meɪks miː fiːl ɡʊd. aɪ pleɪ ˈfʊtbɔːl/",
-        aVi: "Tôi thường chơi thể thao vào cuối tuần vì nó giúp tôi khỏe mạnh. Tôi chơi bóng đá."
-      },
-      {
-        id: 37,
-        q: "What are your hobbies?",
-        qIpa: "/wɒt ɑːr jɔːr ˈhɒbiz/",
-        qVi: "Sở thích của bạn là gì?",
-        a: "My hobbies are reading books, playing games, and listening to music.",
-        aIpa: "/maɪ ˈhɒbiz ɑːr ˈriːdɪŋ bʊks, ˈpleɪɪŋ ɡeɪmz, ænd ˈlɪsnɪŋ tuː ˈmjuːzɪk/",
-        aVi: "Sở thích của tôi là đọc sách, chơi game và nghe nhạc."
-      },
-      {
-        id: 38,
-        q: "Do you like reading? Why?",
-        qIpa: "/duː juː laɪk ˈriːdɪŋ? waɪ/",
-        qVi: "Bạn có thích đọc sách không? Tại sao?",
-        a: "Yes, I do. Because reading books makes me feel relaxed and good.",
-        aIpa: "/jes, aɪ duː. bɪˈkəz ˈriːdɪŋ bʊks meɪks miː fiːl rɪˈlækst ænd ɡʊd/",
-        aVi: "Có chứ, vì đọc sách giúp tôi thấy thư giãn và thoải mái."
-      },
-      {
-        id: 39,
-        q: "What kind of book do you like best?",
-        qIpa: "/wɒt kaɪnd əv bʊk duː juː laɪk best/",
-        qVi: "Bạn thích loại sách nào nhất?",
-        a: "I like short stories best.",
-        aIpa: "/aɪ laɪk ʃɔːrt ˈstɔːriz best/",
-        aVi: "Tôi thích truyện ngắn nhất."
-      },
-      {
-        id: 40,
-        q: "What do you think the importance of English in your life?",
-        qIpa: "/wɒt duː juː θɪŋk ðə ɪmˈpɔːrtns əv ˈɪŋɡlɪʃ ɪn jɔːr laɪf/",
-        qVi: "Bạn nghĩ tầm quan trọng của tiếng Anh trong cuộc sống của mình là gì?",
-        a: "I think English is very important because if I am good at English, I can find a good job easily.",
-        aIpa: "/aɪ θɪŋk ˈɪŋɡlɪʃ ɪz ˈveri ɪmˈpɔːrtnt bɪˈkəz ɪf aɪ æm ɡʊd æt ˈɪŋɡlɪʃ, aɪ kæn faɪnd ə ɡʊd dʒɒb ˈiːzəli/",
-        aVi: "Tôi nghĩ tiếng Anh rất quan trọng vì nếu tôi giỏi tiếng Anh, tôi có thể tìm việc tốt dễ dàng."
-      }
-    ];
+showBtn.onclick = () => {
+  const isLocked = answer.classList.contains("locked");
+  if (isLocked) {
+    answer.classList.remove("locked");
+    quiz.classList.add("show");
+    showBtn.textContent = "🙈 Ẩn đáp án";
+  } else {
+    answer.classList.add("locked");
+    quiz.classList.remove("show");
+    showBtn.textContent = "👁 Xem đáp án";
+  }
+};
 
-    let currentList = allData;
-    let currentIndex = 0;
-    let isPlaying = false;
-    let runId = 0;
-    let showTranslation = true;
-    let showIpa = true;
+$("play").onclick = async () => {
+  stopSpeech();
+  const r = ++run;
+  speaking = true;
+  const item = items[index];
+  const rate = Number($("speed").value);
+  
+  setStatus("🎧 Hãy lắng nghe câu hỏi...", "speak");
+  await speak(item.q, rate);
+  if (r !== run || !speaking) return;
+  
+  setStatus("🗣 Đến lượt bạn trả lời (5s)...", "ok");
+  for (let s = 5; s >= 1; s--) {
+    if (r !== run || !speaking) return;
+    setStatus(`🗣 Hãy nói to câu trả lời! (${s}s)...`, "ok");
+    await new Promise(res => setTimeout(res, 1000));
+  }
+  
+  if (r !== run || !speaking) return;
+  answer.classList.remove("locked");
+  quiz.classList.add("show");
+  showBtn.textContent = "🙈 Ẩn đáp án";
+  
+  setStatus("🔊 Nghe đáp án mẫu...", "speak");
+  await speak(item.a, rate);
+  if (r !== run || !speaking) return;
+  
+  setStatus("✅ Hoàn thành! Bấm 'Sau ⏭' để tiếp tục.", "ok");
+  speaking = false;
+};
 
-    // Elements
-    const qText = document.getElementById('qText');
-    const qIpaText = document.getElementById('qIpaText');
-    const qViText = document.getElementById('qViText');
-    const aText = document.getElementById('aText');
-    const aIpaText = document.getElementById('aIpaText');
-    const aViText = document.getElementById('aViText');
-    const answerBlock = document.getElementById('answerBlock');
-    const slideBadge = document.getElementById('slideBadge');
-    const statusBadge = document.getElementById('statusBadge');
-    const statusText = document.getElementById('statusText');
-    const progressBar = document.getElementById('progressBar');
-    const btnPlayPause = document.getElementById('btnPlayPause');
-    const speedSelect = document.getElementById('speedSelect');
-    const countdownBox = document.getElementById('countdownBox');
-    const countdownLabel = document.getElementById('countdownLabel');
-    const countdownSec = document.getElementById('countdownSec');
-    const jumpSelect = document.getElementById('jumpSelect');
+$("slow").onclick = async () => {
+  stopSpeech();
+  const r = ++run;
+  speaking = true;
+  const words = items[index].q.split(/\s+/);
+  setStatus("🐢 Đọc từng từ rất chậm...", "speak");
+  
+  for (let i = 0; i < words.length; i++) {
+    if (r !== run || !speaking) return;
+    const wEl = document.getElementById(`qw-${i}`);
+    if (wEl) wEl.classList.add("active");
+    await speak(words[i], 0.55);
+    await new Promise(res => setTimeout(res, 250));
+    if (wEl) wEl.classList.remove("active");
+  }
+  
+  setStatus("Sẵn sàng học", "ok");
+  speaking = false;
+};
 
-    function populateJumpSelect() {
-      jumpSelect.innerHTML = '';
-      currentList.forEach((item, idx) => {
-        const opt = document.createElement('option');
-        opt.value = idx;
-        opt.textContent = `Câu ${item.id}: ${item.q.substring(0, 32)}...`;
-        jumpSelect.appendChild(opt);
-      });
-    }
+ipaBtn.onclick = () => {
+  showIpa = !showIpa;
+  ipaBtn.classList.toggle("active-toggle", showIpa);
+  qIpa.classList.toggle("hidden", !showIpa);
+  aIpa.classList.toggle("hidden", !showIpa);
+};
 
-    function jumpTo(idx) {
-      pauseIfPlaying();
-      currentIndex = parseInt(idx);
-      renderSlide(currentIndex, true);
-    }
+transBtn.onclick = () => {
+  showTrans = !showTrans;
+  transBtn.classList.toggle("active-toggle", showTrans);
+  qVi.classList.toggle("hidden", !showTrans);
+  aVi.classList.toggle("hidden", !showTrans);
+};
 
-    function filterRange(type) {
-      pauseIfPlaying();
-      document.querySelectorAll('.sec-btn').forEach(b => b.classList.remove('active'));
+$("checkBtn").onclick = () => {
+  const typed = selfAnswer.value.trim().toLowerCase();
+  if (!typed) {
+    result.innerHTML = '<span class="warn">⚠️ Bạn hãy gõ câu trả lời vừa nói để đối chiếu.</span>';
+    return;
+  }
+  const target = items[index].a.toLowerCase().replace(/[^a-z0-9\s]/gi, "");
+  const typedClean = typed.replace(/[^a-z0-9\s]/gi, "");
+  const targetWords = target.split(/\s+/);
+  const common = targetWords.filter(w => typedClean.includes(w)).length;
+  const score = Math.round((common / targetWords.length) * 10);
+  
+  if (score >= 8) {
+    result.innerHTML = `<span class="good">🎉 Xuất sắc! Đạt ${score}/10 điểm. Câu của bạn rất chuẩn xác!</span>`;
+  } else if (score >= 5) {
+    result.innerHTML = `<span class="warn">👍 Khá tốt (${score}/10). Hãy đọc to lại theo đáp án mẫu một lần nữa nhé!</span>`;
+  } else {
+    result.innerHTML = `<span class="warn">⚠️ Đạt ${score}/10 điểm. Hãy xem đáp án mẫu và luyện đọc lại nào!</span>`;
+  }
+};
 
-      if (type === 'p1') {
-        currentList = allData.slice(0, 12);
-        document.getElementById('secBtnP1').classList.add('active');
-      } else if (type === 'p2') {
-        currentList = allData.slice(12, 29);
-        document.getElementById('secBtnP2').classList.add('active');
-      } else if (type === 'p3') {
-        currentList = allData.slice(29, 40);
-        document.getElementById('secBtnP3').classList.add('active');
-      } else {
-        currentList = allData;
-        document.getElementById('secBtnAll').classList.add('active');
-      }
+$("resetBtn").onclick = () => {
+  if (confirm("Bạn có chắc muốn đặt lại toàn bộ tiến độ học tập?")) {
+    localStorage.removeItem("english4day-progress");
+    loadDay(1, 0);
+  }
+};
 
-      currentIndex = 0;
-      populateJumpSelect();
-      renderSlide(currentIndex, true);
-      buildList();
-    }
+document.querySelectorAll(".day").forEach(b => {
+  b.onclick = () => loadDay(Number(b.dataset.day), 0);
+});
 
-    function wrapWords(text, containerId) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = '';
-      const words = text.split(/\s+/);
-      words.forEach((w, idx) => {
-        const span = document.createElement('span');
-        span.className = 'word';
-        span.dataset.wordIndex = idx;
-        span.textContent = w + ' ';
-        container.appendChild(span);
-      });
-    }
+$("list").addEventListener("click", e => {
+  const el = e.target.closest(".item");
+  if (!el) return;
+  const idx = Number(el.dataset.idx);
+  if (idx >= 0 && idx < items.length) {
+    stopSpeech();
+    index = idx;
+    render();
+    save();
+    window.scrollTo({ top: 120, behavior: "smooth" });
+  }
+});
 
-    function clearHighlight(containerId) {
-      const spans = document.getElementById(containerId).querySelectorAll('.word');
-      spans.forEach(s => s.classList.remove('active'));
-    }
+document.addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+  if (e.code === "Space") { e.preventDefault(); $("play").click(); }
+  if (e.key === "ArrowRight") { e.preventDefault(); $("next").click(); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); $("prev").click(); }
+  if (e.key === "a" || e.key === "A") { e.preventDefault(); showBtn.click(); }
+});
 
-    function highlightWord(containerId, wordIdx) {
-      const spans = document.getElementById(containerId).querySelectorAll('.word');
-      spans.forEach((s, idx) => {
-        if (idx === wordIdx) {
-          s.classList.add('active');
-        } else {
-          s.classList.remove('active');
-        }
-      });
-    }
+// Restore saved progress
+try {
+  const saved = JSON.parse(localStorage.getItem("english4day-progress"));
+  if (saved && saved.day) {
+    loadDay(saved.day, saved.index || 0);
+  } else {
+    loadDay(1, 0);
+  }
+} catch (e) {
+  loadDay(1, 0);
+}
 
-    function setStatus(text, type = '') {
-      statusText.textContent = text;
-      statusBadge.className = 'status-badge ' + type;
-    }
-
-    function delay(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    // Đọc Karaoke từng chữ
-    function speakWithKaraoke(text, containerId, rate = 0.6) {
-      return new Promise((resolve) => {
-        window.speechSynthesis.cancel();
-        clearHighlight(containerId);
-
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        utterance.rate = rate;
-
-        const voices = window.speechSynthesis.getVoices();
-        const enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Jenny') || v.name.includes('Samantha') || v.name.includes('David')));
-        if (enVoice) utterance.voice = enVoice;
-
-        let wordIndex = 0;
-        utterance.onboundary = (event) => {
-          if (event.name === 'word') {
-            highlightWord(containerId, wordIndex);
-            wordIndex++;
-          }
-        };
-
-        utterance.onend = () => {
-          clearHighlight(containerId);
-          resolve();
-        };
-
-        utterance.onerror = () => {
-          clearHighlight(containerId);
-          resolve();
-        };
-
-        window.speechSynthesis.speak(utterance);
-      });
-    }
-
-    // Đọc tách từng từ cực chậm và rõ ràng
-    async function speakWordByWord(type) {
-      pauseIfPlaying();
-      const currentRun = ++runId;
-      const text = (type === 'q') ? currentList[currentIndex].q : currentList[currentIndex].a;
-      const containerId = (type === 'q') ? 'qText' : 'aText';
-      
-      if (type === 'a') {
-        answerBlock.classList.remove('dimmed');
-      }
-
-      setStatus(`🐢 Đang đọc tách từng từ (${type === 'q' ? 'Câu hỏi' : 'Đáp án'})...`, 'speaking-word');
-      clearHighlight(containerId);
-
-      const words = text.split(/\s+/);
-      for (let i = 0; i < words.length; i++) {
-        if (currentRun !== runId) return;
-        highlightWord(containerId, i);
-        
-        await new Promise((resolve) => {
-          const u = new SpeechSynthesisUtterance(words[i]);
-          u.lang = 'en-US';
-          u.rate = 0.65;
-          u.onend = () => resolve();
-          u.onerror = () => resolve();
-          window.speechSynthesis.speak(u);
-        });
-
-        await delay(500);
-      }
-
-      clearHighlight(containerId);
-      setStatus("Sẵn sàng học", "");
-    }
-
-    async function countdown(seconds, label) {
-      countdownBox.style.display = 'flex';
-      countdownLabel.textContent = label;
-      setStatus(label, 'your-turn');
-      for (let i = seconds; i > 0; i--) {
-        countdownSec.textContent = i;
-        await delay(1000);
-      }
-      countdownBox.style.display = 'none';
-    }
-
-    function renderSlide(index, showAnswer = false) {
-      const item = currentList[index];
-      wrapWords(item.q, 'qText');
-      wrapWords(item.a, 'aText');
-
-      qIpaText.textContent = item.qIpa;
-      qViText.textContent = item.qVi;
-      aIpaText.textContent = item.aIpa;
-      aViText.textContent = item.aVi;
-
-      slideBadge.textContent = `Câu ${item.id} / 40 (${index + 1} trong danh sách)`;
-      jumpSelect.value = index;
-      progressBar.style.width = `${((index + 1) / currentList.length) * 100}%`;
-
-      if (showAnswer) {
-        answerBlock.classList.remove('dimmed');
-      } else {
-        answerBlock.classList.add('dimmed');
-      }
-    }
-
-    async function playVideoStep() {
-      const currentRun = ++runId;
-
-      while (isPlaying && currentIndex < currentList.length) {
-        if (currentRun !== runId) return;
-        const item = currentList[currentIndex];
-        const rate = parseFloat(speedSelect.value);
-
-        // 1. Hiện câu hỏi và đọc siêu chậm
-        renderSlide(currentIndex, false);
-        setStatus("🎧 Lắng nghe & theo dõi từng chữ...", "speaking");
-        await speakWithKaraoke(item.q, 'qText', rate);
-        if (currentRun !== runId || !isPlaying) return;
-
-        // 2. Chờ 4 giây để người học phản xạ
-        await countdown(4, "🗣 Lượt của bạn: Tự trả lời!");
-        if (currentRun !== runId || !isPlaying) return;
-
-        // 3. Hiện câu trả lời mẫu & đọc siêu chậm
-        renderSlide(currentIndex, true);
-        setStatus("🔊 Đáp án mẫu (Đọc chậm & rõ)...", "speaking");
-        await speakWithKaraoke(item.a, 'aText', rate);
-        if (currentRun !== runId || !isPlaying) return;
-
-        // 4. Cho 4 giây để Shadowing (nhại theo)
-        await countdown(4, "🎙 Nhại lại theo giọng đọc...");
-        if (currentRun !== runId || !isPlaying) return;
-
-        // 5. Chuyển sang câu tiếp
-        if (currentIndex < currentList.length - 1) {
-          currentIndex++;
-        } else {
-          setStatus("🎉 Đã hoàn thành toàn bộ câu!", "");
-          isPlaying = false;
-          btnPlayPause.textContent = "▶ Phát lại từ đầu";
-          currentIndex = 0;
-          break;
-        }
-      }
-    }
-
-    function togglePlayPause() {
-      if (isPlaying) {
-        pauseIfPlaying();
-      } else {
-        isPlaying = true;
-        btnPlayPause.textContent = "⏸ Tạm dừng";
-        playVideoStep();
-      }
-    }
-
-    function pauseIfPlaying() {
-      isPlaying = false;
-      runId++;
-      window.speechSynthesis.cancel();
-      btnPlayPause.textContent = "▶ Phát Video Tự Động";
-      countdownBox.style.display = 'none';
-      clearHighlight('qText');
-      clearHighlight('aText');
-      setStatus("Sẵn sàng học", "");
-    }
-
-    function nextSlide() {
-      pauseIfPlaying();
-      if (currentIndex < currentList.length - 1) {
-        currentIndex++;
-        renderSlide(currentIndex, true);
-      }
-    }
-
-    function prevSlide() {
-      pauseIfPlaying();
-      if (currentIndex > 0) {
-        currentIndex--;
-        renderSlide(currentIndex, true);
-      }
-    }
-
-    function toggleIpa() {
-      showIpa = !showIpa;
-      qIpaText.style.display = showIpa ? 'block' : 'none';
-      aIpaText.style.display = showIpa ? 'block' : 'none';
-    }
-
-    function toggleTranslation() {
-      showTranslation = !showTranslation;
-      qViText.style.display = showTranslation ? 'block' : 'none';
-      aViText.style.display = showTranslation ? 'block' : 'none';
-    }
-
-    function handleTimelineClick(e) {
-      pauseIfPlaying();
-      const rect = e.currentTarget.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const ratio = clickX / rect.width;
-      currentIndex = Math.floor(ratio * currentList.length);
-      renderSlide(currentIndex, true);
-    }
-
-    function toggleViewMode() {
-      const vSec = document.getElementById('videoSection');
-      const lSec = document.getElementById('listSection');
-      if (vSec.style.display === 'none') {
-        vSec.style.display = 'flex';
-        lSec.style.display = 'none';
-      } else {
-        pauseIfPlaying();
-        vSec.style.display = 'none';
-        lSec.style.display = 'block';
-      }
-    }
-
-    function buildList() {
-      const container = document.getElementById('listContainer');
-      container.innerHTML = '';
-      allData.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.className = 'list-item';
-        div.innerHTML = `
-          <div class="list-item-num">#${item.id}</div>
-          <div class="list-item-body">
-            <div class="list-item-q">${item.q}</div>
-            <div style="font-size: 0.85rem; color: #38bdf8; font-family: monospace;">${item.qIpa}</div>
-            <div style="font-size: 0.88rem; color: #94a3b8;">${item.qVi}</div>
-            <div class="list-item-a">👉 ${item.a}</div>
-            <div style="font-size: 0.85rem; color: #6ee7b7; font-family: monospace;">${item.aIpa}</div>
-          </div>
-          <button class="play-btn-circle" onclick="playSingleItem(${item.id - 1}, event)">▶</button>
-        `;
-        div.addEventListener('click', () => {
-          toggleViewMode();
-          currentIndex = item.id - 1;
-          renderSlide(currentIndex, true);
-        });
-        container.appendChild(div);
-      });
-    }
-
-    function playSingleItem(idx, e) {
-      e.stopPropagation();
-      toggleViewMode();
-      currentIndex = idx;
-      renderSlide(currentIndex, true);
-      const rate = parseFloat(speedSelect.value);
-      speakWithKaraoke(allData[idx].q, 'qText', rate).then(() => {
-        speakWithKaraoke(allData[idx].a, 'aText', rate);
-      });
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') {
-        e.preventDefault();
-        togglePlayPause();
-      } else if (e.code === 'ArrowRight') {
-        nextSlide();
-      } else if (e.code === 'ArrowLeft') {
-        prevSlide();
-      }
-    });
-
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = () => {
-        window.speechSynthesis.getVoices();
-      };
-    }
-
-    // Khởi chạy
-    populateJumpSelect();
-    renderSlide(0, true);
-    buildList();
-  </script>
+if ("speechSynthesis" in window) {
+  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+}
+</script>
 </body>
 </html>
