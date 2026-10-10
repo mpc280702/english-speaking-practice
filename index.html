@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="google" content="notranslate">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#06101e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>English Speaking Practice — HUMG Fast Track (Phần 1, 2 & 3)</title>
   <style>
     :root {
@@ -316,14 +319,110 @@
     
     .controls {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 7px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 9px;
       padding: 12px;
       border-top: 1px solid var(--line);
-      background: #0a1727;
+      background: #091626;
+      border-radius: 0 0 18px 18px;
     }
+    .ctrl-primary {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      width: 100%;
+    }
+    .nav-step-btn {
+      flex: 0 0 78px;
+      height: 46px;
+      justify-content: center;
+      font-size: 0.88rem;
+      border-radius: 12px;
+      background: #142842;
+      border: 1px solid var(--line);
+    }
+    .hero-play-btn {
+      flex: 1;
+      height: 46px;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4f46e5 0%, #0284c7 100%);
+      box-shadow: 0 5px 18px rgba(14, 165, 233, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+    .hero-play-btn:active {
+      transform: scale(0.98);
+    }
+    .ctrl-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      width: 100%;
+    }
+    .action-btn {
+      height: 38px;
+      padding: 6px 4px;
+      font-size: 0.8rem;
+      justify-content: center;
+      border-radius: 10px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .ctrl-options {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .opt-pill {
+      padding: 5px 10px;
+      font-size: 0.76rem;
+      border-radius: 99px;
+    }
+    .audio-settings {
+      display: none;
+      background: #0d1e34;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-top: 4px;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .settings-title {
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: #93c5fd;
+      margin-bottom: 8px;
+    }
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .settings-field label {
+      display: block;
+      font-size: 0.74rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .select-sm {
+      padding: 7px 10px;
+      font-size: 0.82rem;
+      border-radius: 8px;
+    }
+
     .btn {
       border: 1px solid var(--line);
       background: #1a2d45;
@@ -337,9 +436,11 @@
       align-items: center;
       gap: 5px;
       transition: all 0.15s ease;
+      touch-action: manipulation;
     }
     .btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
     .btn:active { transform: translateY(0); }
+    .btn.sm { padding: 5px 9px; font-size: 0.76rem; border-radius: 8px; }
     .primary { background: var(--blue); border-color: transparent; }
     .good { background: var(--green-dark); color: #c4f7e0; border-color: #1d9d72; }
     .warn { background: var(--yellow-dark); color: #ffe699; border-color: #8c6d10; }
@@ -357,6 +458,17 @@
       outline: none;
     }
     
+    .swipe-hint {
+      font-size: 0.72rem;
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px dashed rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: 99px;
+      user-select: none;
+      display: inline-block;
+    }
+
     /* List View Section */
     .list { padding: 15px; }
     .listhead {
@@ -424,30 +536,118 @@
     
     .hidden { display: none !important; }
     
-    @media(max-width:700px){
-      body { padding: 8px; }
-      .nav { grid-template-columns: 1fr; }
-      .days { grid-template-columns: 1fr 1fr; }
-      .screen { padding: 16px 12px; min-height: 440px; }
-      .controls { padding: 10px 6px; }
-      .btn { padding: 8px 10px; font-size: 0.8rem; }
-      .stats { grid-template-columns: 1fr 1fr; }
-      .stats .stat:last-child { grid-column: 1 / -1; }
+    .header-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .phone-notch {
+      display: none;
+      width: 120px;
+      height: 18px;
+      background: #020710;
+      border-radius: 0 0 14px 14px;
+      margin: -12px auto 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    /* Chế độ mô phỏng điện thoại trên Desktop */
+    .wrap.mobile-mode {
+      max-width: 420px;
+      margin: 15px auto;
+      padding: 14px;
+      background: #06111f;
+      border: 3px solid rgba(255, 255, 255, 0.16);
+      border-radius: 38px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 6px #09192c;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .wrap.mobile-mode .phone-notch {
+      display: block;
+    }
+    
+    /* Giao diện tối ưu thực tế cho điện thoại (<768px) */
+    @media(max-width: 768px){
+      body {
+        padding: 6px;
+        padding-bottom: calc(14px + env(safe-area-inset-bottom));
+      }
+      .wrap { max-width: 100%; margin: 0 auto; }
+      .wrap.mobile-mode {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 6px;
+        margin: 0;
+      }
+      .wrap.mobile-mode .phone-notch { display: none; }
+      
+      header { margin-bottom: 8px; }
+      .brand { font-size: 1.15rem; }
+      
+      .nav {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+        padding: 4px;
+        margin-bottom: 8px;
+      }
+      .nav button {
+        padding: 8px 3px;
+        font-size: 0.74rem;
+        flex-direction: column;
+        gap: 3px;
+        border-radius: 8px;
+      }
+      .nav-icon { font-size: 1.05rem; }
+      
+      .days { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .day { padding: 8px; }
+      .day small { font-size: 0.68rem; }
+      
+      .screen {
+        padding: 14px 10px;
+        min-height: auto;
+        touch-action: pan-y;
+      }
+      .q { font-size: 1.25rem; margin: 6px 0; }
+      .read-text { font-size: 0.92rem; }
+      .ipa-text { font-size: 0.85rem; }
+      .answer { padding: 12px 12px; margin-top: 10px; }
+      .a { font-size: 1.08rem; }
+      
+      .ctrl-actions { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+      .action-btn { height: 42px; font-size: 0.82rem; }
+      .settings-grid { grid-template-columns: 1fr; }
+      
+      .stats { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+      .stat { padding: 8px 4px; }
+      .stat b { font-size: 1rem; }
+    }
+
+    @media(max-width: 390px) {
+      .nav button .nav-lbl { font-size: 0.66rem; }
+      .nav-step-btn { flex: 0 0 68px; font-size: 0.82rem; }
+      .hero-play-btn { font-size: 0.88rem; }
     }
   </style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" id="appWrap">
+  <div class="phone-notch"></div>
   <header>
-    <div class="brand">🎓 English Speaking <span class="tag">HUMG FAST TRACK</span></div>
-    <button class="btn danger" id="reset">↺ Đặt lại tiến độ</button>
+    <div class="brand">🎓 English Speaking <span class="tag">HUMG</span></div>
+    <div class="header-actions">
+      <button class="btn ghost sm" id="mobileSimBtn" title="Chuyển chế độ xem Điện thoại / Máy tính">📱 Giao diện Điện thoại</button>
+      <button class="btn danger sm" id="reset">↺ Đặt lại</button>
+    </div>
   </header>
 
   <!-- Menu chọn Phần (Part Navigator) -->
   <nav class="nav">
-    <button class="active" id="partBtn1" onclick="switchPart(1)">📚 PHẦN 1 · 40 CÂU THÔNG DỤNG</button>
-    <button id="partBtn2" onclick="switchPart(2)">🏫 PHẦN 2 · KHOA HUMG</button>
-    <button id="partBtn3" onclick="switchPart(3)">🖼️ PHẦN 3 · 18 BỘ TRANH VẤN ĐÁP</button>
+    <button class="active" id="partBtn1" onclick="switchPart(1)"><span class="nav-icon">📚</span><span class="nav-lbl">Phần 1: 40 Câu</span></button>
+    <button id="partBtn2" onclick="switchPart(2)"><span class="nav-icon">🏫</span><span class="nav-lbl">Phần 2: Khoa HUMG</span></button>
+    <button id="partBtn3" onclick="switchPart(3)"><span class="nav-icon">🖼️</span><span class="nav-lbl">Phần 3: 18 Tranh</span></button>
   </nav>
 
   <!-- Day box cho Phần 1 -->
@@ -495,6 +695,7 @@
     <div class="screen">
       <div class="top">
         <div class="counter" id="counter">Câu 1/10 · #1</div>
+        <div class="swipe-hint" title="Vuốt màn hình để đổi câu">👈 Vuốt để đổi câu 👉</div>
         <div class="status" id="status">Sẵn sàng</div>
       </div>
       <div class="center">
@@ -524,37 +725,62 @@
       <div></div>
     </div>
     
-    <!-- Thanh điều khiển -->
+    <!-- Thanh điều khiển tối ưu Mobile First -->
     <div class="controls">
-      <button class="btn" id="prev">⏮ Trước</button>
-      <button class="btn primary" id="practice">▶ 5 GIÂY PHẢN XẠ</button>
-      <button class="btn" id="next">Sau ⏭</button>
-      <button class="btn warn" id="slow">🐢 Đọc từng từ</button>
-      <button class="btn good" id="show">👁 Xem đáp án</button>
-      <button class="btn good" id="learnBtn">✅ Đã thuộc</button>
-      <button class="btn" id="hearAns">🔊 Nghe đáp án</button>
-      <button class="btn active-toggle" id="readToggleBtn">🗣 Đọc TV</button>
-      <button class="btn active-toggle" id="ipaToggleBtn">🔤 IPA</button>
-      <button class="btn active-toggle" id="viToggleBtn">🌐 Dịch TV</button>
-      
-      <select class="btn" id="voiceSelect" aria-label="Giọng đọc">
-        <option value="en-female-natural" selected>👩 Cô Giáo Mỹ (Jenny Natural · Chuẩn & Dễ Nghe)</option>
-        <option value="en-female-clarity">👩 Nữ Mỹ Rõ Chữ (Aria / Samantha)</option>
-        <option value="en-female-uk">👩 Nữ Anh Bản Xứ (Sonia / UK Female)</option>
-        <option value="vi-female">👩 Nữ Việt Nam (Hoài My / Google)</option>
-        <option value="en-male">👨 Nam Bản Xứ (Guy / David)</option>
-      </select>
-      <button class="btn ghost" id="testVoiceBtn" title="Bấm để nghe thử giọng đọc này">🔊 Thử giọng</button>
-      
-      <select class="btn" id="speed" aria-label="Tốc độ đọc">
-        <option value="0.20">0.20x · Chậm tối đa</option>
-        <option value="0.30">0.30x · Siêu chậm</option>
-        <option value="0.45">0.45x · Luyện âm đuôi</option>
-        <option value="0.60">0.60x · Rất chậm</option>
-        <option value="0.75" selected>0.75x · Chậm & Rõ</option>
-        <option value="0.90">0.90x · Vừa phải</option>
-        <option value="1.00">1.00x · Chuẩn bản xứ</option>
-      </select>
+      <!-- 1. Hàng chính: Nút điều hướng to, dễ bấm ngón tay cái -->
+      <div class="ctrl-primary">
+        <button class="btn nav-step-btn" id="prev" title="Câu trước">⏮ Trước</button>
+        <button class="btn primary hero-play-btn" id="practice">▶ 5 GIÂY PHẢN XẠ</button>
+        <button class="btn nav-step-btn" id="next" title="Câu sau">Sau ⏭</button>
+      </div>
+
+      <!-- 2. Hàng chức năng luyện tập: 4 nút phân bố đều dễ bấm -->
+      <div class="ctrl-actions">
+        <button class="btn good action-btn" id="show">👁 Xem đáp án</button>
+        <button class="btn action-btn" id="hearAns">🔊 Nghe đáp án</button>
+        <button class="btn warn action-btn" id="slow">🐢 Đọc từng từ</button>
+        <button class="btn good action-btn" id="learnBtn">✅ Đã thuộc</button>
+      </div>
+
+      <!-- 3. Hàng tùy chọn bật/tắt hiển thị & Cài đặt -->
+      <div class="ctrl-options">
+        <button class="btn sm active-toggle opt-pill" id="readToggleBtn">🗣 Đọc TV</button>
+        <button class="btn sm active-toggle opt-pill" id="ipaToggleBtn">🔤 IPA</button>
+        <button class="btn sm active-toggle opt-pill" id="viToggleBtn">🌐 Dịch TV</button>
+        <button class="btn sm opt-pill" id="settingsToggleBtn">⚙️ Cài đặt giọng</button>
+      </div>
+
+      <!-- 4. Panel cài đặt giọng đọc & tốc độ (Bấm ⚙️ để mở/đóng) -->
+      <div class="audio-settings" id="audioSettingsPanel">
+        <div class="settings-title">⚙️ Tùy chỉnh Giọng đọc & Tốc độ</div>
+        <div class="settings-grid">
+          <div class="settings-field">
+            <label for="voiceSelect">Giọng đọc:</label>
+            <div style="display:flex; gap:6px; width:100%;">
+              <select class="select select-sm" id="voiceSelect" style="flex:1;" aria-label="Giọng đọc">
+                <option value="en-female-natural" selected>👩 Cô Giáo Mỹ (Jenny Natural · Dễ Nghe)</option>
+                <option value="en-female-clarity">👩 Nữ Mỹ Rõ Chữ (Aria / Samantha)</option>
+                <option value="en-female-uk">👩 Nữ Anh Bản Xứ (Sonia / UK Female)</option>
+                <option value="vi-female">👩 Nữ Việt Nam (Hoài My / Google)</option>
+                <option value="en-male">👨 Nam Bản Xứ (Guy / David)</option>
+              </select>
+              <button class="btn ghost sm" id="testVoiceBtn" title="Bấm để nghe thử giọng đọc này">🔊 Thử</button>
+            </div>
+          </div>
+          <div class="settings-field">
+            <label for="speed">Tốc độ:</label>
+            <select class="select select-sm" id="speed" style="width:100%;" aria-label="Tốc độ đọc">
+              <option value="0.20">0.20x · Chậm tối đa</option>
+              <option value="0.30">0.30x · Siêu chậm</option>
+              <option value="0.45">0.45x · Luyện âm đuôi</option>
+              <option value="0.60">0.60x · Rất chậm</option>
+              <option value="0.75" selected>0.75x · Chậm & Rõ (Khuyên dùng)</option>
+              <option value="0.90">0.90x · Vừa phải</option>
+              <option value="1.00">1.00x · Chuẩn bản xứ</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1287,6 +1513,56 @@ try {
   }
 } catch (e) {
   switchPart(1);
+}
+
+if ($("settingsToggleBtn") && $("audioSettingsPanel")) {
+  $("settingsToggleBtn").onclick = () => {
+    const panel = $("audioSettingsPanel");
+    const isHidden = window.getComputedStyle(panel).display === "none";
+    panel.style.display = isHidden ? "block" : "none";
+    $("settingsToggleBtn").classList.toggle("active-toggle", isHidden);
+  };
+}
+
+if ($("mobileSimBtn") && $("appWrap")) {
+  const wrapEl = $("appWrap");
+  const isMobileSim = localStorage.getItem("humg-mobile-sim") === "true";
+  if (isMobileSim) {
+    wrapEl.classList.add("mobile-mode");
+    $("mobileSimBtn").textContent = "💻 Giao diện Máy tính";
+  }
+  $("mobileSimBtn").onclick = () => {
+    const active = wrapEl.classList.toggle("mobile-mode");
+    localStorage.setItem("humg-mobile-sim", active);
+    $("mobileSimBtn").textContent = active ? "💻 Giao diện Máy tính" : "📱 Giao diện Điện thoại";
+  };
+}
+
+// Hỗ trợ vuốt chạm chuyển câu trên màn hình cảm ứng điện thoại
+let touchStartX = 0;
+let touchStartY = 0;
+const screenCard = document.querySelector(".screen");
+if (screenCard) {
+  screenCard.addEventListener("touchstart", e => {
+    if (e.touches.length === 1) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+  
+  screenCard.addEventListener("touchend", e => {
+    if (e.changedTouches.length === 1) {
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      const deltaY = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+        if (deltaX < 0) {
+          $("next").click();
+        } else {
+          $("prev").click();
+        }
+      }
+    }
+  }, { passive: true });
 }
 
 if ("speechSynthesis" in window) {
